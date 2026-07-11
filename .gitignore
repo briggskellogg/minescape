@@ -1,0 +1,36 @@
+# ============================================================
+# MINESCAPE - public repo hygiene
+# The repo is the SOURCE (packs, deck, scripts, docs).
+# The RUNTIME (server binary, world, players) stays local.
+# ============================================================
+
+# --- Server runtime: BDS binary (200+ MB, exceeds GitHub limits),
+# --- the live world, logs, and player data. Never commit.
+server/
+
+# --- Backups (huge, private)
+backups/
+
+# --- Private player data (kids' gamertags, XUIDs)
+config/allowlist.json
+config/permissions.json
+
+# --- Music: likely copyrighted audio - keep out of a public repo
+music/*
+!music/README.txt
+
+# --- Archives / downloads
+*.zip
+*.mcaddon
+*.mcpack
+bds.zip
+
+# --- Node / tooling
+node_modules/
+
+# --- OS / editor cruft
+Thumbs.db
+.DS_Store
+.vscode/
+.idea/
+*.log

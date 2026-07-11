@@ -1,0 +1,12 @@
+{
+    "format_version": "1.10.0",
+    "minecraft:client_entity": {
+        "description": {
+            "identifier": "moogul:sword_in_stone",
+            "materials": { "default": "entity_alphatest" },
+            "textures": { "default": "textures/entity/sword_in_stone" },
+            "geometry": { "default": "geometry.moogul.sword_in_stone" },
+            "render_controllers": ["controller.render.moogul_static"]
+        }
+    }
+}

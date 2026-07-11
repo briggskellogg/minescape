@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MINESCAPE COMMAND DECK</title>
+<style>
+  :root {
+    --bg: #0a0a12; --panel: #12121f; --edge: #2a2a45;
+    --green: #4afa7b; --magenta: #ff5cd6; --cyan: #58d8ff; --amber: #ffc95c;
+    --text: #cfd2e8; --dim: #6a6d8a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "Courier New", ui-monospace, monospace;
+    padding: 14px; min-height: 100vh;
+    image-rendering: pixelated;
+  }
+  /* CRT scanlines */
+  body::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, rgba(0,0,0,.18) 0 1px, transparent 1px 3px);
+  }
+  h1 {
+    font-size: 18px; letter-spacing: 4px; color: var(--magenta);
+    text-shadow: 0 0 8px rgba(255,92,214,.6); margin-bottom: 2px;
+  }
+  .sub { color: var(--dim); font-size: 11px; margin-bottom: 14px; letter-spacing: 2px; }
+  .status { float: right; font-size: 12px; padding: 4px 10px; border: 2px solid var(--edge); }
+  .status.on  { color: var(--green);  border-color: var(--green);  text-shadow: 0 0 6px rgba(74,250,123,.7); }
+  .status.off { color: #ff6a6a; border-color: #ff6a6a; }
+  .grid { display: grid; grid-template-columns: 340px 1fr; gap: 14px; }
+  .panel { background: var(--panel); border: 2px solid var(--edge); padding: 12px; }
+  .panel h2 { font-size: 11px; color: var(--cyan); letter-spacing: 3px; margin-bottom: 10px; }
+  .btns { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  button {
+    font-family: inherit; font-size: 12px; cursor: pointer;
+    background: #191930; color: var(--text); border: 2px solid var(--edge);
+    padding: 10px 6px; letter-spacing: 1px; text-align: center;
+  }
+  button:hover { border-color: var(--magenta); color: #fff; box-shadow: 0 0 10px rgba(255,92,214,.35); }
+  button:active { transform: translate(1px,1px); }
+  button.wide { grid-column: 1 / -1; }
+  button.danger:hover { border-color: #ff6a6a; box-shadow: 0 0 10px rgba(255,106,106,.35); }
+  .row { display: flex; gap: 8px; margin-top: 8px; }
+  input {
+    flex: 1; font-family: inherit; font-size: 12px;
+    background: #0d0d18; color: var(--green); border: 2px solid var(--edge); padding: 9px;
+  }
+  input:focus { outline: none; border-color: var(--green); }
+  select {
+    flex: 1; font-family: inherit; font-size: 12px;
+    background: #0d0d18; color: var(--cyan); border: 2px solid var(--edge); padding: 9px;
+  }
+  select:focus { outline: none; border-color: var(--cyan); }
+  #log {
+    height: 560px; overflow-y: auto; background: #07070d;
+    border: 2px solid var(--edge); padding: 10px;
+    font-size: 12px; line-height: 1.55; white-space: pre-wrap; word-break: break-all;
+  }
+  #log .deck { color: var(--amber); }
+  #log .err  { color: #ff6a6a; }
+  #log .moogul { color: var(--magenta); }
+  .hint { color: var(--dim); font-size: 10px; margin-top: 8px; line-height: 1.6; }
+  section + section { margin-top: 14px; }
+</style>
+</head>
+<body>
+  <div id="status" class="status off">OFFLINE</div>
+  <h1>&#9670; MINESCAPE COMMAND DECK</h1>
+  <div class="sub">MINESCAPE WORLD ENGINE &mdash; v1</div>
+
+  <div class="grid">
+    <div>
+      <section class="panel">
+        <h2>&#9654; WORLD EVENTS</h2>
+        <div class="btns">
+          <button onclick="ev('storm')">&#9928; STORM</button>
+          <button onclick="ev('calm')">&#9728; CALM SKIES</button>
+          <button onclick="ev('nightfall')">&#9789; NIGHTFALL</button>
+          <button onclick="ev('celebrate')">&#10022; CELEBRATE</button>
+          <button onclick="ev('gift')">&#127873; GIFT DROP</button>
+          <button onclick="ev('ping')">&#9679; PING ENGINE</button>
+        </div>
+        <div class="row">
+          <input id="narrate" placeholder="narration text..." onkeydown="if(event.key==='Enter')doNarrate()">
+          <button onclick="doNarrate()">NARRATE</button>
+        </div>
+        <div class="row">
+          <input id="announce" placeholder="Title|Subtitle" onkeydown="if(event.key==='Enter')doAnnounce()">
+          <button onclick="doAnnounce()">ANNOUNCE</button>
+        </div>
+        <div class="hint">GENESIS (crater + sword) and RALLY are fired from in-game chat, standing where you want them:<br>/scriptevent moogul:genesis &nbsp;&bull;&nbsp; /scriptevent moogul:rally</div>
+      </section>
+
+      <section class="panel">
+        <h2>&#9654; AMBIENCE</h2>
+        <div class="btns">
+          <button onclick="ev('weather','clear')">&#9728; FORCE CLEAR</button>
+          <button onclick="ev('weather','rain')">&#127783; FORCE RAIN</button>
+          <button onclick="ev('weather','thunder')">&#9928; FORCE STORM</button>
+          <button onclick="ev('weather','natural')">&#8635; NATURAL SKY</button>
+          <button onclick="ev('timelock','day')">&#9728; LOCK DAY</button>
+          <button onclick="ev('timelock','night')">&#9790; LOCK NIGHT</button>
+          <button class="wide" onclick="ev('timelock','natural')">&#8635; NATURAL TIME</button>
+        </div>
+        <div class="row">
+          <select id="track"><option value="">no custom tracks yet</option></select>
+        </div>
+        <div class="btns" style="margin-top:8px">
+          <button onclick="playTrack()">&#9654; PLAY TRACK</button>
+          <button onclick="cmd('stopsound @a')">&#9632; STOP MUSIC</button>
+          <button onclick="cmd('playsound record.cat @a')">&#9834; CAT</button>
+          <button onclick="cmd('playsound record.pigstep @a')">&#9834; PIGSTEP</button>
+          <button onclick="cmd('playsound record.otherside @a')">&#9834; OTHERSIDE</button>
+          <button onclick="cmd('playsound record.stal @a')">&#9834; STAL</button>
+          <button class="wide" onclick="rebuildMusic()">&#10227; REBUILD MUSIC LIBRARY</button>
+        </div>
+        <div class="hint">Your music: drop .ogg files into the <b>music</b> folder, hit REBUILD, restart the server. Players receive tracks on next join; then PLAY fires them globally. Got mp3s? Ask Claude to convert them.</div>
+      </section>
+
+      <section class="panel">
+        <h2>&#9654; GATEKEEPING</h2>
+        <div class="row">
+          <input id="invite" placeholder="gamertag to invite...">
+          <button onclick="invite()">INVITE</button>
+        </div>
+        <div class="btns" style="margin-top:8px">
+          <button onclick="cmd('allowlist list')">LIST INVITED</button>
+          <button onclick="cmd('list')">WHO'S ON</button>
+        </div>
+      </section>
+
+      <section class="panel">
+        <h2>&#9654; SERVER</h2>
+        <div class="btns">
+          <button onclick="start()">START</button>
+          <button class="danger" onclick="cmd('stop')">STOP</button>
+        </div>
+        <div class="row">
+          <input id="raw" placeholder="raw server command..." onkeydown="if(event.key==='Enter')doRaw()">
+          <button onclick="doRaw()">SEND</button>
+        </div>
+        <div class="hint">Anything you'd type in the server console works here. Time, weather, tp, give, tag &mdash; the world is yours.</div>
+      </section>
+    </div>
+
+    <section class="panel">
+      <h2>&#9654; WORLD FEED</h2>
+      <div id="log"></div>
+    </section>
+  </div>
+
+<script>
+  const log = document.getElementById("log");
+  function addLine(line) {
+    const div = document.createElement("div");
+    if (line.startsWith("[deck]")) div.className = "deck";
+    else if (/ERROR|error/.test(line)) div.className = "err";
+    else if (line.includes("[moogul]")) div.className = "moogul";
+    div.textContent = line;
+    log.appendChild(div);
+    while (log.childNodes.length > 900) log.removeChild(log.firstChild);
+    log.scrollTop = log.scrollHeight;
+  }
+  const es = new EventSource("/log");
+  es.onmessage = (e) => { try { addLine(JSON.parse(e.data).line); } catch (err) {} };
+
+  async function post(url, body) {
+    await fetch(url, { method: "POST", headers: {"Content-Type":"application/json"}, body: body ? JSON.stringify(body) : "{}" });
+  }
+  const cmd = (c) => post("/cmd", { cmd: c });
+  const ev  = (name, payload) => cmd("scriptevent moogul:" + name + (payload ? " " + payload : ""));
+  const start = () => post("/start");
+
+  function doNarrate() { const i = document.getElementById("narrate"); if (i.value.trim()) ev("narrate", i.value.trim()); i.value = ""; }
+  function doAnnounce() { const i = document.getElementById("announce"); if (i.value.trim()) ev("announce", i.value.trim()); i.value = ""; }
+  function doRaw() { const i = document.getElementById("raw"); if (i.value.trim()) cmd(i.value.trim()); i.value = ""; }
+  function invite() {
+    const i = document.getElementById("invite");
+    const name = i.value.trim();
+    if (name) cmd('allowlist add "' + name.replace(/"/g, "") + '"');
+    i.value = "";
+  }
+
+  async function loadTracks() {
+    try {
+      const data = await (await fetch("/music-list")).json();
+      const sel = document.getElementById("track");
+      sel.innerHTML = "";
+      if (!data.tracks || data.tracks.length === 0) {
+        sel.innerHTML = '<option value="">no custom tracks yet</option>';
+      } else {
+        for (const t of data.tracks) {
+          const o = document.createElement("option");
+          o.value = t;
+          o.textContent = t.replace("moogul.music.", "").replace(/_/g, " ");
+          sel.appendChild(o);
+        }
+      }
+    } catch (e) {}
+  }
+  loadTracks();
+  function playTrack() {
+    const id = document.getElementById("track").value;
+    if (id) cmd("playsound " + id + " @a");
+  }
+  async function rebuildMusic() {
+    await post("/rebuild-music");
+    loadTracks();
+  }
+
+  setInterval(async () => {
+    try {
+      const s = await (await fetch("/status")).json();
+      const el = document.getElementById("status");
+      el.textContent = s.online ? "● ONLINE" : "OFFLINE";
+      el.className = "status " + (s.online ? "on" : "off");
+    } catch (e) {}
+  }, 3000);
+</script>
+</body>
+</html>

@@ -1,0 +1,3 @@
+@echo off
+echo Removing Minescape autostart (needs admin approval)...
+powershell -NoProfile -Command "Start-Process cmd -Verb RunAs -ArgumentList '/c schtasks /Delete /F /TN \"Minescape Server\" && echo Autostart removed. Sleep settings left as-is. && pause'"

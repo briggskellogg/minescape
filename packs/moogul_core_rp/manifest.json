@@ -1,0 +1,17 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Moogul Core [RP]",
+        "description": "Mooguland look and sound: models, textures, music, voices.",
+        "uuid": "05b4c8a0-7f58-4442-8efc-29e413573ff8",
+        "version": [0, 1, 0],
+        "min_engine_version": [1, 26, 30]
+    },
+    "modules": [
+        {
+            "type": "resources",
+            "uuid": "3c130109-8d9a-482f-b1c6-29f63dbd326a",
+            "version": [0, 1, 0]
+        }
+    ]
+}

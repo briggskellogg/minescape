@@ -1,0 +1,28 @@
+{
+    "format_version": 2,
+    "header": {
+        "name": "Moogul Core [BP]",
+        "description": "Mooguland engine: event router, world events, adventure scripting.",
+        "uuid": "8eae616f-c51b-4231-b13e-e6b84d3b4100",
+        "version": [0, 1, 0],
+        "min_engine_version": [1, 26, 30]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "1d22d259-5746-483b-ba0e-17e7133112e7",
+            "version": [0, 1, 0]
+        },
+        {
+            "type": "script",
+            "language": "javascript",
+            "uuid": "767f771a-7fe5-4622-a5a3-06861f289875",
+            "version": [0, 1, 0],
+            "entry": "scripts/main.js"
+        }
+    ],
+    "dependencies": [
+        { "module_name": "@minecraft/server", "version": "2.8.0" },
+        { "module_name": "@minecraft/server-ui", "version": "2.1.0" }
+    ]
+}
