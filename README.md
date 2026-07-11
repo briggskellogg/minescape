@@ -65,7 +65,7 @@ MinecraftServer/
 ├── packs/
 │   ├── moogul_core_bp/   ← the ENGINE: event router, genesis, sword, scripts
 │   └── moogul_core_rp/   ← the LOOK: models, textures; music & voices go here later
-├── deck/              ← Command Deck (Node): deck.js + pixel UI
+├── deck/              ← Command Deck (Node): deck.js + pixel UI (see DESIGN.md)
 ├── scripts/           ← setup.ps1, backup.ps1
 ├── world_templates/   ← pack wiring copied into new worlds
 ├── server/            ← created by setup: BDS + the live world (worlds/Minescape)

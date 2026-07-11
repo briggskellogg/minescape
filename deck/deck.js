@@ -169,6 +169,29 @@ function rebuildMusic() {
     return { tracks, version: man.header.version };
 }
 
+// --- static assets: design-system.css + everything under deck/assets/ -----
+// (fonts, icon sprite — kept generic so new assets don't need new routes)
+const MIME_TYPES = {
+    ".css": "text/css; charset=utf-8",
+    ".svg": "image/svg+xml",
+    ".woff2": "font/woff2",
+    ".ttf": "font/ttf",
+    ".txt": "text/plain; charset=utf-8",
+    ".png": "image/png",
+    ".html": "text/html; charset=utf-8",
+};
+function serveStatic(relPath, res) {
+    const full = path.join(__dirname, relPath);
+    // path-traversal guard: resolved path must stay inside deck/
+    if (!full.startsWith(__dirname + path.sep)) { res.writeHead(403); res.end(); return; }
+    fs.readFile(full, (err, data) => {
+        if (err) { res.writeHead(404); res.end(); return; }
+        const type = MIME_TYPES[path.extname(full).toLowerCase()] || "application/octet-stream";
+        res.writeHead(200, { "Content-Type": type, "Cache-Control": "no-cache" });
+        res.end(data);
+    });
+}
+
 const server = http.createServer((req, res) => {
     // localhost guard
     const remote = req.socket.remoteAddress || "";
@@ -180,6 +203,10 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
             res.end(data);
         });
+    } else if (req.method === "GET" && req.url === "/design-system.css") {
+        serveStatic("design-system.css", res);
+    } else if (req.method === "GET" && req.url.startsWith("/assets/")) {
+        serveStatic(req.url.slice(1), res);
     } else if (req.method === "GET" && req.url === "/log") {
         res.writeHead(200, {
             "Content-Type": "text/event-stream",
