@@ -6,6 +6,42 @@ game-console-grade — Hades II's restraint, Valorant's geometric clarity, Disco
 willingness to let text carry weight, Minecraft's honest chunky grid. Not the deck's old
 neon-on-void hacker-CRT look.
 
+## Added taste anchor: Planescape × Spelljammer, in Minecraft pixels
+
+Standing direction from Briggs, folded into the system for every phase from here on —
+most load-bearing in **Phase 3 (Marks, Dungeons, Epic Events)**, since that's where the
+world's cosmology actually gets built:
+
+- **Planescape** (Sigil, the City of Doors; the Lady of Pain; portals each keyed to a
+  specific symbol/item; law–chaos–good–evil factions as *philosophies*, not just teams;
+  Tony DiTerlizzi's baroque, elongated, symbol-heavy illustration) → **dungeon entrances
+  are portal-gates, not doorways.** A locked dungeon (§3 of the brief) is narratively a
+  *planar rift* sealed until its key item — itself a small sigil/rune object — is
+  presented. Pixel iconography: a ring/arch with a swirling color-keyed core (already
+  primed by the trinity palette — an instinct-red rift reads as hostile/dangerous, a
+  logic-blue rift as a calm waypoint, a psyche-yellow rift as a reward vault). The
+  existing calling trinity (Warden/Sage/Trickster, §4) already functions like a
+  Planescape faction system — three competing philosophies, not just three classes —
+  lean into that instead of downplaying it. Marks (§3, `moogul:mark`) are the sigil: a
+  personal waypoint rune placed in the world, not a generic pin.
+- **Spelljammer** (helmed ships crossing wildspace between crystal spheres; brass-and-
+  wood nautical hulls sailing a starfield; the sense that the overworld is one "sphere"
+  among many reachable ones) → the epic events (§3: godray, blackhole, starfall,
+  awakening, swarm/siege) get a *wildspace* visual vocabulary — drifting star debris,
+  void-dimming fog, portals as the connective tissue between "here" and "elsewhere"
+  rather than one-off VFX. `starfall` in particular should read as *something arriving
+  from another sphere*, not generic meteors. A drifting spelljammer-hull silhouette is a
+  strong candidate for a future footer easter egg or a rare wandering-trader set piece —
+  small, discoverable, not a redesign of the whole deck chrome (the deck itself stays
+  Hades/Valorant-restrained per the section below; the *planar/cosmic* voice belongs to
+  the world-building systems, not the admin UI).
+- **Practical split**: the Command Deck's own chrome (buttons, panels, tabs) stays
+  exactly as specified below — this new pillar is about *world content* (dungeons,
+  marks, epic events, the crest/lore layer), not a second competing UI language. Where
+  it does touch the deck is additive: a couple of new icon glyphs (portal ring, sigil/
+  rune) join the existing set when Phase 3 needs them, and the Dungeons tab's copy/
+  iconography should speak in this voice once it's built.
+
 ## ⚠️ Palette status: provisional
 
 The brief asks for the red/blue/yellow trinity to be **extracted from the actual pixels**
