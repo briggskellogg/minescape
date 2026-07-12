@@ -15,15 +15,29 @@ world's cosmology actually gets built:
 - **Planescape** (Sigil, the City of Doors; the Lady of Pain; portals each keyed to a
   specific symbol/item; law–chaos–good–evil factions as *philosophies*, not just teams;
   Tony DiTerlizzi's baroque, elongated, symbol-heavy illustration) → **dungeon entrances
-  are portal-gates, not doorways.** A locked dungeon (§3 of the brief) is narratively a
-  *planar rift* sealed until its key item — itself a small sigil/rune object — is
-  presented. Pixel iconography: a ring/arch with a swirling color-keyed core (already
-  primed by the trinity palette — an instinct-red rift reads as hostile/dangerous, a
-  logic-blue rift as a calm waypoint, a psyche-yellow rift as a reward vault). The
-  existing calling trinity (Warden/Sage/Trickster, §4) already functions like a
+  should vary wildly — a portal-ring is one option among many, never the house style.**
+  Sigil itself is full of *different* doors (an alley, a bad joke, a coffin, a mirror) —
+  the variety IS the Planescape move, not a repeated template. A locked dungeon (§3 of
+  the brief) is narratively sealed until its key item is presented, but the seal itself
+  can be a rift, a mundane-looking door that shouldn't lead anywhere, a crack in a cliff
+  face, a drowned stair, whatever fits that specific dungeon's identity — pixel
+  iconography per-entrance, not one universal glyph. Where a swirling rift *is* the right
+  call, it can key its color off the trinity/blend tokens (an instinct-red rift reads
+  hostile, a blend-instinct-psyche violet rift reads as a dangerous-but-rewarding vault).
+  The existing calling trinity (Warden/Sage/Trickster, §4) already functions like a
   Planescape faction system — three competing philosophies, not just three classes —
   lean into that instead of downplaying it. Marks (§3, `moogul:mark`) are the sigil: a
   personal waypoint rune placed in the world, not a generic pin.
+- **Dungeons vs. dimensions — a real technical distinction, not just flavor.** A
+  *dungeon* (§3 of the brief) is a separate, distinct structure — an authored
+  `.mcstructure` placed into the existing world at a mark, protected from griefing in at
+  least its key areas (unbreakable blocks or a block-break guard, same pattern as the
+  sword-in-the-stone) so the set piece survives contact with two kids. A *dimension* is a
+  categorically bigger thing — a whole separate Minecraft dimension layer, the way the
+  Nether or the End are. Nothing in the current brief asks for custom dimensions, and
+  Phase 3 as scoped is dungeons-as-placed-structures only — but if a dimension-scale
+  space (a proper "other crystal sphere," Spelljammer-style) ever gets greenlit, treat it
+  as its own future phase, not something Phase 3's dungeon system quietly grows into.
 - **Spelljammer** (helmed ships crossing wildspace between crystal spheres; brass-and-
   wood nautical hulls sailing a starfield; the sense that the overworld is one "sphere"
   among many reachable ones) → the epic events (§3: godray, blackhole, starfall,
