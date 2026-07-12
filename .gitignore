@@ -15,6 +15,9 @@ backups/
 config/allowlist.json
 config/permissions.json
 
+# --- Telemetry: chat logs, locations, per-player activity. Private, local-only.
+deck/data/
+
 # --- Music: likely copyrighted audio - keep out of a public repo
 music/*
 !music/README.txt

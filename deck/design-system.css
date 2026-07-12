@@ -425,9 +425,9 @@ select.field { color: var(--text-primary); }
 .feed-entry.cat-chat { border-left-color: var(--psyche); }
 .feed-entry.cat-chat .icon { color: var(--psyche-bright); }
 .feed-entry.cat-build { border-left-color: var(--text-tertiary); }
-.feed-entry.cat-event, .feed-entry.cat-milestone { border-left-color: var(--logic); }
-.feed-entry.cat-event .icon, .feed-entry.cat-milestone .icon { color: var(--logic-bright); }
-.feed-entry.cat-deck { color: var(--text-secondary); font-family: var(--font-mono); font-size: var(--text-xs); }
+.feed-entry.cat-events { border-left-color: var(--logic); }
+.feed-entry.cat-events .icon { color: var(--logic-bright); }
+.feed-entry.cat-system { color: var(--text-secondary); font-family: var(--font-mono); font-size: var(--text-xs); }
 .feed-entry.cat-error { border-left-color: var(--instinct); color: var(--instinct-bright); }
 .feed-entry.is-new { animation: toast-in 180ms steps(3, end), glow-decay 1000ms linear; }
 

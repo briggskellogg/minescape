@@ -120,14 +120,40 @@
         </div>
       </section>
 
-      <!-- ============ PLAYERS (placeholder — Phase 2/4/7) ============ -->
+      <!-- ============ PLAYERS ============ -->
       <section class="tab-panel" data-panel="players" hidden>
-        <div class="panel panel--placeholder">
-          <div class="panel-header accent-neutral"><svg class="icon"><use href="#icon-person"></use></svg> Players</div>
+        <div class="panel">
+          <div class="panel-header"><svg class="icon"><use href="#icon-person"></use></svg> Players</div>
           <div class="panel-body">
-            <svg class="icon icon--xl" style="color:var(--text-tertiary)"><use href="#icon-person"></use></svg>
-            <p class="pixel pixel--sm" style="margin-top:12px">Coming in Phase 2 &amp; 4</p>
-            <p class="hint" style="margin-top:8px">Per-player timelines, stats (might/wit/spark), karma, and the give console land here once telemetry and the RPG spine are built.</p>
+            <div id="player-list" class="stack" style="gap:8px">
+              <p class="hint">No players seen yet — this populates from telemetry once someone joins.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" id="player-detail-panel" style="margin-top:16px; display:none">
+          <div class="panel-header accent-reward"><svg class="icon"><use href="#icon-person"></use></svg> <span id="player-detail-name"></span></div>
+          <div class="panel-body">
+            <div id="player-stats" class="hint"></div>
+            <div id="player-timeline" class="feed" style="height:320px"></div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:16px">
+          <div class="panel-header accent-neutral"><svg class="icon"><use href="#icon-key"></use></svg> Forensics</div>
+          <div class="panel-body">
+            <p class="hint">Who broke or placed blocks near a spot, within the last N minutes — enough to settle "someone took my diamonds" with receipts.</p>
+            <div class="field-row">
+              <input class="field mono" id="fx" placeholder="x">
+              <input class="field mono" id="fy" placeholder="y">
+              <input class="field mono" id="fz" placeholder="z">
+            </div>
+            <div class="field-row">
+              <input class="field mono" id="fradius" placeholder="radius" value="16">
+              <input class="field mono" id="fminutes" placeholder="minutes" value="30">
+              <button class="btn btn--reward" onclick="doForensics()">Query</button>
+            </div>
+            <div id="forensics-results" class="feed" style="height:220px; margin-top:12px"></div>
           </div>
         </div>
       </section>
@@ -196,9 +222,12 @@
       <div class="panel-body">
         <div class="feed-filters">
           <button class="chip active" data-filter="all">All</button>
-          <button class="chip" data-filter="moogul">Events</button>
-          <button class="chip" data-filter="deck">System</button>
-          <button class="chip" data-filter="error">Errors</button>
+          <button class="chip" data-filter="chat">Chat</button>
+          <button class="chip" data-filter="build">Builds</button>
+          <button class="chip" data-filter="combat">Combat</button>
+          <button class="chip" data-filter="events">Events</button>
+          <button class="chip" data-filter="system">System</button>
+          <button class="chip" data-toggle="engine-room" title="Show raw system/engine lines under All too"><svg class="icon icon--sm"><use href="#icon-wrench"></use></svg>Engine room</button>
         </div>
         <div id="log" class="feed"></div>
       </div>
@@ -226,49 +255,199 @@
     document.querySelectorAll(".tab-panel").forEach((p) => { p.hidden = p.dataset.panel !== name; });
   });
 
-  // ---- world feed (categorized on what today's engine actually emits;
-  // full Chat/Builds/Combat filters arrive with Phase 2 telemetry) ----
+  // ---- telemetry -> human sentences ----------------------------------
+  // deck.js forwards two SSE payload shapes: {t,line} for raw server/deck
+  // log lines, and {t,telemetry:{t,kind,who,what,where}} for [MOOGUL-T]
+  // events. This translates the latter into plain English; raw lines
+  // (mostly [deck]/[moogul] chrome) get a lighter categorization and hide
+  // under "Engine room" by default so the feed reads as a family log,
+  // not a console dump.
+  const DEATH_PHRASES = {
+    fall: () => "fell from a high place",
+    fall_to_void: () => "fell into the void",
+    void: () => "fell into the void",
+    drowning: () => "drowned",
+    drown: () => "drowned",
+    lava: () => "burned in lava",
+    fire: () => "burned",
+    fireTick: () => "burned",
+    lightning: () => "was struck by lightning",
+    freezing: () => "froze",
+    starve: () => "starved",
+    suffocation: () => "suffocated",
+    entityAttack: (by) => by ? `was slain by ${by}` : "was slain",
+    projectile: (by) => by ? `was shot down by ${by}` : "was shot down",
+    magic: () => "died to magic",
+    poison: () => "succumbed to poison",
+    wither: () => "withered away",
+    explosion: () => "was caught in an explosion",
+    fireworks: () => "was caught in an explosion",
+  };
+  function deathPhrase(what) {
+    const fn = what && DEATH_PHRASES[what.cause];
+    if (fn) return fn(what.by);
+    return what && what.cause ? `died (${what.cause})` : "died";
+  }
+  function blockName(id) { return (id || "?").replace("minecraft:", "").replace(/_/g, " "); }
+
+  function humanizeTelemetry(entry) {
+    const who = entry.who || "someone";
+    switch (entry.kind) {
+      case "join_new": return { text: `${who} joined Minescape for the first time!`, cat: "system", icon: "icon-person" };
+      case "join": return { text: `${who} joined`, cat: "system", icon: "icon-person" };
+      case "leave": return { text: `${who} left`, cat: "system", icon: "icon-person" };
+      case "chat": return { text: `${who}: ${entry.what}`, cat: "chat", icon: "icon-speech" };
+      case "death": return { text: `${who} ${deathPhrase(entry.what)}`, cat: "combat", icon: "icon-sword" };
+      case "block_break": return { text: `${who} broke ${blockName(entry.what)}`, cat: "build", icon: "icon-pickaxe" };
+      case "block_place": return { text: `${who} placed ${blockName(entry.what)}`, cat: "build", icon: "icon-pickaxe" };
+      case "container_open": return { text: `${who} opened ${blockName(entry.what)}`, cat: "build", icon: "icon-key" };
+      case "villager_hurt": return { text: `${who} hurt a villager`, cat: "combat", icon: "icon-sword" };
+      case "pvp": return { text: `${who} hit ${entry.what}`, cat: "combat", icon: "icon-sword" };
+      default: return { text: `${who}: ${entry.kind}`, cat: "system", icon: "icon-wrench" };
+    }
+  }
+  function telemetryEntryEl(entry) {
+    const h = humanizeTelemetry(entry);
+    const div = document.createElement("div");
+    div.className = "feed-entry cat-" + h.cat;
+    const ts = new Date(entry.t).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    div.innerHTML = `<svg class="icon"><use href="#${h.icon}"></use></svg><span class="msg"></span><span class="ts">${ts}</span>`;
+    div.querySelector(".msg").textContent = h.text;
+    return div;
+  }
+
+  // ---- world feed (live) ----------------------------------------------
   const log = document.getElementById("log");
   let activeFilter = "all";
+  let engineRoomOpen = false;
   const feedEntries = [];
 
-  function categoryFor(line) {
-    if (line.startsWith("[deck]")) return "deck";
-    if (/error/i.test(line)) return "error";
-    if (line.includes("[moogul]")) return "moogul";
-    return "deck";
+  function categoryForLine(line) {
+    if (line.includes("[moogul]") && /event '.*' fired/.test(line)) return "events";
+    return "system"; // [deck] chrome, startup spam, etc. — the "engine room"
   }
-  function iconFor(cat) {
-    return cat === "moogul" ? "icon-star" : cat === "error" ? "icon-thundercloud" : "icon-wrench";
+  function iconForLine(cat, isError) {
+    return isError ? "icon-thundercloud" : cat === "events" ? "icon-star" : "icon-wrench";
   }
-  function addLine(line) {
-    const cat = categoryFor(line);
-    const div = document.createElement("div");
-    div.className = "feed-entry is-new cat-" + cat;
+  function appendFeedEntry(div, cat) {
     div.dataset.cat = cat;
-    const icon = `<svg class="icon"><use href="#${iconFor(cat)}"></use></svg>`;
-    const ts = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
-    div.innerHTML = `${icon}<span class="msg"></span><span class="ts">${ts}</span>`;
-    div.querySelector(".msg").textContent = line;
     feedEntries.push(div);
     applyFilterToEntry(div);
     log.appendChild(div);
     while (log.childNodes.length > 900) { feedEntries.shift(); log.removeChild(log.firstChild); }
     log.scrollTop = log.scrollHeight;
   }
+  function addLine(line) {
+    const cat = categoryForLine(line);
+    const err = /error/i.test(line);
+    const div = document.createElement("div");
+    div.className = "feed-entry is-new cat-" + cat + (err ? " cat-error" : "");
+    const icon = `<svg class="icon"><use href="#${iconForLine(cat, err)}"></use></svg>`;
+    const ts = new Date().toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+    div.innerHTML = `${icon}<span class="msg"></span><span class="ts">${ts}</span>`;
+    div.querySelector(".msg").textContent = line;
+    appendFeedEntry(div, cat);
+  }
+  function addTelemetry(entry) {
+    const h = humanizeTelemetry(entry);
+    const div = telemetryEntryEl(entry);
+    div.classList.add("is-new");
+    appendFeedEntry(div, h.cat);
+    if (entry.kind === "join_new" || entry.kind === "join" || entry.kind === "leave") loadPlayers();
+  }
   function applyFilterToEntry(div) {
-    div.style.display = (activeFilter === "all" || div.dataset.cat === activeFilter) ? "" : "none";
+    const cat = div.dataset.cat;
+    const visible = activeFilter === "all" ? (engineRoomOpen || cat !== "system") : cat === activeFilter;
+    div.style.display = visible ? "" : "none";
   }
   document.querySelector(".feed-filters").addEventListener("click", (e) => {
     const chip = e.target.closest(".chip");
     if (!chip) return;
+    if (chip.dataset.toggle === "engine-room") {
+      engineRoomOpen = !engineRoomOpen;
+      chip.classList.toggle("active", engineRoomOpen);
+      feedEntries.forEach(applyFilterToEntry);
+      return;
+    }
     activeFilter = chip.dataset.filter;
-    document.querySelectorAll(".feed-filters .chip").forEach((c) => c.classList.toggle("active", c === chip));
+    document.querySelectorAll(".feed-filters .chip[data-filter]").forEach((c) => c.classList.toggle("active", c === chip));
     feedEntries.forEach(applyFilterToEntry);
   });
 
   const es = new EventSource("/log");
-  es.onmessage = (e) => { try { addLine(JSON.parse(e.data).line); } catch (err) {} };
+  es.onmessage = (e) => {
+    try {
+      const data = JSON.parse(e.data);
+      if (data.telemetry) addTelemetry(data.telemetry);
+      else if (data.line) addLine(data.line);
+    } catch (err) {}
+  };
+
+  // ---- players tab ------------------------------------------------------
+  function timeAgo(ts) {
+    const s = Math.floor((Date.now() - ts) / 1000);
+    if (s < 60) return s + "s ago";
+    if (s < 3600) return Math.floor(s / 60) + "m ago";
+    if (s < 86400) return Math.floor(s / 3600) + "h ago";
+    return Math.floor(s / 86400) + "d ago";
+  }
+  async function loadPlayers() {
+    try {
+      const data = await (await fetch("/players")).json();
+      renderPlayerList(data.players || []);
+    } catch (e) {}
+  }
+  function renderPlayerList(players) {
+    const el = document.getElementById("player-list");
+    if (!players.length) { el.innerHTML = '<p class="hint">No players seen yet — this populates from telemetry once someone joins.</p>'; return; }
+    el.innerHTML = "";
+    for (const p of players) {
+      const row = document.createElement("button");
+      row.className = "btn wide";
+      row.style.justifyContent = "space-between";
+      row.innerHTML = `<span><svg class="icon"><use href="#icon-person"></use></svg> ${p.name}</span><span class="hint mono">${timeAgo(p.lastSeen)}</span>`;
+      row.onclick = () => selectPlayer(p.name);
+      el.appendChild(row);
+    }
+  }
+  async function selectPlayer(name) {
+    const panel = document.getElementById("player-detail-panel");
+    panel.style.display = "";
+    document.getElementById("player-detail-name").textContent = name;
+    document.getElementById("player-stats").textContent = "Loading...";
+    const tl = document.getElementById("player-timeline");
+    tl.innerHTML = "";
+    try {
+      const data = await (await fetch("/player/" + encodeURIComponent(name) + "/timeline")).json();
+      const p = data.player || {};
+      const c = p.counts || {};
+      const loc = p.lastLocation ? `${p.lastLocation.x}, ${p.lastLocation.y}, ${p.lastLocation.z} (${p.lastLocation.dim || "overworld"})` : "unknown";
+      document.getElementById("player-stats").innerHTML =
+        `Last seen ${timeAgo(p.lastSeen)} &middot; last known spot <span class="mono">${loc}</span><br>` +
+        `Blocks broken: ${c.blocksBroken || 0} &middot; placed: ${c.blocksPlaced || 0} &middot; deaths: ${c.deaths || 0} &middot; chats: ${c.chats || 0}`;
+      for (const entry of (data.timeline || [])) tl.appendChild(telemetryEntryEl(entry));
+      if (!data.timeline || !data.timeline.length) tl.innerHTML = '<p class="hint" style="padding:8px">No recorded history yet.</p>';
+    } catch (e) {
+      document.getElementById("player-stats").textContent = "Failed to load.";
+    }
+  }
+  async function doForensics() {
+    const x = document.getElementById("fx").value, y = document.getElementById("fy").value, z = document.getElementById("fz").value;
+    const radius = document.getElementById("fradius").value || 16;
+    const minutes = document.getElementById("fminutes").value || 30;
+    const results = document.getElementById("forensics-results");
+    results.innerHTML = "";
+    if (x === "" || y === "" || z === "") { results.innerHTML = '<p class="hint" style="padding:8px">Enter x, y, and z first.</p>'; return; }
+    try {
+      const data = await (await fetch(`/forensics?x=${encodeURIComponent(x)}&y=${encodeURIComponent(y)}&z=${encodeURIComponent(z)}&radius=${encodeURIComponent(radius)}&minutes=${encodeURIComponent(minutes)}`)).json();
+      if (!data.results || !data.results.length) { results.innerHTML = '<p class="hint" style="padding:8px">No block changes found in that area/window.</p>'; return; }
+      for (const entry of data.results) results.appendChild(telemetryEntryEl(entry));
+    } catch (e) {
+      results.innerHTML = '<p class="hint" style="padding:8px">Query failed.</p>';
+    }
+  }
+  loadPlayers();
+  setInterval(loadPlayers, 15000);
 
   async function post(url, body) {
     await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body ? JSON.stringify(body) : "{}" });

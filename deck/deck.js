@@ -17,6 +17,8 @@ const SERVER_DIR = path.join(ROOT, "server");
 const EXE = path.join(SERVER_DIR, "bedrock_server.exe");
 const MUSIC_DIR = path.join(ROOT, "music");
 const RP_SRC = path.join(ROOT, "packs", "moogul_core_rp");
+const DATA_DIR = path.join(__dirname, "data");
+const TELEMETRY_RETENTION_DAYS = 90;
 
 let child = null;
 let logBuffer = [];           // last N lines
@@ -28,11 +30,16 @@ let expectedExit = false;     // true when WE sent 'stop'
 let crashTimes = [];          // watchdog: recent unexpected exits
 let backupWaiter = null;      // resolves when BDS says files are ready
 
-function pushLog(line) {
-    const entry = JSON.stringify({ t: Date.now(), line });
-    logBuffer.push(entry);
+// shared by both raw log lines and telemetry pushes so a client that
+// connects (or reconnects) moments after a burst still sees it via the
+// backlog replay on /log — telemetry used to bypass this buffer entirely.
+function broadcast(entryStr) {
+    logBuffer.push(entryStr);
     if (logBuffer.length > MAX_LOG) logBuffer.shift();
-    for (const res of sseClients) res.write(`data: ${entry}\n\n`);
+    for (const res of sseClients) res.write(`data: ${entryStr}\n\n`);
+}
+function pushLog(line) {
+    broadcast(JSON.stringify({ t: Date.now(), line }));
 }
 
 function startServer() {
@@ -45,7 +52,7 @@ function startServer() {
     expectedExit = false;
     pushLog("[deck] === SERVER STARTING ===");
     const onData = (buf) => buf.toString().split(/\r?\n/).filter(Boolean).forEach((line) => {
-        pushLog(line);
+        if (!handleTelemetryLine(line)) pushLog(line);
         // backup handshake: BDS confirms world files are safe to copy
         if (backupWaiter && /ready to be copied|Data saved/i.test(line)) {
             const w = backupWaiter; backupWaiter = null; w();
@@ -169,6 +176,145 @@ function rebuildMusic() {
     return { tracks, version: man.header.version };
 }
 
+// --- TELEMETRY: parse [MOOGUL-T] lines from the child's stdout, store as
+// daily-rotated JSONL, maintain a live per-player index, and answer the
+// deck's Players/forensics queries. Never leaves the PC. ------------------
+function dayStamp(d) { return d.toISOString().slice(0, 10); } // YYYY-MM-DD
+function telemetryFilePath(d = new Date()) {
+    return path.join(DATA_DIR, `telemetry-${dayStamp(d)}.jsonl`);
+}
+
+let playerIndex = {};   // name -> { lastSeen, lastLocation, counts:{...}, firstSeen }
+let indexDirty = false;
+const INDEX_PATH = path.join(DATA_DIR, "players-index.json");
+
+function loadPlayerIndex() {
+    try { playerIndex = JSON.parse(fs.readFileSync(INDEX_PATH, "utf8")); } catch (e) { playerIndex = {}; }
+}
+function savePlayerIndexNow() {
+    try {
+        fs.mkdirSync(DATA_DIR, { recursive: true });
+        fs.writeFileSync(INDEX_PATH, JSON.stringify(playerIndex, null, 2));
+        indexDirty = false;
+    } catch (e) { pushLog("[deck] player index save failed: " + e.message); }
+}
+setInterval(() => { if (indexDirty) savePlayerIndexNow(); }, 5000);
+
+function emptyCounts() { return { blocksBroken: 0, blocksPlaced: 0, deaths: 0, chats: 0 }; }
+
+function updatePlayerIndex(entry) {
+    const name = entry.who;
+    if (!name || typeof name !== "string") return;
+    if (!playerIndex[name]) playerIndex[name] = { firstSeen: entry.t, lastSeen: entry.t, lastLocation: null, counts: emptyCounts() };
+    const rec = playerIndex[name];
+    rec.lastSeen = entry.t;
+    if (entry.where) rec.lastLocation = entry.where;
+    switch (entry.kind) {
+        case "block_break": rec.counts.blocksBroken++; break;
+        case "block_place": rec.counts.blocksPlaced++; break;
+        case "death": rec.counts.deaths++; break;
+        case "chat": rec.counts.chats++; break;
+    }
+    indexDirty = true;
+}
+
+function appendTelemetry(entry) {
+    updatePlayerIndex(entry);
+    fs.mkdir(DATA_DIR, { recursive: true }, () => {
+        fs.appendFile(telemetryFilePath(new Date(entry.t)), JSON.stringify(entry) + "\n", (err) => {
+            if (err) pushLog("[deck] telemetry write failed: " + err.message);
+        });
+    });
+}
+
+function pruneOldTelemetry() {
+    try {
+        const cutoff = Date.now() - TELEMETRY_RETENTION_DAYS * 24 * 60 * 60 * 1000;
+        for (const f of fs.readdirSync(DATA_DIR)) {
+            const m = f.match(/^telemetry-(\d{4}-\d{2}-\d{2})\.jsonl$/);
+            if (!m) continue;
+            if (new Date(m[1] + "T00:00:00Z").getTime() < cutoff) fs.unlinkSync(path.join(DATA_DIR, f));
+        }
+    } catch (e) { /* DATA_DIR may not exist yet — fine */ }
+}
+setInterval(pruneOldTelemetry, 6 * 60 * 60 * 1000); // every 6h is plenty for a daily-rotated file
+
+// kinds that are pure bookkeeping (not shown in the live World Feed —
+// they'd flood it) still get written to disk / update the index above.
+const SILENT_KINDS = new Set(["position"]);
+
+function handleTelemetryLine(line) {
+    const marker = "[MOOGUL-T]";
+    const idx = line.indexOf(marker);
+    if (idx === -1) return false;
+    let entry;
+    try { entry = JSON.parse(line.slice(idx + marker.length).trim()); } catch (e) { return false; }
+    if (!entry || typeof entry.kind !== "string") return false;
+    appendTelemetry(entry);
+    if (!SILENT_KINDS.has(entry.kind)) {
+        broadcast(JSON.stringify({ t: Date.now(), telemetry: entry }));
+    }
+    return true;
+}
+
+function listPlayers() {
+    return Object.entries(playerIndex)
+        .map(([name, rec]) => ({ name, ...rec }))
+        .sort((a, b) => b.lastSeen - a.lastSeen);
+}
+
+// scans newest-file-first until `limit` matching entries are found or we
+// run out of retained history — fine at home-server scale (a handful of
+// players, files rotate daily).
+function playerTimeline(name, limit) {
+    const out = [];
+    let files;
+    try { files = fs.readdirSync(DATA_DIR).filter((f) => /^telemetry-\d{4}-\d{2}-\d{2}\.jsonl$/.test(f)).sort().reverse(); }
+    catch (e) { return out; }
+    for (const f of files) {
+        if (out.length >= limit) break;
+        let lines;
+        try { lines = fs.readFileSync(path.join(DATA_DIR, f), "utf8").split("\n").filter(Boolean); } catch (e) { continue; }
+        for (let i = lines.length - 1; i >= 0 && out.length < limit; i--) {
+            try {
+                const entry = JSON.parse(lines[i]);
+                if (SILENT_KINDS.has(entry.kind)) continue;
+                if (entry.who === name || entry.what === name) out.push(entry);
+            } catch (e) { }
+        }
+    }
+    return out;
+}
+
+// "who broke blocks near X within N minutes" — settle disputes with receipts.
+function forensicsQuery({ x, y, z, radius, minutes, dimension }) {
+    const cutoff = Date.now() - minutes * 60 * 1000;
+    const out = [];
+    let files;
+    try { files = fs.readdirSync(DATA_DIR).filter((f) => /^telemetry-\d{4}-\d{2}-\d{2}\.jsonl$/.test(f)).sort().reverse(); }
+    catch (e) { return out; }
+    for (const f of files) {
+        let lines;
+        try { lines = fs.readFileSync(path.join(DATA_DIR, f), "utf8").split("\n").filter(Boolean); } catch (e) { continue; }
+        let stop = false;
+        for (const line of lines) {
+            let entry;
+            try { entry = JSON.parse(line); } catch (e) { continue; }
+            if (entry.t < cutoff) { stop = true; continue; } // still finish this file (unsorted-ish across ticks), but no earlier files
+            if (entry.kind !== "block_break" && entry.kind !== "block_place") continue;
+            const w = entry.where;
+            if (!w) continue;
+            if (dimension && w.dim !== dimension) continue;
+            const d = Math.hypot(w.x - x, w.y - y, w.z - z);
+            if (d <= radius) out.push(entry);
+        }
+        if (stop) break;
+    }
+    return out.sort((a, b) => b.t - a.t);
+}
+
+loadPlayerIndex();
+
 // --- static assets: design-system.css + everything under deck/assets/ -----
 // (fonts, icon sprite — kept generic so new assets don't need new routes)
 const MIME_TYPES = {
@@ -196,6 +342,9 @@ const server = http.createServer((req, res) => {
     // localhost guard
     const remote = req.socket.remoteAddress || "";
     if (!remote.includes("127.0.0.1") && !remote.includes("::1")) { res.writeHead(403); res.end(); return; }
+
+    const u = new URL(req.url, "http://localhost");
+    const playerTimelineMatch = req.method === "GET" && u.pathname.match(/^\/player\/([^/]+)\/timeline$/);
 
     if (req.method === "GET" && (req.url === "/" || req.url === "/index.html")) {
         fs.readFile(path.join(__dirname, "index.html"), (err, data) => {
@@ -227,6 +376,30 @@ const server = http.createServer((req, res) => {
     } else if (req.method === "GET" && req.url === "/status") {
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify({ online: !!child }));
+    } else if (req.method === "GET" && u.pathname === "/players") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ players: listPlayers() }));
+    } else if (playerTimelineMatch) {
+        const name = decodeURIComponent(playerTimelineMatch[1]);
+        const limit = Math.min(500, Math.max(1, parseInt(u.searchParams.get("limit"), 10) || 200));
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ name, player: playerIndex[name] || null, timeline: playerTimeline(name, limit) }));
+    } else if (req.method === "GET" && u.pathname === "/forensics") {
+        const q = {
+            x: parseFloat(u.searchParams.get("x")),
+            y: parseFloat(u.searchParams.get("y")),
+            z: parseFloat(u.searchParams.get("z")),
+            radius: parseFloat(u.searchParams.get("radius")) || 16,
+            minutes: parseFloat(u.searchParams.get("minutes")) || 30,
+            dimension: u.searchParams.get("dimension") || undefined,
+        };
+        if ([q.x, q.y, q.z].some(Number.isNaN)) {
+            res.writeHead(400, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ error: "x, y, z are required numbers" }));
+        } else {
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ query: q, results: forensicsQuery(q) }));
+        }
     } else if (req.method === "POST" && (req.url === "/cmd" || req.url === "/start")) {
         let body = "";
         req.on("data", (c) => (body += c));
@@ -247,8 +420,9 @@ server.listen(PORT, "127.0.0.1", () => {
     startServer();
 });
 
-// clean shutdown: stop the world properly, then exit
+// clean shutdown: stop the world properly, flush telemetry, then exit
 process.on("SIGINT", () => {
+    if (indexDirty) savePlayerIndexNow();
     if (child) { sendCommand("stop"); setTimeout(() => process.exit(0), 3000); }
     else process.exit(0);
 });

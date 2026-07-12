@@ -5,9 +5,18 @@
 import { world, system } from "@minecraft/server";
 import { EVENTS } from "./events.js";
 import { armSwordWhispers } from "./genesis.js";
+import { initTelemetry } from "./telemetry.js";
 
 // The sword in the stone resists all who try
 armSwordWhispers(world);
+
+// The parent dashboard's eyes and ears — isolated so a telemetry
+// problem can never take the event router or welcome flow down with it.
+try {
+    initTelemetry(world, system);
+} catch (e) {
+    console.error("[moogul] telemetry failed to initialize: " + e);
+}
 
 // ---- Welcome new + returning players -----------------------
 world.afterEvents.playerSpawn.subscribe((ev) => {
