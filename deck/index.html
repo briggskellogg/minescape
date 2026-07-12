@@ -42,7 +42,7 @@
       <!-- ============ EVENTS ============ -->
       <section class="tab-panel" data-panel="events">
         <div class="panel">
-          <div class="panel-header accent-psyche">
+          <div class="panel-header accent-reward">
             <svg class="icon"><use href="#icon-star"></use></svg> World Events
           </div>
           <div class="panel-body">
@@ -50,8 +50,8 @@
               <button class="btn btn--instinct" onclick="ev('storm')"><svg class="icon"><use href="#icon-thundercloud"></use></svg>Storm</button>
               <button class="btn" onclick="ev('calm')"><svg class="icon"><use href="#icon-sun"></use></svg>Calm skies</button>
               <button class="btn" onclick="ev('nightfall')"><svg class="icon"><use href="#icon-moon"></use></svg>Nightfall</button>
-              <button class="btn btn--psyche" onclick="ev('celebrate')"><svg class="icon"><use href="#icon-star"></use></svg>Celebrate</button>
-              <button class="btn btn--psyche" onclick="ev('gift')"><svg class="icon"><use href="#icon-gift"></use></svg>Gift drop</button>
+              <button class="btn btn--reward" onclick="ev('celebrate')"><svg class="icon"><use href="#icon-star"></use></svg>Celebrate</button>
+              <button class="btn btn--reward" onclick="ev('gift')"><svg class="icon"><use href="#icon-gift"></use></svg>Gift drop</button>
               <button class="btn" onclick="ev('ping')"><svg class="icon"><use href="#icon-ping"></use></svg>Ping</button>
             </div>
             <div class="field-row">
@@ -95,7 +95,7 @@
               <select class="field" id="track"><option value="">no custom tracks yet</option></select>
             </div>
             <div class="btn-grid">
-              <button class="btn btn--psyche" onclick="playTrack()">Play track</button>
+              <button class="btn btn--reward" onclick="playTrack()">Play track</button>
               <button class="btn" onclick="cmd('stopsound @a')">Stop music</button>
               <button class="btn" onclick="cmd('playsound record.cat @a')">Cat</button>
               <button class="btn" onclick="cmd('playsound record.pigstep @a')">Pigstep</button>
@@ -178,7 +178,7 @@
           <div class="panel-body">
             <div class="field-row">
               <input class="field" id="invite" placeholder="gamertag to invite...">
-              <button class="btn btn--psyche" onclick="invite()"><svg class="icon"><use href="#icon-lockOpen"></use></svg>Invite</button>
+              <button class="btn btn--reward" onclick="invite()"><svg class="icon"><use href="#icon-lockOpen"></use></svg>Invite</button>
             </div>
             <div class="btn-grid">
               <button class="btn" onclick="cmd('allowlist list')">List invited</button>
@@ -192,7 +192,7 @@
 
     <!-- ============ WORLD FEED (persistent across all tabs) ============ -->
     <section class="panel">
-      <div class="panel-header accent-psyche"><svg class="icon"><use href="#icon-speech"></use></svg> World Feed</div>
+      <div class="panel-header accent-reward"><svg class="icon"><use href="#icon-speech"></use></svg> World Feed</div>
       <div class="panel-body">
         <div class="feed-filters">
           <button class="chip active" data-filter="all">All</button>

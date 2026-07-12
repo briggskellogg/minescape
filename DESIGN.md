@@ -42,39 +42,43 @@ world's cosmology actually gets built:
   rune) join the existing set when Phase 3 needs them, and the Dungeons tab's copy/
   iconography should speak in this voice once it's built.
 
-## ⚠️ Palette status: provisional
+## Palette — confirmed
 
-The brief asks for the red/blue/yellow trinity to be **extracted from the actual pixels**
-of the three archetype sigils at `briggskellogg.com/assets/archetypes/{instinct,logic,psyche}.webp`
-— "that trio is the palette's DNA." This build environment's outbound network policy
-blocks `briggskellogg.com` (confirmed: proxy returns `403` on every attempt), so the site
-could not be reached to sample real hex values.
+Briggs confirmed the real system directly (site extraction was blocked — see history in
+git log if curious): **instinct = red, logic = yellow, psyche = blue**, plus defined
+two-archetype blends and an all-three resolution:
 
-The three trinity colors below are a **reasoned placeholder** — a saturated poppy red,
-a clear cobalt blue, a warm golden yellow — consistent with the instinct/logic/psyche
-naming, not measured from the real sigils.
-
-**To fix:** open the three sigil images yourself (browser devtools color-picker, or any
-image editor) and send me the three hex values. They're defined in exactly one place —
-the `TRINITY` block at the top of `deck/design-system.css` — so swapping them is a
-one-line-per-color edit; nothing else in the system depends on the specific values.
-
-```css
---instinct: #E8382A;   /* provisional — replace with real instinct.webp color */
---logic:    #1F5FFF;   /* provisional — replace with real logic.webp color */
---psyche:   #F5B700;   /* provisional — replace with real psyche.webp color */
-```
-
-## Palette
-
-Three accent hues, each with one job, each used **at most one per surface** — a fourth
-color anywhere is a special-occasion event, not a default:
-
-| Token | Job | Where it shows up |
+| Archetype / blend | Hex | RGB |
 |---|---|---|
-| `--instinct` (red) | Danger / destructive / irreversible | remove-from-allowlist, deny, delete dungeon, crash watchdog — **kept rare and precise**, since this is a kids' server and the Gatekeeping panel shouldn't read as alarming by default |
-| `--logic` (blue) | Info / world-state / default chrome | ambience, server status, general UI — the most-used accent, since most of the deck is descriptive, not urgent |
-| `--psyche` (yellow) | Reward / celebration / attention | new feed entry, event fired, invite claimed — a flash that *decays*, never a resting background |
+| `--instinct` | `#FF3C00` | 255, 60, 0 |
+| `--logic` | `#FFD500` | 255, 213, 0 |
+| `--psyche` | `#0066FF` | 0, 102, 255 |
+| `--blend-instinct-logic` (orange) | `#FF7A00` | 255, 122, 0 |
+| `--blend-logic-psyche` (green) | `#00FF80` | 0, 255, 128 |
+| `--blend-instinct-psyche` (violet) | `#E000FF` | 224, 0, 255 |
+| `--blend-all` (black / white) | `#000000` / `#FFFFFF` | — |
+
+The three blend colors + the all-three resolution aren't wired into any deck component
+yet — they're reserved for Phase 3, where they're a natural fit for the Planescape-style
+portal/rift system (a two-philosophy-keyed dungeon rift renders in its blend color; an
+"all three" dungeon or event resolves to stark black/white rather than defaulting to one
+archetype).
+
+**UI role mapping — my call, not part of the confirmed system itself.** Briggs's system
+fixes which *color* belongs to which *archetype name*; it doesn't say what job each
+should do in this specific UI. I assigned roles by color psychology / usage-frequency fit
+rather than forcing them onto my original (wrong) guesses:
+
+| Token | Role | Why |
+|---|---|---|
+| `--instinct` (red) | Danger / destructive / irreversible | Universal fit either way — remove-from-allowlist, deny, delete dungeon, crash watchdog. **Kept rare and precise**, since this is a kids' server and Gatekeeping shouldn't read as alarming by default. |
+| `--psyche` (blue) | Info / world-state / default chrome | Calm, most-used accent — ambience, server status, general UI, since most of the deck is descriptive, not urgent. |
+| `--logic` (yellow) | Reward / celebration / attention | A flash that *decays*, never a resting background — new feed entry, event fired, invite claimed. High-energy yellow earns its keep by staying rare, per the Hades "glow as punctuation" research. |
+
+If this role split feels backwards once you're looking at it live (e.g. you'd rather
+yellow *=* "logic" read as informational, or blue *=* "psyche" read as reward), it's a
+clean swap — every component references the token by archetype name, so the fix is
+re-pointing which role each token serves in `design-system.css`, documented inline there.
 
 Sitting on a **warm** near-black ramp (`--bg-deep` → `--bg-page` → `--bg-panel` →
 `--bg-card`, each a step lighter/warmer) — not the old blue-black void. Accents earn
@@ -148,8 +152,10 @@ ambient animation, keeping only instant functional feedback.
 
 ## Next design debt
 
-- Real trinity hex values (see above).
 - Once Phase 2 (telemetry) lands, the World Feed filter bar (All/Chat/Builds/Combat/
   Events/System) becomes real — right now the feed is re-skinned on the new system but
   still only categorizes what today's engine actually emits (`[deck]` system lines,
   `[moogul]` event lines, errors).
+- The three blend colors (orange/green/violet) and the black/white "all three" resolution
+  are defined as tokens but not yet used anywhere — first real use is likely Phase 3's
+  dungeon rift coloring.

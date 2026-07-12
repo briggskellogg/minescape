@@ -8,13 +8,10 @@
    base (never blue-black), and a red/instinct + blue/logic +
    yellow/psyche accent trinity used one-at-a-time, sparingly.
 
-   PALETTE NOTE: the --instinct/--logic/--psyche hex values below
-   are a PROVISIONAL estimate. The brief asks for these to be
-   extracted from the archetype sigils at briggskellogg.com, but
-   that site was unreachable from this build environment (network
-   policy blocked it). Swap the six hex values in the "TRINITY"
-   block once you've color-picked the real sigils — nothing else
-   in this file needs to change.
+   PALETTE: confirmed by Briggs — instinct=red, logic=yellow,
+   psyche=blue, plus defined two-way blend colors (orange/green/
+   violet) and a black/white "all three" resolution. See DESIGN.md
+   for how UI roles (danger/reward/info) map onto these archetypes.
    ============================================================ */
 
 /* ---- fonts (self-hosted, offline-capable) -------------------- */
@@ -30,21 +27,34 @@
 
 /* ---- design tokens -------------------------------------------- */
 :root {
-  /* TRINITY — provisional, see note above */
-  --instinct: #E8382A;        /* danger / destructive action */
-  --instinct-bright: #FF4B3A;
-  --instinct-dim: #B82A1F;
-  --instinct-glow: rgba(232, 56, 42, .45);
+  /* TRINITY — confirmed hex values. Role note: instinct=red maps
+     cleanly to "danger" either way, but logic/psyche's UI ROLES
+     (which of the two is "default/most-used chrome" vs "reward
+     flash") are MY assignment, not specified by the archetype
+     system itself — see DESIGN.md for the reasoning. */
+  --instinct: #FF3C00;        /* red — danger / destructive action */
+  --instinct-bright: #FF6B3D;
+  --instinct-dim: #BF2D00;
+  --instinct-glow: rgba(255, 60, 0, .45);
 
-  --logic: #1F5FFF;           /* info / world / default chrome */
-  --logic-bright: #4C7FFF;
-  --logic-dim: #1648CC;
-  --logic-glow: rgba(31, 95, 255, .45);
+  --logic: #FFD500;           /* yellow — reward / celebration / attention (a flash, never a resting fill) */
+  --logic-bright: #FFDD33;
+  --logic-dim: #BFA000;
+  --logic-glow: rgba(255, 213, 0, .45);
 
-  --psyche: #F5B700;          /* reward / celebration / attention */
-  --psyche-bright: #FFCB33;
-  --psyche-dim: #C99400;
-  --psyche-glow: rgba(245, 183, 0, .45);
+  --psyche: #0066FF;          /* blue — info / world / default chrome (calm, most-used) */
+  --psyche-bright: #3385FF;
+  --psyche-dim: #004DBF;
+  --psyche-glow: rgba(0, 102, 255, .45);
+
+  /* two-archetype blends + all-three resolution, per the confirmed system.
+     Not wired into any component yet — reserved for Phase 3 (dungeon
+     rift/portal colors keyed to a blend of philosophies) and beyond. */
+  --blend-instinct-logic: #FF7A00;   /* orange */
+  --blend-logic-psyche: #00FF80;    /* green */
+  --blend-instinct-psyche: #E000FF; /* violet */
+  --blend-all-dark: #000000;
+  --blend-all-light: #FFFFFF;
 
   /* warm dark elevation ramp — page -> panel -> card, each a touch lighter/warmer */
   --bg-deep: #120F0C;
@@ -114,7 +124,7 @@ body {
 
 button, input, select, textarea { font-family: inherit; font-size: inherit; color: inherit; }
 button { cursor: pointer; }
-a { color: var(--logic-bright); }
+a { color: var(--psyche-bright); }
 
 /* ---- icon utility ------------------------------------------------ */
 .icon {
@@ -158,8 +168,8 @@ a { color: var(--logic-bright); }
 }
 
 .crest {
-  color: var(--logic-bright);
-  filter: drop-shadow(0 0 6px var(--logic-glow));
+  color: var(--psyche-bright);
+  filter: drop-shadow(0 0 6px var(--psyche-glow));
 }
 .crest.is-reconnecting { animation: crest-glint 1.1s steps(6, end) infinite; }
 .crest.is-idle { animation: crest-glint 8s ease-in-out infinite; }
@@ -191,7 +201,7 @@ a { color: var(--logic-bright); }
   font-family: var(--font-pixel);
   font-size: var(--pixel-xs);
 }
-.status-chip.online { border-color: var(--logic); color: var(--logic-bright); }
+.status-chip.online { border-color: var(--psyche); color: var(--psyche-bright); }
 .status-chip.offline { border-color: var(--instinct-dim); color: var(--text-tertiary); }
 
 .status-led {
@@ -199,8 +209,8 @@ a { color: var(--logic-bright); }
   color: var(--border-neutral-dim);
 }
 .status-led svg { width: 100%; height: 100%; }
-.status-chip.online .status-led { color: var(--logic-bright); animation: led-breathe 2s ease-in-out infinite; }
-.status-chip.just-online .status-led { color: var(--psyche-bright); animation: none; filter: drop-shadow(0 0 6px var(--psyche-glow)); }
+.status-chip.online .status-led { color: var(--psyche-bright); animation: led-breathe 2s ease-in-out infinite; }
+.status-chip.just-online .status-led { color: var(--logic-bright); animation: none; filter: drop-shadow(0 0 6px var(--logic-glow)); }
 
 /* ---- tab bar -------------------------------------------------------- */
 .tab-bar {
@@ -228,8 +238,8 @@ a { color: var(--logic-bright); }
 .tab:hover { color: var(--text-primary); }
 .tab.active {
   background: var(--bg-panel);
-  color: var(--logic-bright);
-  border-color: var(--logic);
+  color: var(--psyche-bright);
+  border-color: var(--psyche);
   box-shadow: none;
   transform: translate(2px, 2px);
 }
@@ -268,14 +278,14 @@ a { color: var(--logic-bright); }
   font-size: var(--pixel-sm);
   letter-spacing: .1em;
   text-transform: uppercase;
-  border-bottom: var(--border-w) solid var(--logic);
+  border-bottom: var(--border-w) solid var(--psyche);
   color: var(--text-primary);
 }
-.panel-header .icon { color: var(--logic-bright); }
+.panel-header .icon { color: var(--psyche-bright); }
 .panel-header.accent-instinct { border-bottom-color: var(--instinct); }
 .panel-header.accent-instinct .icon { color: var(--instinct-bright); }
-.panel-header.accent-psyche { border-bottom-color: var(--psyche); }
-.panel-header.accent-psyche .icon { color: var(--psyche-bright); }
+.panel-header.accent-reward { border-bottom-color: var(--logic); }
+.panel-header.accent-reward .icon { color: var(--logic-bright); }
 .panel-header.accent-neutral { border-bottom-color: var(--border-neutral); }
 .panel-header.accent-neutral .icon { color: var(--text-secondary); }
 .panel-body { padding: 14px; }
@@ -301,9 +311,9 @@ a { color: var(--logic-bright); }
   transition: border-color 150ms ease-out, color 150ms ease-out, box-shadow 150ms ease-out;
 }
 .btn:hover {
-  border-color: var(--logic-bright);
-  color: var(--logic-bright);
-  box-shadow: var(--shadow-sm), 0 0 8px 0 var(--logic-glow);
+  border-color: var(--psyche-bright);
+  color: var(--psyche-bright);
+  box-shadow: var(--shadow-sm), 0 0 8px 0 var(--psyche-glow);
 }
 .btn:active {
   box-shadow: none;
@@ -313,10 +323,10 @@ a { color: var(--logic-bright); }
 .btn .icon { color: inherit; }
 
 .btn--instinct:hover { border-color: var(--instinct-bright); color: var(--instinct-bright); box-shadow: var(--shadow-sm), 0 0 8px 0 var(--instinct-glow); }
-.btn--psyche:hover { border-color: var(--psyche-bright); color: var(--psyche-bright); box-shadow: var(--shadow-sm), 0 0 8px 0 var(--psyche-glow); }
+.btn--reward:hover { border-color: var(--logic-bright); color: var(--logic-bright); box-shadow: var(--shadow-sm), 0 0 8px 0 var(--logic-glow); }
 .btn--danger { border-color: var(--instinct-dim); }
 .btn--danger:hover { border-color: var(--instinct-bright); color: var(--instinct-bright); box-shadow: var(--shadow-sm), 0 0 8px 0 var(--instinct-glow); }
-.btn--primary { background: var(--logic-dim); border-color: var(--logic); }
+.btn--primary { background: var(--psyche-dim); border-color: var(--psyche); }
 
 .btn-grid {
   display: grid;
@@ -331,7 +341,7 @@ a { color: var(--logic-bright); }
   background: var(--bg-card);
   border: var(--border-w) solid var(--border-neutral);
   box-shadow: inset 2px 2px 0 0 var(--shadow-hard);
-  color: var(--logic-bright);
+  color: var(--psyche-bright);
   padding: 10px 12px;
   font-family: var(--font-clean);
   font-size: var(--text-sm);
@@ -339,8 +349,8 @@ a { color: var(--logic-bright); }
 .field::placeholder { color: var(--text-tertiary); }
 .field:focus {
   outline: none;
-  border-color: var(--logic);
-  box-shadow: inset 2px 2px 0 0 var(--shadow-hard), 0 0 6px 0 var(--logic-glow);
+  border-color: var(--psyche);
+  box-shadow: inset 2px 2px 0 0 var(--shadow-hard), 0 0 6px 0 var(--psyche-glow);
 }
 select.field { color: var(--text-primary); }
 
@@ -363,8 +373,8 @@ select.field { color: var(--text-primary); }
   position: absolute; left: 2px; top: 2px;
   transition: left 120ms steps(2, end);
 }
-.lever.on { border-color: var(--logic); }
-.lever.on .thumb { left: calc(var(--w) - 20px); background: var(--logic-bright); box-shadow: 0 0 6px 0 var(--logic-glow); }
+.lever.on { border-color: var(--psyche); }
+.lever.on .thumb { left: calc(var(--w) - 20px); background: var(--psyche-bright); box-shadow: 0 0 6px 0 var(--psyche-glow); }
 .lever.flip .thumb { animation: lever-thunk 160ms steps(3, end); }
 
 /* ---- chips (active-event / small status tags) --------------------------------- */
@@ -380,9 +390,9 @@ select.field { color: var(--text-primary); }
   color: var(--text-secondary);
   background: var(--bg-card);
 }
-.chip--logic { border-color: var(--logic); color: var(--logic-bright); }
-.chip--psyche { border-color: var(--psyche); color: var(--psyche-bright); }
-.chip--instinct { border-color: var(--instinct); color: var(--instinct-bright); }
+.chip--reward { border-color: var(--logic); color: var(--logic-bright); }
+.chip--info { border-color: var(--psyche); color: var(--psyche-bright); }
+.chip--danger { border-color: var(--instinct); color: var(--instinct-bright); }
 
 /* ---- world feed / toast entries ------------------------------------------------ */
 .feed {
@@ -412,11 +422,11 @@ select.field { color: var(--text-primary); }
 .feed-entry .ts { font-family: var(--font-mono); font-size: 10px; color: var(--text-tertiary); flex: none; }
 .feed-entry.cat-combat { border-left-color: var(--instinct); }
 .feed-entry.cat-combat .icon { color: var(--instinct-bright); }
-.feed-entry.cat-chat { border-left-color: var(--logic); }
-.feed-entry.cat-chat .icon { color: var(--logic-bright); }
+.feed-entry.cat-chat { border-left-color: var(--psyche); }
+.feed-entry.cat-chat .icon { color: var(--psyche-bright); }
 .feed-entry.cat-build { border-left-color: var(--text-tertiary); }
-.feed-entry.cat-event, .feed-entry.cat-milestone { border-left-color: var(--psyche); }
-.feed-entry.cat-event .icon, .feed-entry.cat-milestone .icon { color: var(--psyche-bright); }
+.feed-entry.cat-event, .feed-entry.cat-milestone { border-left-color: var(--logic); }
+.feed-entry.cat-event .icon, .feed-entry.cat-milestone .icon { color: var(--logic-bright); }
 .feed-entry.cat-deck { color: var(--text-secondary); font-family: var(--font-mono); font-size: var(--text-xs); }
 .feed-entry.cat-error { border-left-color: var(--instinct); color: var(--instinct-bright); }
 .feed-entry.is-new { animation: toast-in 180ms steps(3, end), glow-decay 1000ms linear; }
@@ -485,7 +495,7 @@ select.field { color: var(--text-primary); }
   to { opacity: 1; transform: translateX(0); }
 }
 @keyframes glow-decay {
-  0% { box-shadow: 0 0 10px 1px var(--psyche-glow); }
+  0% { box-shadow: 0 0 10px 1px var(--logic-glow); }
   100% { box-shadow: 0 0 0 0 transparent; }
 }
 @keyframes led-breathe {
@@ -493,8 +503,8 @@ select.field { color: var(--text-primary); }
   50% { opacity: .45; }
 }
 @keyframes crest-glint {
-  0%, 100% { filter: drop-shadow(0 0 4px var(--logic-glow)); }
-  50% { filter: drop-shadow(0 0 12px var(--logic-glow)); }
+  0%, 100% { filter: drop-shadow(0 0 4px var(--psyche-glow)); }
+  50% { filter: drop-shadow(0 0 12px var(--psyche-glow)); }
 }
 @keyframes lever-thunk {
   0% { transform: scaleX(1); }
