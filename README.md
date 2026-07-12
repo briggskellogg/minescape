@@ -1,7 +1,20 @@
 # MINESCAPE — the forever server
 
-A private, allowlisted Minecraft Bedrock world for dotmoogul, puffmoogul, and invited friends.
-Native Bedrock end to end: everything renders faithfully on their Switches. No translation layers.
+A hand-built story RPG inside a free-roam Minecraft Bedrock survival world, self-hosted for
+family and invited friends — allowlist-only, Xbox-authenticated, native Bedrock end to end
+(everything renders faithfully on Switch, no translation layers). Every piece of it —
+the world-event engine, the parent-oversight telemetry, the pixel-art **Command Deck**
+control room — is custom-built and lives in this repo.
+
+![Minescape Command Deck](docs/deck-screenshot.png)
+
+## Documentation
+
+| File | What it covers |
+|---|---|
+| [`CLAUDE.md`](CLAUDE.md) | Architecture map: engine, Command Deck, ops scripts, conventions |
+| [`DESIGN.md`](DESIGN.md) | The Moogul Design System — palette, type, components, motion |
+| [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md) | The forward build plan, phase by phase |
 
 ## First night — three double-clicks
 
@@ -33,9 +46,23 @@ from *their* houses you'll need port forwarding (UDP 19132) — do this delibera
 
 ## The Command Deck (http://localhost:8420)
 
-Your control room. Live world feed, invite box, and one-click world events:
-storm, calm, nightfall, celebration, gift drops, narration, and titled announcements.
-Anything you'd type in a server console works in the raw command box.
+Your control room — a tabbed, pixel-art console built on the [Moogul Design System](DESIGN.md):
+
+- **Events** — one-click world events: storm, calm, nightfall, celebration, gift drops,
+  narration, and titled announcements.
+- **Ambience** — force weather/time, lock day or night, and the music library pipeline
+  (drop `.ogg` files in `music/`, rebuild, play globally).
+- **Players** — every player telemetry has seen: per-player timelines, chat history,
+  block break/place + death counts, last known location, and a **forensics query**
+  ("who broke blocks near X within N minutes") to settle disputes with receipts.
+- **World Feed** (always visible) — translates both telemetry and the raw server log into
+  plain English ("kid1 fell from a high place near the lake village," not a stack trace),
+  filterable by Chat / Builds / Combat / Events / System, with the raw console tucked
+  behind a collapsed "Engine room" toggle.
+- **Dungeons / Quests / Library** — placeholders for upcoming phases (see
+  [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md)).
+- **Ops** — server start/stop, a raw command console (anything you'd type in a server
+  console works here), and gatekeeping (invite a gamertag, list the allowlist, who's on).
 
 **In-game storyteller commands** (type in chat, as op):
 
@@ -48,6 +75,13 @@ Anything you'd type in a server console works in the raw command box.
 
 The sword in the stone cannot be pulled, pushed, or broken. It whispers when they try.
 
+## Privacy
+
+Telemetry (chat logs, locations, per-player activity) is written to `deck/data/` —
+gitignored, local-only, never leaves the PC. Same for `config/allowlist.json` and
+`config/permissions.json` (gamertags and XUIDs) and the live world itself. This repo is
+the *source*; anything that's actually about the people playing stays off GitHub.
+
 ## The world
 
 - **Seed `6246468738900744`** — a cherry-grove lake valley with two villages: a relaxed,
@@ -59,13 +93,16 @@ The sword in the stone cannot be pulled, pushed, or broken. It whispers when the
 ## Folder map
 
 ```
-MinecraftServer/
+minescape/
 ├── 1-SETUP.bat / 2-START-SERVER.bat / 3-BACKUP.bat
 ├── config/            ← source of truth for server settings
 ├── packs/
-│   ├── moogul_core_bp/   ← the ENGINE: event router, genesis, sword, scripts
+│   ├── moogul_core_bp/   ← the ENGINE: event router, telemetry, genesis, sword, scripts
 │   └── moogul_core_rp/   ← the LOOK: models, textures; music & voices go here later
-├── deck/              ← Command Deck (Node): deck.js + pixel UI (see DESIGN.md)
+├── deck/              ← Command Deck (Node): deck.js + tabbed pixel UI (see DESIGN.md)
+│   ├── assets/           ← self-hosted font + hand-authored pixel icon set
+│   └── data/             ← telemetry (gitignored — private, local-only)
+├── docs/               ← README assets
 ├── scripts/           ← setup.ps1, backup.ps1
 ├── world_templates/   ← pack wiring copied into new worlds
 ├── server/            ← created by setup: BDS + the live world (worlds/Minescape)
@@ -84,13 +121,14 @@ and MCPEDL — download the `.mcaddon`/`.mcpack`, and we'll vet and install it t
 `server/behavior_packs` / `resource_packs` + the world JSONs. Marketplace packs can't be
 installed on a dedicated server — that content stays on the client.
 
-## Roadmap (the deck grows with the story)
+## Status
 
-- **Music & voices per location**: audio files into `moogul_core_rp/sounds/` +
-  `sound_definitions.json`, triggered by proximity scripts. (TTS or recorded voices both work.)
-- **Dungeons-style artifacts**: custom items with cooldown abilities.
-- **Hordes & bosses**: wave events and multi-phase fights via the event router.
-- **Legends-style rally banner**: allied mobs that follow and fight for you.
-- **NPC characters**: Bedrock's native dialogue system — questgivers with your writing.
-- When the world outgrows this PC: move the whole folder to an always-on mini-PC. The world
-  is just files; the forever plan is a $150 N100 box in a closet.
+- ✅ **Foundation** — engine, Command Deck, ops scripts.
+- ✅ **Moogul Design System** — the deck's pixel-art visual language ([`DESIGN.md`](DESIGN.md)).
+- ✅ **World Feed v2 + telemetry** — human-readable feed, Players tab, forensics query.
+- ⏳ **Marks, Dungeons, Epic Events** — up next.
+- ⏳ Characters/stats/quests, karma, creator tools, dual-mode play, invite cards — see
+  [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md) for the full plan.
+
+When the world outgrows this PC: move the whole folder to an always-on mini-PC. The world
+is just files; the forever plan is a $150 N100 box in a closet.
