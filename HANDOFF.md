@@ -52,6 +52,27 @@ allowlist. Then:
 ```
 This opens `http://localhost:8420` automatically.
 
+## Step 1b — make it survive reboots and sleep (one-time, recommended)
+
+Terminal (or double-click `INSTALL-AUTOSTART.bat` directly):
+```powershell
+.\INSTALL-AUTOSTART.bat
+```
+This will prompt for admin approval (UAC) — it needs it to register a Task Scheduler job
+and change power settings. Approve it. It does two things:
+1. Registers a logon task (`Minescape Server`) that auto-launches the deck (`scripts\
+   autostart.bat`) whenever this Windows account logs in — no more remembering to
+   double-click `2-START-SERVER.bat`.
+2. Disables sleep/hibernate on AC power (`powercfg standby-timeout-ac 0`) so the machine
+   doesn't nod off mid-session. The display can still turn off; the machine itself won't.
+
+**This does not make the server bulletproof** — a Windows Update forced reboot still
+needs someone to log back in before the task fires (`ONLOGON`, not a headless boot-time
+start), and there's no UPS here, so a power outage still takes it down. The deck's own
+crash watchdog (auto-restart, up to 3x/10min) covers ordinary crashes; this covers the
+"I want it to still be running when the kids get home from school" case. Skip this step
+if you're fine starting the server by hand each session.
+
 ## QA gate 1 — does the engine even come up?
 
 Watch the World Feed (deck UI, or the raw console) for the first ~10 seconds after
