@@ -9,6 +9,9 @@
 
 import { carveCrater } from "./genesis.js";
 import { setWeather, setTimelock } from "./ambience.js";
+import { setMark, listMarks } from "./marks.js";
+import { jailPlayer, releasePlayer, finePlayer, grantPlayer, adjustKarmaEvent, setKarmaWeight } from "./karma.js";
+import { placeDungeon } from "./dungeons.js";
 
 function allPlayers(world) {
     return world.getAllPlayers();
@@ -119,4 +122,32 @@ export const EVENTS = {
         }
         announce(world, "§bGather round", "§7the storyteller calls", "");
     },
+
+    // -- marks: named location bookmarks ------------------------
+    // /scriptevent moogul:mark <name>   (fire from chat, standing at the spot)
+    // /scriptevent moogul:marks
+    mark: setMark,
+    marks: listMarks,
+
+    // -- judge: jail / release / fine / grant --------------------
+    // Deck-triggered (no player source) — targets a player by name.
+    // /scriptevent moogul:jail <player> [minutes]
+    // /scriptevent moogul:release <player>
+    // /scriptevent moogul:fine <player> <amount> [reason...]
+    // /scriptevent moogul:grant <player> <amount> [reason...]
+    jail: jailPlayer,
+    release: releasePlayer,
+    fine: finePlayer,
+    grant: grantPlayer,
+    // manual karma adjust (covers trades/gifts/theft/grief until dedicated
+    // detection exists) + live weight tuning without a redeploy
+    // /scriptevent moogul:karma <player> <+/-amount> [reason...]
+    // /scriptevent moogul:karmaweight <key> <value>
+    karma: adjustKarmaEvent,
+    karmaweight: setKarmaWeight,
+
+    // -- dungeons: place an authored dungeon at a mark ------------
+    // /scriptevent moogul:dungeon place <name> [mark]
+    // /scriptevent moogul:dungeon reset <name>
+    dungeon: placeDungeon,
 };

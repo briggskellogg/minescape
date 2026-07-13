@@ -23,8 +23,29 @@ Xbox-authenticated, self-hosted.
   - `ambience.js` — weather locks (dynamic property `moogul:weatherLock`, re-asserted
     every 600 ticks) + time locks. `moogul:weather clear|rain|thunder|natural`,
     `moogul:timelock day|night|natural`.
+  - `telemetry.js` — chat/join/leave/death/block break-place/container-open/villager-
+    &-PvP-hurt/position-heartbeat, one JSON line per event to stdout (`[MOOGUL-T]`
+    prefix) for `deck.js` to pick up. Every subscription individually try/caught.
+  - `marks.js` — named location bookmarks (`moogul:mark <name>` / `moogul:marks`),
+    JSON blob in a world dynamic property. Everything targetable (dungeons, later epic
+    events) points through a mark.
+  - `karma.js` — automatic karma (flavor-only, reacts to telemetry's villager_hurt/pvp
+    today; `moogul:karma <player> <+/-amt> <reason>` covers the rest by hand until
+    dedicated detection exists) + a judge-only layer never triggered automatically:
+    `moogul:jail/release/fine/grant`. Gold-bar economy + karma live in one dynamic
+    property (`moogul:economy`); mirrored to the deck over the telemetry pipeline since
+    scripts can't expose dynamic properties any other way.
+  - `dungeon-modules.js` — the modular building system: small reusable procedural
+    generators (corridor/bossArena/lootVault) composed into dungeons, same
+    generator-function-with-`yield` pattern as genesis.js's crater. See
+    `dungeons/README.md` for the hand-authored (`.mcstructure`) alternative path.
+  - `dungeons.js` — placed, protected structures (not full dimensions). Registry in a
+    dynamic property, locked/open gating via a key item at the door, ghost-block traps
+    via a live position-poll watcher, boss-death clears the instance.
   - Custom entity `moogul:sword_in_stone` (BP entity + RP model/texture). Unbreakable,
     whispers when touched. Quest hook #1.
+  - Custom entity `moogul:alligator_knight` — the first dungeon's boss (hand-authored
+    low-poly geometry, not a vanilla mob reskin — see `dungeons/README.md` for why).
 - **Command Deck** — `deck/deck.js` (Node, zero deps, localhost:8420 only) wraps
   bedrock_server.exe: SSE log feed, POST /cmd → stdin, crash watchdog (3 strikes/10 min),
   nightly 4AM backup (save hold/query/resume protocol, keeps 14), music pipeline:
@@ -70,6 +91,12 @@ dual-mode play + give console, QR invite cards.
 
 ## Current status
 
-Server + deck running with Ambience Engine; awaiting in-game verification of repaired
-events.js (`/scriptevent moogul:ping` → pong) and first FORCE RAIN test. Autostart not
-installed. No custom music uploaded yet. Genesis (crater+sword) not yet fired.
+Foundation, the Moogul Design System, and World Feed v2/telemetry are built and
+deck-verified. Marks, karma/judge (jail/fine/grant), and the first dungeon
+(`alligator-knight-lair`, an Alligator Knight boss behind a ghost-block-trapped
+corridor) are built but **not yet verified against a live server** — this is real
+Bedrock scripting-API code written from an environment with no Minecraft to test
+against. First restart after pulling: watch the World Feed closely for
+`[Scripting] ... SyntaxError` or the per-module registration warnings each file logs on
+a missing API (`[moogul] telemetry/karma/dungeons: '<x>' did not register...`). Genesis
+(crater+sword) still not yet fired. Autostart not installed. No custom music uploaded yet.

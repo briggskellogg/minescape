@@ -102,6 +102,7 @@ minescape/
 ├── deck/              ← Command Deck (Node): deck.js + tabbed pixel UI (see DESIGN.md)
 │   ├── assets/           ← self-hosted font + hand-authored pixel icon set
 │   └── data/             ← telemetry (gitignored — private, local-only)
+├── dungeons/           ← how to build one (procedural or hand-built) — see its README
 ├── docs/               ← README assets
 ├── scripts/           ← setup.ps1, backup.ps1
 ├── world_templates/   ← pack wiring copied into new worlds
@@ -126,9 +127,15 @@ installed on a dedicated server — that content stays on the client.
 - ✅ **Foundation** — engine, Command Deck, ops scripts.
 - ✅ **Moogul Design System** — the deck's pixel-art visual language ([`DESIGN.md`](DESIGN.md)).
 - ✅ **World Feed v2 + telemetry** — human-readable feed, Players tab, forensics query.
-- ⏳ **Marks, Dungeons, Epic Events** — up next.
-- ⏳ Characters/stats/quests, karma, creator tools, dual-mode play, invite cards — see
-  [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md) for the full plan.
+- ✅ **Marks + first dungeon** — the Alligator Knight's Lair (boss fight, ghost-block
+  trap, locked door) — see [`dungeons/README.md`](dungeons/README.md) for how to build
+  the next one, procedurally or hand-built.
+- ✅ **Karma + judge** — flavor-only automatic karma, plus a judge-only layer (jail,
+  fines, grants) for settling disputes with forensics receipts.
+- ⚠️ Everything above the telemetry line is **unverified against a live server** — built
+  from an environment with no access to one. Watch the World Feed on first restart.
+- ⏳ Epic events, characters/stats/quests, creator tools, dual-mode play, invite cards —
+  see [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md) for the full plan.
 
 When the world outgrows this PC: move the whole folder to an always-on mini-PC. The world
 is just files; the forever plan is a $150 N100 box in a closet.

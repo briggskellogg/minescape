@@ -1,0 +1,26 @@
+{
+    "format_version": "1.12.0",
+    "minecraft:geometry": [
+        {
+            "description": {
+                "identifier": "geometry.moogul.alligator_knight",
+                "texture_width": 128,
+                "texture_height": 128,
+                "visible_bounds_width": 4,
+                "visible_bounds_height": 2,
+                "visible_bounds_offset": [0, 0.7, 0]
+            },
+            "bones": [
+                { "name": "body", "pivot": [0, 5, -2], "cubes": [{ "origin": [-5, 5, -12], "size": [10, 6, 20], "uv": [0, 0] }] },
+                { "name": "head", "pivot": [0, 8, -12], "cubes": [{ "origin": [-4, 6, -18], "size": [8, 5, 7], "uv": [32, 0] }] },
+                { "name": "snout", "pivot": [0, 7, -18], "cubes": [{ "origin": [-2, 6, -22], "size": [4, 3, 4], "uv": [64, 0] }] },
+                { "name": "helm", "pivot": [0, 11, -13], "cubes": [{ "origin": [-3, 11, -16], "size": [6, 2, 5], "uv": [96, 0] }] },
+                { "name": "tail", "pivot": [0, 8, 8], "cubes": [{ "origin": [-3, 6, 8], "size": [6, 5, 10], "uv": [0, 32] }] },
+                { "name": "leg_front_left", "pivot": [-3.5, 5, -7.5], "cubes": [{ "origin": [-5, 0, -9], "size": [3, 5, 3], "uv": [32, 32] }] },
+                { "name": "leg_front_right", "pivot": [3.5, 5, -7.5], "cubes": [{ "origin": [2, 0, -9], "size": [3, 5, 3], "uv": [64, 32] }] },
+                { "name": "leg_back_left", "pivot": [-3.5, 5, 4.5], "cubes": [{ "origin": [-5, 0, 3], "size": [3, 5, 3], "uv": [96, 32] }] },
+                { "name": "leg_back_right", "pivot": [3.5, 5, 4.5], "cubes": [{ "origin": [2, 0, 3], "size": [3, 5, 3], "uv": [0, 64] }] }
+            ]
+        }
+    ]
+}

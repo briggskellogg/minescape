@@ -1,0 +1,29 @@
+{
+  "_comment": "Human-readable source of truth for karma weights and jail defaults. IMPORTANT PLATFORM NOTE: Bedrock scripts cannot read arbitrary files at runtime (the same reason telemetry.js writes to stdout instead of a file), so this JSON isn't loaded automatically — packs/moogul_core_bp/scripts/karma.js keeps a matching hardcoded copy of these values as its actual live defaults. When you tune a number, edit it here AND in karma.js's DEFAULT_WEIGHTS/DEFAULT_JAIL consts, OR use the live in-game override: /scriptevent moogul:karmaweight <key> <value> (persists in a dynamic property, takes priority over the hardcoded defaults without needing a restart).",
+
+  "karma": {
+    "villager_trade": 2,
+    "gift_given": 3,
+    "villager_hurt": -8,
+    "steal_from_tracked_chest": -10,
+    "grief_tagged_build": -15,
+    "excessive_pvp": -3
+  },
+
+  "thresholds": {
+    "_comment": "Karma bands used only for the deck's display + flavor consequences, never for automatic punishment.",
+    "high": 20,
+    "low": -20
+  },
+
+  "economy": {
+    "starting_gold_bars": 10,
+    "_comment": "Trades and fines are judge-mediated (you, via the deck) — nothing here moves gold bars automatically."
+  },
+
+  "jail": {
+    "default_minutes": 10,
+    "cage_radius": 3,
+    "cage_height": 12
+  }
+}

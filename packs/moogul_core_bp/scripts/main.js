@@ -6,16 +6,30 @@ import { world, system } from "@minecraft/server";
 import { EVENTS } from "./events.js";
 import { armSwordWhispers } from "./genesis.js";
 import { initTelemetry } from "./telemetry.js";
+import { initKarma } from "./karma.js";
+import { initDungeons } from "./dungeons.js";
 
 // The sword in the stone resists all who try
 armSwordWhispers(world);
 
-// The parent dashboard's eyes and ears — isolated so a telemetry
-// problem can never take the event router or welcome flow down with it.
+// Each of these is isolated in its own try/catch so a problem in one
+// system can never take the event router or the others down with it —
+// the whole reason every module below also try/catches its own event
+// registrations individually (see each file's own SAFETY notes).
 try {
     initTelemetry(world, system);
 } catch (e) {
     console.error("[moogul] telemetry failed to initialize: " + e);
+}
+try {
+    initKarma(world, system);
+} catch (e) {
+    console.error("[moogul] karma failed to initialize: " + e);
+}
+try {
+    initDungeons(world, system);
+} catch (e) {
+    console.error("[moogul] dungeons failed to initialize: " + e);
 }
 
 // ---- Welcome new + returning players -----------------------

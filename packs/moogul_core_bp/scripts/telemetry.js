@@ -19,6 +19,8 @@
 // if one silently no-ops, its console.warn will say which.
 // ============================================================
 
+import { onTelemetry } from "./karma.js";
+
 const CONTAINER_TYPES = [
     "chest", "trapped_chest", "barrel", "ender_chest",
     "furnace", "blast_furnace", "smoker",
@@ -41,12 +43,6 @@ function locOf(location, dimensionId) {
     };
 }
 
-function emit(kind, who, what, where) {
-    try {
-        console.log("[MOOGUL-T] " + JSON.stringify({ t: Date.now(), kind, who, what, where }));
-    } catch (e) { /* never let a logging failure ripple outward */ }
-}
-
 // wraps one event registration so a missing/renamed event can't
 // take the rest of telemetry down with it.
 function safeSubscribe(label, subscribeFn) {
@@ -58,6 +54,13 @@ function safeSubscribe(label, subscribeFn) {
 }
 
 export function initTelemetry(world, system) {
+    // closes over `world` so karma.js's in-process reaction (villager_hurt,
+    // pvp -> karma adjust) doesn't need a stdout round-trip.
+    function emit(kind, who, what, where) {
+        const entry = { t: Date.now(), kind, who, what, where };
+        try { console.log("[MOOGUL-T] " + JSON.stringify(entry)); } catch (e) { /* never let a logging failure ripple outward */ }
+        try { onTelemetry(world, entry); } catch (e) { }
+    }
     // -- chat: log, never block --------------------------------
     safeSubscribe("chat", () => {
         world.beforeEvents.chatSend.subscribe((ev) => {

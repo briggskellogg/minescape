@@ -202,18 +202,29 @@ setInterval(() => { if (indexDirty) savePlayerIndexNow(); }, 5000);
 
 function emptyCounts() { return { blocksBroken: 0, blocksPlaced: 0, deaths: 0, chats: 0 }; }
 
+// kinds that are judge/system bookkeeping, not the player actually doing
+// something — excluded from bumping "last seen" so that stays meaningful.
+const ADMIN_KINDS = new Set(["economy_sync", "jail", "release", "fine", "grant"]);
+
 function updatePlayerIndex(entry) {
     const name = entry.who;
     if (!name || typeof name !== "string") return;
-    if (!playerIndex[name]) playerIndex[name] = { firstSeen: entry.t, lastSeen: entry.t, lastLocation: null, counts: emptyCounts() };
+    if (!playerIndex[name]) {
+        playerIndex[name] = { firstSeen: entry.t, lastSeen: entry.t, lastLocation: null, counts: emptyCounts(), karma: 0, gold: null, jailed: false };
+    }
     const rec = playerIndex[name];
-    rec.lastSeen = entry.t;
+    if (!ADMIN_KINDS.has(entry.kind)) rec.lastSeen = entry.t;
     if (entry.where) rec.lastLocation = entry.where;
     switch (entry.kind) {
         case "block_break": rec.counts.blocksBroken++; break;
         case "block_place": rec.counts.blocksPlaced++; break;
         case "death": rec.counts.deaths++; break;
         case "chat": rec.counts.chats++; break;
+        case "economy_sync": rec.karma = entry.what?.karma ?? rec.karma; rec.gold = entry.what?.gold ?? rec.gold; break;
+        case "karma": rec.karma = entry.what?.karma ?? rec.karma; break;
+        case "fine": case "grant": rec.gold = entry.what?.balance ?? rec.gold; break;
+        case "jail": rec.jailed = true; break;
+        case "release": rec.jailed = false; break;
     }
     indexDirty = true;
 }
@@ -240,8 +251,23 @@ function pruneOldTelemetry() {
 setInterval(pruneOldTelemetry, 6 * 60 * 60 * 1000); // every 6h is plenty for a daily-rotated file
 
 // kinds that are pure bookkeeping (not shown in the live World Feed —
-// they'd flood it) still get written to disk / update the index above.
-const SILENT_KINDS = new Set(["position"]);
+// they'd flood it, or aren't narratable moments) still get written to
+// disk / update the index above.
+const SILENT_KINDS = new Set(["position", "economy_sync", "dungeon_catalog"]);
+
+// dungeons live in the game's dynamic properties, same as karma/gold —
+// deck.js can't read those directly, so it mirrors them from telemetry
+// too (see dungeons.js's logStatus / initDungeons catalog sync).
+let dungeonCatalog = [];  // [{name, label, locked}], from dungeon_catalog
+let dungeonStatus = {};   // name -> {status, label, lastUpdate, origin}
+
+function handleDungeonTelemetry(entry) {
+    if (entry.kind === "dungeon_catalog" && Array.isArray(entry.what)) {
+        dungeonCatalog = entry.what;
+    } else if (entry.kind === "dungeon" && entry.what?.name) {
+        dungeonStatus[entry.what.name] = { status: entry.what.status, label: entry.what.label, lastUpdate: entry.t, origin: entry.where };
+    }
+}
 
 function handleTelemetryLine(line) {
     const marker = "[MOOGUL-T]";
@@ -251,6 +277,7 @@ function handleTelemetryLine(line) {
     try { entry = JSON.parse(line.slice(idx + marker.length).trim()); } catch (e) { return false; }
     if (!entry || typeof entry.kind !== "string") return false;
     appendTelemetry(entry);
+    handleDungeonTelemetry(entry);
     if (!SILENT_KINDS.has(entry.kind)) {
         broadcast(JSON.stringify({ t: Date.now(), telemetry: entry }));
     }
@@ -338,6 +365,19 @@ function serveStatic(relPath, res) {
     });
 }
 
+function readJsonBody(req, cb) {
+    let body = "";
+    req.on("data", (c) => (body += c));
+    req.on("end", () => {
+        let parsed = {};
+        try { parsed = JSON.parse(body || "{}"); } catch (e) { }
+        cb(parsed);
+    });
+}
+// strips newlines (accidental multi-command injection into the console
+// stdin) from free-text fields before they go into a scriptevent command
+function clean(v) { return String(v ?? "").replace(/[\r\n]/g, " ").trim(); }
+
 const server = http.createServer((req, res) => {
     // localhost guard
     const remote = req.socket.remoteAddress || "";
@@ -400,6 +440,41 @@ const server = http.createServer((req, res) => {
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ query: q, results: forensicsQuery(q) }));
         }
+    } else if (req.method === "GET" && u.pathname === "/dungeons") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ catalog: dungeonCatalog, status: dungeonStatus }));
+    } else if (req.method === "POST" && u.pathname === "/dungeon/place") {
+        readJsonBody(req, (b) => {
+            const name = clean(b.name), mark = clean(b.mark);
+            const ok = name && mark ? sendCommand(`scriptevent moogul:dungeon place ${name} ${mark}`) : false;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ ok }));
+        });
+    } else if (req.method === "POST" && u.pathname === "/judge/jail") {
+        readJsonBody(req, (b) => {
+            const name = clean(b.name);
+            const minutes = parseInt(b.minutes, 10) || 10;
+            const ok = name ? sendCommand(`scriptevent moogul:jail ${name} ${minutes}`) : false;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ ok }));
+        });
+    } else if (req.method === "POST" && u.pathname === "/judge/release") {
+        readJsonBody(req, (b) => {
+            const name = clean(b.name);
+            const ok = name ? sendCommand(`scriptevent moogul:release ${name}`) : false;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ ok }));
+        });
+    } else if (req.method === "POST" && (u.pathname === "/judge/fine" || u.pathname === "/judge/grant")) {
+        const kind = u.pathname === "/judge/fine" ? "fine" : "grant";
+        readJsonBody(req, (b) => {
+            const name = clean(b.name);
+            const amount = parseInt(b.amount, 10) || 0;
+            const reason = clean(b.reason);
+            const ok = name && amount > 0 ? sendCommand(`scriptevent moogul:${kind} ${name} ${amount}${reason ? " " + reason : ""}`) : false;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ ok }));
+        });
     } else if (req.method === "POST" && (req.url === "/cmd" || req.url === "/start")) {
         let body = "";
         req.on("data", (c) => (body += c));

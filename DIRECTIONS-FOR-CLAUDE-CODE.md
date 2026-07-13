@@ -5,6 +5,15 @@ first (architecture, conventions, cautions). This file is the forward plan: what
 wants built next, in what order, and to what standard. Treat it as the product brief;
 treat `CLAUDE.md` as the map.
 
+**Progress so far:** §1 (design system) and most of §2 (world feed v2/telemetry) are
+built and deck-verified — see `DESIGN.md`. From §3: marks and the first dungeon
+(`alligator-knight-lair`, boss + ghost-block trap) are built; epic events are not
+started. From §5: karma + a judge layer (jail/fine/grant — this went beyond §5's
+original flavor-only scope, at Briggs's direction, folding in a dungeon-conversation
+request) are built. Everything past §2 is **unverified against a live server** — see
+`CLAUDE.md`'s Current Status. §4 (characters/stats/quests), most of §6 (creator tools),
+§7 (dual-mode/give console), §8 (invite cards) are not started.
+
 ## 0. State of the world (what already exists and works)
 
 - Live Bedrock Dedicated Server 1.26.33.2 in `server/`, world `server/worlds/Minescape`

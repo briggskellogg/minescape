@@ -108,14 +108,38 @@
         </div>
       </section>
 
-      <!-- ============ DUNGEONS (placeholder — Phase 3) ============ -->
+      <!-- ============ DUNGEONS ============ -->
       <section class="tab-panel" data-panel="dungeons" hidden>
-        <div class="panel panel--placeholder">
-          <div class="panel-header accent-neutral"><svg class="icon"><use href="#icon-door"></use></svg> Dungeons</div>
+        <div class="panel">
+          <div class="panel-header"><svg class="icon"><use href="#icon-door"></use></svg> Dungeon Library</div>
           <div class="panel-body">
-            <svg class="icon icon--xl" style="color:var(--text-tertiary)"><use href="#icon-key"></use></svg>
-            <p class="pixel pixel--sm" style="margin-top:12px">Coming in Phase 3</p>
-            <p class="hint" style="margin-top:8px">Marks (sigils), portal-gated dungeons (locked/open), and six wildspace-flavored epic events (godray, blackhole, starfall, awakening, swarm, siege) land here — needs the live server to build and test against.</p>
+            <div id="dungeon-list" class="stack" style="gap:8px">
+              <p class="hint">No dungeons authored yet.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="panel" style="margin-top:16px">
+          <div class="panel-header accent-reward"><svg class="icon"><use href="#icon-key"></use></svg> Place a dungeon</div>
+          <div class="panel-body">
+            <p class="hint">Set a mark first, standing where the entrance should be: <span class="mono">/scriptevent moogul:mark &lt;name&gt;</span> in chat. Then place a dungeon there.</p>
+            <div class="field-row">
+              <select class="field" id="dungeon-select"><option value="">no dungeons authored yet</option></select>
+            </div>
+            <div class="field-row">
+              <input class="field mono" id="dungeon-mark" placeholder="mark name">
+              <button class="btn btn--reward" onclick="doPlaceDungeon()">Place</button>
+            </div>
+            <p class="hint" style="margin-top:8px">Placement spreads across several seconds (a big build in one command tick would lag the server) — don't stand in the footprint while it's building.</p>
+          </div>
+        </div>
+
+        <div class="panel panel--placeholder" style="margin-top:16px">
+          <div class="panel-header accent-neutral"><svg class="icon"><use href="#icon-scroll"></use></svg> Epic Events</div>
+          <div class="panel-body" style="text-align:center; padding:24px 20px">
+            <svg class="icon icon--lg" style="color:var(--text-tertiary)"><use href="#icon-star"></use></svg>
+            <p class="pixel pixel--sm" style="margin-top:12px">Not yet built</p>
+            <p class="hint" style="margin-top:8px">godray, blackhole, starfall, awakening, swarm, siege — the wildspace-flavored cue-engine events from §3, next up after this first dungeon proves out.</p>
           </div>
         </div>
       </section>
@@ -136,6 +160,33 @@
           <div class="panel-body">
             <div id="player-stats" class="hint"></div>
             <div id="player-timeline" class="feed" style="height:320px"></div>
+          </div>
+        </div>
+
+        <div class="panel" id="judge-panel" style="margin-top:16px; display:none">
+          <div class="panel-header accent-instinct"><svg class="icon"><use href="#icon-gavel"></use></svg> Judge — <span id="judge-name"></span></div>
+          <div class="panel-body">
+            <div class="field-row" style="align-items:center">
+              <span class="chip"><svg class="icon icon--sm"><use href="#icon-star"></use></svg> Karma <span id="judge-karma" class="mono">0</span></span>
+              <span class="chip chip--reward"><svg class="icon icon--sm"><use href="#icon-coin"></use></svg> <span id="judge-gold" class="mono">?</span> gold bars</span>
+              <span class="chip chip--danger" id="judge-jailed-chip" style="display:none"><svg class="icon icon--sm"><use href="#icon-lockClosed"></use></svg> In jail</span>
+            </div>
+            <div class="btn-grid">
+              <button class="btn btn--danger" onclick="doJail()"><svg class="icon"><use href="#icon-lockClosed"></use></svg>Jail</button>
+              <button class="btn" onclick="doRelease()"><svg class="icon"><use href="#icon-lockOpen"></use></svg>Release</button>
+            </div>
+            <div class="field-row">
+              <input class="field mono" id="jail-minutes" placeholder="minutes" value="10">
+            </div>
+            <div class="field-row">
+              <input class="field" id="judge-reason" placeholder="reason (shown to both of you)...">
+            </div>
+            <div class="field-row">
+              <input class="field mono" id="judge-amount" placeholder="gold bars">
+              <button class="btn btn--danger" onclick="doFine()">Fine</button>
+              <button class="btn btn--reward" onclick="doGrant()">Grant</button>
+            </div>
+            <p class="hint">Pull up the forensics query below first if you need the receipts before ruling.</p>
           </div>
         </div>
 
@@ -303,6 +354,12 @@
       case "container_open": return { text: `${who} opened ${blockName(entry.what)}`, cat: "build", icon: "icon-key" };
       case "villager_hurt": return { text: `${who} hurt a villager`, cat: "combat", icon: "icon-sword" };
       case "pvp": return { text: `${who} hit ${entry.what}`, cat: "combat", icon: "icon-sword" };
+      case "karma": return { text: `${who}'s karma ${entry.what?.delta >= 0 ? "+" : ""}${entry.what?.delta} (now ${entry.what?.karma})${entry.what?.reason ? " — " + entry.what.reason : ""}`, cat: "events", icon: "icon-star" };
+      case "fine": return { text: `${who} fined ${entry.what?.amount} gold bar(s)${entry.what?.reason ? " — " + entry.what.reason : ""}`, cat: "combat", icon: "icon-gavel" };
+      case "grant": return { text: `${who} granted ${entry.what?.amount} gold bar(s)${entry.what?.reason ? " — " + entry.what.reason : ""}`, cat: "events", icon: "icon-coin" };
+      case "jail": return { text: `${who} sent to jail for ${entry.what?.minutes} minute(s)`, cat: "combat", icon: "icon-lockClosed" };
+      case "release": return { text: `${who} released from jail`, cat: "events", icon: "icon-lockOpen" };
+      case "dungeon": return { text: `'${entry.what?.label || entry.what?.name}' is ${entry.what?.status}`, cat: "events", icon: "icon-door" };
       default: return { text: `${who}: ${entry.kind}`, cat: "system", icon: "icon-wrench" };
     }
   }
@@ -354,6 +411,8 @@
     div.classList.add("is-new");
     appendFeedEntry(div, h.cat);
     if (entry.kind === "join_new" || entry.kind === "join" || entry.kind === "leave") loadPlayers();
+    if (entry.kind === "dungeon") loadDungeons();
+    if (["karma", "fine", "grant", "jail", "release"].includes(entry.kind) && entry.who === selectedPlayerName) selectPlayer(selectedPlayerName);
   }
   function applyFilterToEntry(div) {
     const cat = div.dataset.cat;
@@ -410,13 +469,18 @@
       el.appendChild(row);
     }
   }
+  let selectedPlayerName = null;
+
   async function selectPlayer(name) {
+    selectedPlayerName = name;
     const panel = document.getElementById("player-detail-panel");
     panel.style.display = "";
     document.getElementById("player-detail-name").textContent = name;
     document.getElementById("player-stats").textContent = "Loading...";
     const tl = document.getElementById("player-timeline");
     tl.innerHTML = "";
+    document.getElementById("judge-panel").style.display = "";
+    document.getElementById("judge-name").textContent = name;
     try {
       const data = await (await fetch("/player/" + encodeURIComponent(name) + "/timeline")).json();
       const p = data.player || {};
@@ -427,9 +491,32 @@
         `Blocks broken: ${c.blocksBroken || 0} &middot; placed: ${c.blocksPlaced || 0} &middot; deaths: ${c.deaths || 0} &middot; chats: ${c.chats || 0}`;
       for (const entry of (data.timeline || [])) tl.appendChild(telemetryEntryEl(entry));
       if (!data.timeline || !data.timeline.length) tl.innerHTML = '<p class="hint" style="padding:8px">No recorded history yet.</p>';
+      document.getElementById("judge-karma").textContent = p.karma ?? 0;
+      document.getElementById("judge-gold").textContent = p.gold ?? "?";
+      document.getElementById("judge-jailed-chip").style.display = p.jailed ? "" : "none";
     } catch (e) {
       document.getElementById("player-stats").textContent = "Failed to load.";
     }
+  }
+
+  async function judgeAction(url, body) {
+    if (!selectedPlayerName) return;
+    try {
+      await post(url, { name: selectedPlayerName, ...body });
+      setTimeout(() => selectPlayer(selectedPlayerName), 400); // let the game round-trip land, then refresh
+    } catch (e) {}
+  }
+  function doJail() { judgeAction("/judge/jail", { minutes: document.getElementById("jail-minutes").value || 10 }); }
+  function doRelease() { judgeAction("/judge/release", {}); }
+  function doFine() {
+    const amount = document.getElementById("judge-amount").value;
+    if (!amount) return;
+    judgeAction("/judge/fine", { amount, reason: document.getElementById("judge-reason").value });
+  }
+  function doGrant() {
+    const amount = document.getElementById("judge-amount").value;
+    if (!amount) return;
+    judgeAction("/judge/grant", { amount, reason: document.getElementById("judge-reason").value });
   }
   async function doForensics() {
     const x = document.getElementById("fx").value, y = document.getElementById("fy").value, z = document.getElementById("fz").value;
@@ -448,6 +535,49 @@
   }
   loadPlayers();
   setInterval(loadPlayers, 15000);
+
+  // ---- dungeons tab -------------------------------------------------------
+  const STATUS_ROLE = { sealed: "danger", open: "reward", cleared: "info" };
+  async function loadDungeons() {
+    try {
+      const data = await (await fetch("/dungeons")).json();
+      renderDungeons(data.catalog || [], data.status || {});
+    } catch (e) {}
+  }
+  function renderDungeons(catalog, status) {
+    const list = document.getElementById("dungeon-list");
+    const select = document.getElementById("dungeon-select");
+    if (!catalog.length) {
+      list.innerHTML = '<p class="hint">No dungeons authored yet.</p>';
+      select.innerHTML = '<option value="">no dungeons authored yet</option>';
+      return;
+    }
+    list.innerHTML = "";
+    select.innerHTML = "";
+    for (const d of catalog) {
+      const st = status[d.name];
+      const stLabel = st ? st.status : "not placed";
+      const role = st ? (STATUS_ROLE[st.status] || "reward") : null;
+      const row = document.createElement("div");
+      row.className = "feed-entry cat-" + (role || "system");
+      row.innerHTML = `<svg class="icon"><use href="#icon-door"></use></svg><span class="msg"></span>`;
+      row.querySelector(".msg").textContent = `${d.label}${d.locked ? " (locked)" : ""} — ${stLabel}`;
+      list.appendChild(row);
+
+      const o = document.createElement("option");
+      o.value = d.name;
+      o.textContent = d.label;
+      select.appendChild(o);
+    }
+  }
+  function doPlaceDungeon() {
+    const name = document.getElementById("dungeon-select").value;
+    const mark = document.getElementById("dungeon-mark").value.trim();
+    if (!name || !mark) return;
+    post("/dungeon/place", { name, mark });
+  }
+  loadDungeons();
+  setInterval(loadDungeons, 20000);
 
   async function post(url, body) {
     await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: body ? JSON.stringify(body) : "{}" });
