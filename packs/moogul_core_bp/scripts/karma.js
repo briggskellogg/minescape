@@ -21,7 +21,18 @@
 // weights below are a hardcoded mirror of that file. Keep them in
 // sync, or override live with:
 //   /scriptevent moogul:karmaweight <key> <value>
+//
+// KARMA MARKER: one kid can't read yet, so karma needs to be seen,
+// not read. There's no "player opened their inventory" event in the
+// stable scripting API at all — the personal inventory screen is
+// purely client-side, the dedicated server has no way to know it was
+// opened (unlike a chest, which IS a world interaction). So instead
+// of an overlay triggered by opening it, a real colored block sits in
+// a fixed inventory slot at all times — it's just *there* every time
+// they look, hotbar included. No text needed: color is the signal.
 // ============================================================
+import { ItemStack, ItemLockMode } from "@minecraft/server";
+
 const ECONOMY_KEY = "moogul:economy";
 const WEIGHT_OVERRIDE_KEY = "moogul:karmaWeights";
 
@@ -31,6 +42,19 @@ const DEFAULT_WEIGHTS = {
 };
 const DEFAULT_JAIL = { default_minutes: 10, cage_radius: 3, cage_height: 12 };
 const STARTING_GOLD = 10;
+
+// mirrors config/karma.json's thresholds (high: 20, low: -20), split
+// into 5 visual steps — a color gradient reads at a glance, a
+// good/bad binary doesn't give a kid anything to aim for.
+const MARKER_SLOT = 9; // first slot of the main inventory grid — the
+// first thing your eye hits the instant the inventory screen opens.
+function karmaTier(karma) {
+    if (karma >= 20) return { block: "minecraft:lime_concrete", label: "§aKarma: Great!" };
+    if (karma >= 5) return { block: "minecraft:green_concrete", label: "§2Karma: Good" };
+    if (karma > -5) return { block: "minecraft:white_concrete", label: "§fKarma: Neutral" };
+    if (karma > -20) return { block: "minecraft:orange_concrete", label: "§6Karma: Watch out" };
+    return { block: "minecraft:red_concrete", label: "§cKarma: In trouble" };
+}
 
 function getEconomy(world) {
     try {
@@ -190,6 +214,33 @@ export function releasePlayer({ world, message }) {
     logTelemetry("release", name, {});
 }
 
+// -- karma marker: a colored block that lives in every online player's
+// inventory slot 9, always kept in sync with their current karma tier.
+// KNOWN TRADE-OFF: that slot is reserved for this — anything a player
+// puts there gets replaced within ~2s. One dedicated slot out of 36,
+// and it's not a hotbar slot, so it doesn't cost them a tool/weapon
+// slot during play. --------------------------------------------------
+function refreshKarmaMarkers(world) {
+    try {
+        const econ = getEconomy(world);
+        for (const player of world.getAllPlayers()) {
+            try {
+                const karma = econ[player.name]?.karma ?? 0;
+                const tier = karmaTier(karma);
+                const inv = player.getComponent("minecraft:inventory")?.container;
+                if (!inv) continue;
+                const current = inv.getItem(MARKER_SLOT);
+                if (current?.typeId === tier.block) continue; // already correct — don't spam/flicker
+                const stack = new ItemStack(tier.block, 1);
+                stack.nameTag = tier.label;
+                try { stack.setLore(["§7Your karma mood ring —", "§7the color says how you're doing."]); } catch (e) { }
+                try { stack.lockMode = ItemLockMode.slot; } catch (e) { /* fine without it — the refresh loop still keeps it correct */ }
+                inv.setItem(MARKER_SLOT, stack);
+            } catch (e) { }
+        }
+    } catch (e) { }
+}
+
 export function initKarma(world, system) {
     // auto-release anyone whose timer has expired, checked every ~10s
     try {
@@ -203,6 +254,12 @@ export function initKarma(world, system) {
             } catch (e) { }
         }, 200);
     } catch (e) { console.warn("[moogul] karma: jail-timer interval failed to register (" + e + ")"); }
+
+    // every ~2s so a karma change is reflected almost immediately, not
+    // just on next inventory open
+    try {
+        system.runInterval(() => refreshKarmaMarkers(world), 40);
+    } catch (e) { console.warn("[moogul] karma: marker refresh did not register (" + e + ") — karma won't show in inventory."); }
 
     // global block-break guard for jailed players — the actual
     // enforcement mechanism for "can't break any block." If this

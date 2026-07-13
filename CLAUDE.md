@@ -34,7 +34,11 @@ Xbox-authenticated, self-hosted.
     dedicated detection exists) + a judge-only layer never triggered automatically:
     `moogul:jail/release/fine/grant`. Gold-bar economy + karma live in one dynamic
     property (`moogul:economy`); mirrored to the deck over the telemetry pipeline since
-    scripts can't expose dynamic properties any other way.
+    scripts can't expose dynamic properties any other way. **Karma marker**: since
+    there's no "opened inventory" event in the scripting API at all (client-side-only
+    screen, the server never learns it happened), karma is shown by keeping a colored
+    concrete block (5-tier gradient, lime→green→white→orange→red) pinned in inventory
+    slot 9 at all times — pure color, no reading required, refreshed every ~2s.
   - `dungeon-modules.js` — the modular building system: small reusable procedural
     generators (corridor/bossArena/lootVault) composed into dungeons, same
     generator-function-with-`yield` pattern as genesis.js's crater. See

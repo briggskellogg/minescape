@@ -117,6 +117,17 @@ where you were? **Known limitation**: the cage isn't cleaned up after release �
 leave a small iron-bars structure behind. Fine for now, flagged in
 `dungeons/README.md` if it bothers you in practice.
 
+## QA gate 4 — the karma marker (built for the non-reading kid)
+
+Open a player's inventory and look at the first slot in the main grid (right below the
+hotbar row). **Pass**: there's a colored concrete block there — white/gray at karma 0,
+shifting toward green as karma goes up, toward orange/red as it drops — and it updates
+within a couple seconds of a `moogul:karma`/`fine`/`grant`/villager-hurt/PvP event.
+Try to move it out of that slot — it should either refuse to move (locked) or reappear
+there within ~2 seconds either way. That slot is intentionally reserved for this; it's
+one slot out of 36 and not a hotbar slot, so it shouldn't cost anyone a tool slot in
+practice, but it's worth noticing if it feels intrusive.
+
 ## If something's badly broken
 
 Revert to the last known-good commit before this session's work:
