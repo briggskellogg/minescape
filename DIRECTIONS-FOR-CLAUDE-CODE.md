@@ -10,7 +10,11 @@ built and deck-verified — see `DESIGN.md`. From §3: marks and the first dunge
 (`alligator-knight-lair`, boss + ghost-block trap) are built; epic events are not
 started. From §5: karma + a judge layer (jail/fine/grant — this went beyond §5's
 original flavor-only scope, at Briggs's direction, folding in a dungeon-conversation
-request) are built. Everything past §2 is **unverified against a live server** — see
+request) are built. The test-world tooling mentioned in the "Test in a throwaway world"
+guideline below is also built: `4-TEST-WORLD.bat` / `scripts/testworld.ps1` — Spelljammer,
+a same-seed replica world, chose the level-name-swap flow (not a second BDS copy),
+plus a `commit` action for bringing hand-built `.mcstructure` pieces back into Minescape
+one at a time. Everything past §2 is **unverified against a live server** — see
 `CLAUDE.md`'s Current Status. §4 (characters/stats/quests), most of §6 (creator tools),
 §7 (dual-mode/give console), §8 (invite cards) are not started.
 

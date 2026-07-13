@@ -94,24 +94,32 @@ the *source*; anything that's actually about the people playing stays off GitHub
 
 ```
 minescape/
-├── 1-SETUP.bat / 2-START-SERVER.bat / 3-BACKUP.bat
+├── 1-SETUP.bat / 2-START-SERVER.bat / 3-BACKUP.bat / 4-TEST-WORLD.bat
 ├── config/            ← source of truth for server settings
 ├── packs/
 │   ├── moogul_core_bp/   ← the ENGINE: event router, telemetry, genesis, sword, scripts
+│   │   └── structures/     ← hand-built .mcstructure pieces committed from Spelljammer
 │   └── moogul_core_rp/   ← the LOOK: models, textures; music & voices go here later
 ├── deck/              ← Command Deck (Node): deck.js + tabbed pixel UI (see DESIGN.md)
 │   ├── assets/           ← self-hosted font + hand-authored pixel icon set
 │   └── data/             ← telemetry (gitignored — private, local-only)
 ├── dungeons/           ← how to build one (procedural or hand-built) — see its README
 ├── docs/               ← README assets
-├── scripts/           ← setup.ps1, backup.ps1
+├── scripts/           ← setup.ps1, backup.ps1, testworld.ps1
 ├── world_templates/   ← pack wiring copied into new worlds
-├── server/            ← created by setup: BDS + the live world (worlds/Minescape)
+├── server/            ← created by setup: BDS + worlds (Minescape, and Spelljammer once
+│                          `4-TEST-WORLD.bat refresh` has been run)
 └── backups/           ← created by 3-BACKUP.bat (keeps newest 30)
 ```
 
 **Back up `server/worlds/` like family photos.** `3-BACKUP.bat` does it with one click
 (best while the server is stopped).
+
+**Spelljammer** is a same-seed replica of Minescape for building and testing without any
+risk to the live world — `4-TEST-WORLD.bat` copies it, flips which one the server boots
+into, and `commit`s a finished hand-built piece (exported as a `.mcstructure`) back into
+Minescape when it's ready. It's one-directional and never runs automatically; nothing in
+Spelljammer reaches Minescape until you explicitly commit it.
 
 ## On "mods" — how content works here
 
@@ -132,6 +140,8 @@ installed on a dedicated server — that content stays on the client.
   the next one, procedurally or hand-built.
 - ✅ **Karma + judge** — flavor-only automatic karma, plus a judge-only layer (jail,
   fines, grants) for settling disputes with forensics receipts.
+- ✅ **Spelljammer** — a same-seed test/build world, `4-TEST-WORLD.bat` (`refresh` /
+  `build` / `play` / `commit` / `status`), never touches Minescape until you commit.
 - ⚠️ Everything above the telemetry line is **unverified against a live server** — built
   from an environment with no access to one. Watch the World Feed on first restart.
 - ⏳ Epic events, characters/stats/quests, creator tools, dual-mode play, invite cards —

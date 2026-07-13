@@ -128,6 +128,31 @@ there within ~2 seconds either way. That slot is intentionally reserved for this
 one slot out of 36 and not a hotbar slot, so it shouldn't cost anyone a tool slot in
 practice, but it's worth noticing if it feels intrusive.
 
+## Optional — Spelljammer, the test/build world
+
+Not required for the invite/QA flow above, but available if Briggs wants to hand-build
+the next dungeon or set piece without any risk to the live world. Spelljammer is a
+same-seed **replica** of Minescape — it never changes Minescape on its own; the only way
+anything crosses over is an explicit `commit`, one hand-built piece at a time.
+
+Terminal, in the repo root: `.\4-TEST-WORLD.bat <action>` (or double-click it for a
+1-5 menu). Requires the server to be stopped first — copying/switching worlds while BDS
+has one open risks corrupting the save, and the script refuses to run if it detects
+`bedrock_server` still active.
+
+| Action | What it does |
+|---|---|
+| `refresh` | Copies Minescape → Spelljammer (replaces any existing Spelljammer). Do this first, and again anytime you want a fresh replica to build against. |
+| `build` | Points `server.properties` at Spelljammer. Start the server — you're now playing/building in the replica, Minescape untouched. |
+| `commit <name>` | While in Spelljammer: build a piece, export it with a Structure Block (Save mode, name it `<name>`), then this copies that `.mcstructure` into `packs/moogul_core_bp/structures/` — the shared source both worlds read from. Run `1-SETUP.bat` to deploy it, then `/structure load moogul:<name> x y z` in Minescape, or register it as a dungeon piece (see `dungeons/README.md`, Path B). |
+| `play` | Points `server.properties` back at Minescape. Start the server — normal play resumes. |
+| `status` | Shows which world is currently live and whether/when Spelljammer was last refreshed. |
+
+**Gotcha worth knowing**: re-running `1-SETUP.bat` re-applies `config/server.properties`,
+which always says `level-name=Minescape` — so if you run setup while Spelljammer is meant
+to be live, it'll silently flip back to Minescape. Just run `4-TEST-WORLD.bat build` again
+after setup if that happens.
+
 ## If something's badly broken
 
 Revert to the last known-good commit before this session's work:

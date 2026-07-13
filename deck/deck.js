@@ -159,11 +159,15 @@ function rebuildMusic() {
     man.header.version[2]++;
     man.modules[0].version = man.header.version;
     fs.writeFileSync(manPath, JSON.stringify(man, null, 2));
-    // keep world pack references in step with the new version
-    for (const wj of [
-        path.join(ROOT, "world_templates", "Minescape", "world_resource_packs.json"),
-        path.join(SERVER_DIR, "worlds", "Minescape", "world_resource_packs.json"),
-    ]) {
+    // keep world pack references in step with the new version - every world folder
+    // (Minescape, Spelljammer, any future copy), not just whichever is live
+    const worldPackRefs = [path.join(ROOT, "world_templates", "Minescape", "world_resource_packs.json")];
+    try {
+        for (const w of fs.readdirSync(path.join(SERVER_DIR, "worlds"))) {
+            worldPackRefs.push(path.join(SERVER_DIR, "worlds", w, "world_resource_packs.json"));
+        }
+    } catch (e) { /* no worlds yet */ }
+    for (const wj of worldPackRefs) {
         try {
             const arr = JSON.parse(fs.readFileSync(wj, "utf8"));
             arr[0].version = man.header.version;

@@ -54,15 +54,18 @@ anything that needs to actually *look* hand-crafted in a way boxes can't capture
 
 The tool for when you want to actually build the thing yourself.
 
-1. **Build in a flat creative world** — a superflat world (or a far-off creative area of
-   the main world) so you're not fighting terrain. Build one room/piece at a time.
+1. **Build in Spelljammer** (`4-TEST-WORLD.bat refresh` then `build`) — a same-seed
+   replica of Minescape, so you're building in real, familiar terrain instead of a
+   superflat void, with zero risk to the live world. Build one room/piece at a time.
 2. **Export with a structure block**: place a Structure Block (`/give @s structure_block`),
    set it to **Save** mode, give it a name (e.g. `moogul:my_dungeon_entrance`), define the
    bounding box around your build (the block has size/offset controls in its UI), hit
    **Export**. This writes a `.mcstructure` file.
-3. **Move the exported file** into `packs/moogul_core_bp/structures/` (create that folder
-   if it doesn't exist — Bedrock auto-loads any `.mcstructure` under a behavior pack's
-   `structures/` folder, keyed by the name you gave the structure block).
+3. **Bring it into Minescape**: `4-TEST-WORLD.bat commit my_dungeon_entrance` copies the
+   exported file into `packs/moogul_core_bp/structures/` (create that folder if it doesn't
+   exist — Bedrock auto-loads any `.mcstructure` under a behavior pack's `structures/`
+   folder, keyed by the name you gave the structure block). This is the one and only way
+   anything moves from Spelljammer to Minescape — nothing syncs automatically.
 4. **Load it from a dungeon definition** with the native `structure load` command instead
    of `fill`/`setblock`:
 

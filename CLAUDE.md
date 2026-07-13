@@ -56,8 +56,14 @@ Xbox-authenticated, self-hosted.
   `.ogg` in `music/` → POST /rebuild-music → RP rebuilt + version bumped → restart ships
   to clients → `playsound moogul.music.<slug> @a`. UI: `deck/index.html` (pixel/CRT aesthetic).
 - **Ops**: `1-SETUP.bat` (download/install BDS), `2-START-SERVER.bat` (deck, falls back to
-  bare console without Node), `3-BACKUP.bat`, `FIX-LOCAL-JOIN.bat` (UWP loopback exemption,
-  already run), `INSTALL-AUTOSTART.bat` (schtasks logon task + never-sleep — NOT YET RUN).
+  bare console without Node), `3-BACKUP.bat`, `4-TEST-WORLD.bat` (Spelljammer — a same-seed
+  replica world for building/testing that never changes Minescape on its own; `refresh`
+  copies Minescape → Spelljammer, `build`/`play` flip which one `server.properties`
+  points at, `commit <name>` copies a finished `.mcstructure` exported from Spelljammer
+  into `packs/moogul_core_bp/structures/`, the shared source of truth — see
+  `dungeons/README.md`'s Path B for the rest of that flow), `FIX-LOCAL-JOIN.bat` (UWP
+  loopback exemption, already run), `INSTALL-AUTOSTART.bat` (schtasks logon task +
+  never-sleep — NOT YET RUN).
 
 ## Conventions & cautions
 
