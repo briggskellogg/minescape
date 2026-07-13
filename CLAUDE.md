@@ -63,7 +63,7 @@ Xbox-authenticated, self-hosted.
   into `packs/moogul_core_bp/structures/`, the shared source of truth — see
   `dungeons/README.md`'s Path B for the rest of that flow), `FIX-LOCAL-JOIN.bat` (UWP
   loopback exemption, already run), `INSTALL-AUTOSTART.bat` (schtasks logon task +
-  never-sleep — NOT YET RUN).
+  never-sleep — installed and run).
 
 ## Conventions & cautions
 
@@ -72,6 +72,12 @@ Xbox-authenticated, self-hosted.
   LevelName, server.properties all updated. server-name=m00gu1 so tile reads "m00gu1's world").
 - `config/` holds source-of-truth server.properties/allowlist/permissions; setup.ps1 applies
   them (copy-if-missing-or-blank for allowlist/permissions).
+- **Don't invite players via the `allowlist add` console command** — confirmed live to fail
+  with `[ERROR] Could not add X to the allowlist` (BDS tries an Xbox Live lookup at
+  add-time that doesn't reliably succeed). Use the deck's `POST /allowlist/add` endpoint
+  (Ops tab → Invite) instead — it writes `server/allowlist.json` directly and sends
+  `allowlist reload`, bypassing that lookup entirely. See `deck/deck.js`'s
+  `addToAllowlist()`.
 - Briggs's operator XUID lives in `config/permissions.json` (untracked — public repo).
 - Never edit `server/worlds/Minescape` while the server runs. level.dat is binary NBT.
 - Bedrock clients on consoles auto-update; after BDS updates, re-check @minecraft/server

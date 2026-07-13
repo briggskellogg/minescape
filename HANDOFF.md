@@ -85,10 +85,22 @@ back — don't touch anything else in-game yet.
 
 ## Step 2 — invite the kids
 
-In-game chat (op): `/allowlist add "puffmoogul"` and `/allowlist add "dotmoogul"`.
-Deck UI: Ops tab → Gatekeeping panel → type the gamertag → Invite. Terminal (if you have
-deck API access): `POST /cmd` with `{"cmd":"allowlist add \"puffmoogul\""}`, same again
-for dotmoogul.
+**Known bug, don't use this path:** typing `allowlist add "name"` straight into the
+server console (or via `POST /cmd`) fails with `[ERROR] Could not add X to the
+allowlist` — confirmed live. BDS's console command tries to resolve the gamertag
+against Xbox Live at add-time and that lookup fails for reasons unrelated to whether
+the name is actually valid. Use one of these instead, both of which write
+`allowlist.json` directly and skip that broken lookup:
+
+- **Deck UI** (now fixed to do this): Ops tab → Gatekeeping panel → type the gamertag →
+  Invite.
+- **Terminal / deck API**: `POST /allowlist/add` with `{"name":"puffmoogul"}`, same again
+  for `dotmoogul` — e.g. `Invoke-RestMethod -Uri http://localhost:8420/allowlist/add
+  -Method Post -Body '{"name":"puffmoogul"}' -ContentType "application/json"`.
+
+Either way it reloads the live allowlist immediately (no restart needed). Double-check
+the gamertag is spelled/capitalized exactly as it appears on their Xbox/Microsoft
+profile — a mismatch there won't error, it'll just silently never match at join time.
 
 ## Step 3 — sanity + place the first dungeon
 

@@ -16,6 +16,7 @@ const ROOT = path.join(__dirname, "..");
 const SERVER_DIR = path.join(ROOT, "server");
 const EXE = path.join(SERVER_DIR, "bedrock_server.exe");
 const MUSIC_DIR = path.join(ROOT, "music");
+const ALLOWLIST_PATH = path.join(SERVER_DIR, "allowlist.json");
 const RP_SRC = path.join(ROOT, "packs", "moogul_core_rp");
 const DATA_DIR = path.join(__dirname, "data");
 const TELEMETRY_RETENTION_DAYS = 90;
@@ -120,6 +121,27 @@ function sendCommand(cmd) {
     child.stdin.write(cmd + "\n");
     pushLog("[deck] > " + cmd);
     return true;
+}
+
+// BDS's own "allowlist add <name>" console command tries to resolve the gamertag against
+// Xbox Live at add-time and fails with a bare "Could not add X to the allowlist" for
+// reasons that don't reflect whether the name is actually valid - a known rough edge.
+// Writing allowlist.json directly and reloading is the reliable path.
+function addToAllowlist(name) {
+    let list = [];
+    try { list = JSON.parse(fs.readFileSync(ALLOWLIST_PATH, "utf8")); } catch (e) { list = []; }
+    if (!Array.isArray(list)) list = [];
+    const already = list.some((e) => e && typeof e.name === "string" && e.name.toLowerCase() === name.toLowerCase());
+    if (!already) {
+        list.push({ ignoresPlayerLimit: false, name });
+        fs.mkdirSync(SERVER_DIR, { recursive: true });
+        fs.writeFileSync(ALLOWLIST_PATH, JSON.stringify(list, null, 2));
+        pushLog(`[deck] Added "${name}" to allowlist.json.`);
+    } else {
+        pushLog(`[deck] "${name}" is already on the allowlist.`);
+    }
+    if (child) child.stdin.write("allowlist reload\n");
+    return { added: !already, list };
 }
 
 // --- AMBIENCE: music library pipeline -------------------------
@@ -478,6 +500,13 @@ const server = http.createServer((req, res) => {
             const ok = name && amount > 0 ? sendCommand(`scriptevent moogul:${kind} ${name} ${amount}${reason ? " " + reason : ""}`) : false;
             res.writeHead(200, { "Content-Type": "application/json" });
             res.end(JSON.stringify({ ok }));
+        });
+    } else if (req.method === "POST" && u.pathname === "/allowlist/add") {
+        readJsonBody(req, (b) => {
+            const name = clean(b.name);
+            const result = name ? addToAllowlist(name) : null;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.end(JSON.stringify({ ok: !!result, added: result?.added ?? false }));
         });
     } else if (req.method === "POST" && (req.url === "/cmd" || req.url === "/start")) {
         let body = "";

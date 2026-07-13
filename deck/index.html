@@ -592,7 +592,7 @@
   function invite() {
     const i = document.getElementById("invite");
     const name = i.value.trim();
-    if (name) cmd('allowlist add "' + name.replace(/"/g, "") + '"');
+    if (name) post("/allowlist/add", { name });
     i.value = "";
   }
 
