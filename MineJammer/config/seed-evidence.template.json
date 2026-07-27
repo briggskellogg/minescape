@@ -1,0 +1,21 @@
+{
+  "schema": "minescape.seed-evidence.v1",
+  "gate": "seed-and-finite-resources",
+  "passed": false,
+  "world_epoch": "minescape-v1-prelaunch",
+  "started_at": "1970-01-01T00:00:00Z",
+  "completed_at": "1970-01-01T00:00:00Z",
+  "tester": {"name": "", "role": "seed review"},
+  "machine": "",
+  "input_hashes": {
+    "artifact_lock_sha512": "REPLACE_WITH_128_LOWERCASE_HEX_CHARACTERS",
+    "server_bundle_sha512": "REPLACE_WITH_128_LOWERCASE_HEX_CHARACTERS"
+  },
+  "observations": [],
+  "seed": "6246468738900744",
+  "boundaries": {"overworld": 16384, "nether": 2048, "end": 8192, "looping": false},
+  "structure_counts": {},
+  "starter_village": {"natural": false, "custom_homes": false, "public_arrival": false},
+  "far_rim": {"accepted": false, "notes": ""},
+  "finite_resources": {"complete": false, "notes": ""}
+}

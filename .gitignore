@@ -1,39 +1,77 @@
-# ============================================================
-# MINESCAPE - public repo hygiene
-# The repo is the SOURCE (packs, deck, scripts, docs).
-# The RUNTIME (server binary, world, players) stays local.
-# ============================================================
+# MineScape keeps reconstructible source in Git; family/runtime state stays local.
 
-# --- Server runtime: BDS binary (200+ MB, exceeds GitHub limits),
-# --- the live world, logs, and player data. Never commit.
-server/
+# Runtime instances and permanent worlds
+/var/
+/backups/
+/artifacts/cache/
+/artifacts/downloads/
+/artifacts/runtime/
+/artifacts/*.zip
+/artifacts/*.jar
+*.mca
+level.dat*
+session.lock
+usercache.json
+whitelist.json
+ops.json
+banned-*.json
 
-# --- Backups (huge, private)
-backups/
+# Personal/security/exploration state
+**/secrets.json
+**/*.secret
+**/*.key
+**/*.pfx
+**/players.db
+**/minedeck.db
+**/ledger.sqlite*
+**/bluemap/web/
+**/fog-data/
+**/playerdata/
+**/advancements/
+**/stats/
+**/logs/
 
-# --- Private player data (kids' gamertags, XUIDs)
-config/allowlist.json
-config/permissions.json
-
-# --- Telemetry: chat logs, locations, per-player activity. Private, local-only.
-deck/data/
-
-# --- Music: likely copyrighted audio - keep out of a public repo
-music/*
-!music/README.txt
-
-# --- Archives / downloads
+# Third-party binaries and archives are reconstructed from the lock manifest
+*.jar
 *.zip
-*.mcaddon
-*.mcpack
-bds.zip
+*.7z
+*.tar
+*.gz
+!MineJammer/tests/fixtures/**/*.zip
+!MineScape/gradle/wrapper/gradle-wrapper.jar
 
-# --- Node / tooling
-node_modules/
+# Build outputs
+**/bin/
+**/obj/
+**/build/
+**/.gradle/
+**/out/
+TestResults/
+.coverage
+__pycache__/
+*.py[cod]
+.pytest_cache/
 
-# --- OS / editor cruft
-Thumbs.db
-.DS_Store
+# Local toolchains
+/.tools/
+/.dotnet/
+/MineDeck/.dotnet-cli/
+/MineDeck/.smoke-*/
+/MineDeck/.smoke-*.json
+
+# IDE / operating system
+.vs/
 .vscode/
 .idea/
+*.user
+*.suo
+*.tmp
 *.log
+Thumbs.db
+.DS_Store
+
+# Legacy prototype dependencies/runtime if reopened
+/legacy/bedrock-v0/server/
+/legacy/bedrock-v0/backups/
+/legacy/bedrock-v0/deck/data/
+/legacy/bedrock-v0/node_modules/

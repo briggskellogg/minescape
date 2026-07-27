@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "id": "minescape",
+  "version": "${version}",
+  "name": "MineScape Bridge/Core",
+  "description": "The narrow server authority and paired Mortal Hearts HUD for the MineScape family world.",
+  "authors": ["MineScape"],
+  "contact": {
+    "sources": "https://github.com/briggskellogg/minescape"
+  },
+  "license": "MIT",
+  "environment": "*",
+  "entrypoints": {
+    "main": ["com.minescape.fabric.MineScapeMod"],
+    "client": ["com.minescape.fabric.client.MineScapeClientMod"]
+  },
+  "depends": {
+    "fabricloader": ">=0.19.3",
+    "minecraft": "~26.2",
+    "java": ">=25",
+    "fabric-api": ">=0.155.2"
+  }
+}

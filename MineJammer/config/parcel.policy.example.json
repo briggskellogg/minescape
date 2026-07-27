@@ -1,0 +1,7 @@
+{
+  "schema": "minescape.parcel-policy.v1",
+  "bounds": {
+    "overworld": {"min_x": 12288, "max_x": 12800, "min_z": 12288, "max_z": 12800}
+  },
+  "note": "Example only. MineDeck must reserve an unseen, 512-block-aligned parcel before a plan is created."
+}

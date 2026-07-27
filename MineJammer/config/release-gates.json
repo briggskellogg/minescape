@@ -1,0 +1,37 @@
+{
+  "schema": "minescape.release-gates.v2",
+  "world_epoch": "minescape-v1-prelaunch",
+  "manual_evidence_max_age_hours": 168,
+  "seed_policy": "seed.policy.json",
+  "adapter_completion": {
+    "schema": "minescape.adapter-completion-policy.v1",
+    "promotion_permitted": false,
+    "components": [
+      {"id": "mortal-hearts-and-retirement", "complete": false},
+      {"id": "native-whitelist-and-roles", "complete": false},
+      {"id": "structure-loot-and-food", "complete": false},
+      {"id": "civic-wards", "complete": false},
+      {"id": "exploration-and-fog-privacy", "complete": false},
+      {"id": "family-assist", "complete": false},
+      {"id": "steward-leases", "complete": false},
+      {"id": "quiesced-backup-and-restore", "complete": false},
+      {"id": "signed-atomic-parcel-promotion", "complete": false},
+      {"id": "managed-clients-and-resource-pack", "complete": false},
+      {"id": "clean-shutdown-and-reboot-recovery", "complete": false}
+    ]
+  },
+  "gates": [
+    {"id": "acquisition", "evidence": "acquisition.json", "evaluator": "acquisition", "schema": "minescape.acquisition-report.v1"},
+    {"id": "worldgen-collisions", "evidence": "compatibility.json", "evaluator": "compatibility", "schema": "minescape.compatibility-build.v1"},
+    {"id": "village-adapter", "evidence": "villages.json", "evaluator": "village", "schema": "minescape.village-adapter-build.v1"},
+    {"id": "loot-and-food", "evidence": "loot.json", "evaluator": "manual", "schema": "minescape.loot-food-evidence.v1"},
+    {"id": "fishing", "evidence": "fishing.json", "evaluator": "fishing", "schema": "minescape.fishing-adapter-build.v1"},
+    {"id": "seed-and-finite-resources", "evidence": "seed.json", "evaluator": "seed-audit", "schema": "minescape.seed-evidence.v1"},
+    {"id": "controller-complete-matcha", "evidence": "controller.json", "evaluator": "manual", "schema": "minescape.controller-evidence.v1"},
+    {"id": "mortal-hearts", "evidence": "hearts.json", "evaluator": "manual", "schema": "minescape.mortal-hearts-evidence.v1"},
+    {"id": "worldgen-smoke", "evidence": "worldgen.json", "evaluator": "manual", "schema": "minescape.worldgen-smoke-evidence.v1"},
+    {"id": "fog-privacy", "evidence": "fog.json", "evaluator": "manual", "schema": "minescape.fog-privacy-evidence.v1"},
+    {"id": "backup-restore", "evidence": "recovery.json", "evaluator": "manual", "schema": "minescape.backup-restore-evidence.v1"},
+    {"id": "launcher-and-status", "evidence": "operations.json", "evaluator": "manual", "schema": "minescape.operations-evidence.v1"}
+  ]
+}

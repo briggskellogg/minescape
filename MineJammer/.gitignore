@@ -1,0 +1,9 @@
+.cache/
+artifacts/
+build/
+dist/
+reports/local/
+worlds/
+*.tmp
+__pycache__/
+*.py[cod]

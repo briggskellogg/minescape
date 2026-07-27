@@ -1,0 +1,76 @@
+{
+  "schema": "minescape.runtime-profiles.v1",
+  "minecraft": "26.2",
+  "fabric_loader": "0.19.3",
+  "fabric_launcher": "1.1.1",
+  "seed": "6246468738900744",
+  "datapack_order_low_to_high": [
+    {"kind": "artifact", "key": "matcha", "destination": "00-Matcha_Flavoured.zip"},
+    {"kind": "artifact", "key": "terralith", "destination": "10-Terralith_26.2_v2.6.4.zip"},
+    {"kind": "artifact", "key": "amplified_nether", "destination": "20-Amplified_Nether_v1.2.15.zip"},
+    {"kind": "artifact", "key": "nullscape", "destination": "30-Nullscape_26.2_v1.2.20.zip"},
+    {
+      "kind": "generated",
+      "path": "MineJammer/build/MineScape-Villages.zip",
+      "destination": "40-MineScape-Villages.zip",
+      "evidence": "villages.json",
+      "evidence_schema": "minescape.village-adapter-build.v1"
+    },
+    {
+      "kind": "generated",
+      "path": "MineJammer/build/MineScape-Fishing.zip",
+      "destination": "50-MineScape-Fishing.zip",
+      "evidence": "fishing.json",
+      "evidence_schema": "minescape.fishing-adapter-build.v1"
+    },
+    {
+      "kind": "generated",
+      "path": "MineJammer/build/MineScape-Compatibility.zip",
+      "destination": "60-MineScape-Compatibility.zip",
+      "evidence": "compatibility.json",
+      "evidence_schema": "minescape.compatibility-build.v1"
+    }
+  ],
+  "first_party_jar": "MineScape/build/libs/minescape-0.1.0.jar",
+  "launcher": {
+    "official_url": "https://meta.fabricmc.net/v2/versions/loader/26.2/0.19.3/1.1.1/server/jar",
+    "sha512": "0c0a57be5c5786fffd697d9608ae09f8e1c025546e3daad4d5385bccfa4d2ea018fec399d57dbee5b557711b8cd8852c5423f514d1d4c71093d86f6e96711a7d",
+    "cache_path": "artifacts/cache/fabric_launcher/fabric-server-mc.26.2-loader.0.19.3-launcher.1.1.1.jar",
+    "sha512_path": "artifacts/cache/fabric_launcher/fabric-server-mc.26.2-loader.0.19.3-launcher.1.1.1.jar.sha512"
+  },
+  "release": {
+    "gate_policy": "MineJammer/config/release-gates.json",
+    "evidence_directory": "var/release/evidence",
+    "backup_marker": "var/backup-target.verified",
+    "eula_marker": "var/release/eula-owner-accepted.marker",
+    "generated_datapacks": [
+      "MineJammer/build/MineScape-Villages.zip",
+      "MineJammer/build/MineScape-Fishing.zip",
+      "MineJammer/build/MineScape-Compatibility.zip"
+    ]
+  },
+  "instances": {
+    "MineScape": {
+      "root": "var/MineScape",
+      "mode": "family",
+      "port": 25565,
+      "bridge_port": 8765,
+      "motd": "MineScape - Family Forever World",
+      "mod_profiles": ["server"],
+      "mod_statuses": ["release-target", "default", "gated-target"],
+      "datapack_profiles": ["world-datapack"],
+      "datapack_statuses": ["release-target", "gated-target"]
+    },
+    "MineJammer": {
+      "root": "var/MineJammer",
+      "mode": "heart_qa",
+      "port": 25566,
+      "bridge_port": 8766,
+      "motd": "MINEJAMMER LAB - NEVER FAMILY PLAY",
+      "mod_profiles": ["server", "minejammer", "minejammer-benchmark"],
+      "mod_statuses": ["release-target", "default", "gated-target", "minejammer-only"],
+      "datapack_profiles": ["world-datapack"],
+      "datapack_statuses": ["release-target", "gated-target"]
+    }
+  }
+}

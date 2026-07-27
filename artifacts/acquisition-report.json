@@ -1,0 +1,351 @@
+{
+  "complete": true,
+  "entries": [
+    {
+      "archive_safe": true,
+      "cache_relative": "fabric_api/fabric-api-0.155.2+26.2.jar",
+      "downloaded": true,
+      "key": "fabric_api",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "matcha/Matcha_Flavoured.zip",
+      "downloaded": true,
+      "key": "matcha",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "terralith/Terralith_26.2_v2.6.4.zip",
+      "downloaded": true,
+      "key": "terralith",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "amplified_nether/Amplified_Nether_v1.2.15.zip",
+      "downloaded": true,
+      "key": "amplified_nether",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "nullscape/Nullscape_26.2_v1.2.20.zip",
+      "downloaded": true,
+      "key": "nullscape",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "lithium/lithium-fabric-0.25.2+mc26.2.jar",
+      "downloaded": true,
+      "key": "lithium",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "ferrite_core/ferritecore-9.0.0-fabric.jar",
+      "downloaded": true,
+      "key": "ferrite_core",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "world_border/worldborder-26.2.0-4.9.jar",
+      "downloaded": true,
+      "key": "world_border",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "collective/collective-26.2.0-8.39.jar",
+      "downloaded": true,
+      "key": "collective",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "bluemap/bluemap-5.22-fabric.jar",
+      "downloaded": true,
+      "key": "bluemap",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "ledger/ledger-1.3.23.jar",
+      "downloaded": true,
+      "key": "ledger",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "enhanced_falling_trees/efallingtrees-0.7.1-26.2+fabric.jar",
+      "downloaded": true,
+      "key": "enhanced_falling_trees",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "cloth_config/cloth-config-26.2.155.jar",
+      "downloaded": true,
+      "key": "cloth_config",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "sodium/sodium-fabric-0.9.1+mc26.2.jar",
+      "downloaded": true,
+      "key": "sodium",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "immediately_fast/ImmediatelyFast-Fabric-1.16.2+26.2.jar",
+      "downloaded": true,
+      "key": "immediately_fast",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "entity_culling/entityculling-fabric-1.10.5-mc26.2.jar",
+      "downloaded": true,
+      "key": "entity_culling",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "mod_menu/modmenu-20.0.1.jar",
+      "downloaded": true,
+      "key": "mod_menu",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "placeholder_api/placeholder-api-3.1.0-beta.1+26.2.jar",
+      "downloaded": true,
+      "key": "placeholder_api",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "controlify/controlify-3.1.2+mc26.2-universal.jar",
+      "downloaded": true,
+      "key": "controlify",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "yacl/yet_another_config_lib_v3-3.9.6+26.2-fabric.jar",
+      "downloaded": true,
+      "key": "yacl",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "continuity/continuity-3.0.1+26.2.jar",
+      "downloaded": true,
+      "key": "continuity",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "falling_leaves/fallingleaves-2.0.7+26.1.jar",
+      "downloaded": true,
+      "key": "falling_leaves",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "iris/iris-fabric-1.11.2+mc26.2.jar",
+      "downloaded": true,
+      "key": "iris",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "complementary_reimagined/ComplementaryReimagined_r5.8.1.zip",
+      "downloaded": true,
+      "key": "complementary_reimagined",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "durability_tooltip/durabilitytooltip-1.1.6-fabric-mc26.2.jar",
+      "downloaded": true,
+      "key": "durability_tooltip",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "supermartijn_config/supermartijn642configlib-1.1.8-fabric-mc26.2.jar",
+      "downloaded": true,
+      "key": "supermartijn_config",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "better_stats/betterstats-5.5.4+fn-26.2.jar",
+      "downloaded": true,
+      "key": "better_stats",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "tcdcommons/tcdcommons-5.5.4+fn-26.2.jar",
+      "downloaded": true,
+      "key": "tcdcommons",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "orthocamera/OrthoCamera-0.1.11+26.2.jar",
+      "downloaded": true,
+      "key": "orthocamera",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "pickup_notifier/PickUpNotifier-v26.2.0-mc26.2.x-Fabric.jar",
+      "downloaded": true,
+      "key": "pickup_notifier",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "puzzles_lib/PuzzlesLib-v26.2.1-mc26.2.x-Fabric.jar",
+      "downloaded": true,
+      "key": "puzzles_lib",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "forge_config_api_port/ForgeConfigAPIPort-v26.2.1-mc26.2.x-Fabric.jar",
+      "downloaded": true,
+      "key": "forge_config_api_port",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "sound_physics/sound-physics-remastered-fabric-1.5.1+26.2.jar",
+      "downloaded": true,
+      "key": "sound_physics",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "lamb_dynamic_lights/lambdynamiclights-4.12.2+26.2.jar",
+      "downloaded": true,
+      "key": "lamb_dynamic_lights",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "mouse_tweaks/MouseTweaks-fabric-mc26.2-2.31.jar",
+      "downloaded": true,
+      "key": "mouse_tweaks",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "simple_voice_chat/voicechat-fabric-2.6.21+26.2.jar",
+      "downloaded": true,
+      "key": "simple_voice_chat",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "worldedit/worldedit-mod-7.4.4.jar",
+      "downloaded": true,
+      "key": "worldedit",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "chunky/Chunky-Fabric-1.5.3.jar",
+      "downloaded": true,
+      "key": "chunky",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "camera_utils/camerautils-fabric-1.1.2+26.2.jar",
+      "downloaded": true,
+      "key": "camera_utils",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "jei/jei-26.2-fabric-30.14.0.93.jar",
+      "downloaded": true,
+      "key": "jei",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "appleskin/appleskin-fabric-mc26.2-3.0.10.jar",
+      "downloaded": true,
+      "key": "appleskin",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "fast_noise/zfastnoise-1.0.39+26.2.jar",
+      "downloaded": true,
+      "key": "fast_noise",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    },
+    {
+      "archive_safe": true,
+      "cache_relative": "luckperms/LuckPerms-Fabric-5.5.57.jar",
+      "downloaded": true,
+      "key": "luckperms",
+      "metadata_resolved": true,
+      "sha512_verified": true
+    }
+  ],
+  "metadata_only": false,
+  "schema": "minescape.acquisition-report.v1"
+}

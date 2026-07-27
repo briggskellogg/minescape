@@ -1,0 +1,19 @@
+{
+  "schema": "minescape.bridge-offline-token.v1",
+  "issuer": "minescape-bridge",
+  "purpose": "parcel-commit",
+  "token_id": "REPLACE_WITH_A_ONE_TIME_ID",
+  "one_time": true,
+  "server_offline": false,
+  "world": "C:/replace/with/exact/production/world",
+  "plan_id": "REPLACE_WITH_THE_64_CHARACTER_PLAN_ID",
+  "production_tree_digest": "REPLACE_WITH_THE_128_CHARACTER_TREE_DIGEST",
+  "issued_at": "1970-01-01T00:00:00Z",
+  "expires_at": "1970-01-01T00:05:00Z",
+  "signature": {
+    "algorithm": "Ed25519",
+    "key_id": "REPLACE_WITH_BRIDGE_KEY_ID",
+    "value": "REPLACE_WITH_BASE64_SIGNATURE"
+  },
+  "note": "Contract example only. MineJammer deliberately cannot apply parcels until it can verify Bridge signatures and atomically consume each token once. Hand-editing this file never authorizes a write."
+}

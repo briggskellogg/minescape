@@ -1,0 +1,13 @@
+[build-system]
+requires = []
+build-backend = "minejammer.build_backend"
+
+[project]
+name = "minescape-minejammer"
+version = "0.1.0"
+description = "Reproducible compatibility laboratory for the MineScape family world"
+requires-python = ">=3.11"
+dependencies = []
+
+[project.scripts]
+minejammer = "minejammer.cli:main"

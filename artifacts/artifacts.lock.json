@@ -1,0 +1,1666 @@
+{
+  "artifacts": [
+    {
+      "api_version_number": "0.155.2+26.2",
+      "creator": "FabricMC",
+      "download_url": "https://cdn.modrinth.com/data/P7dR8mSH/versions/lVXlbH4w/fabric-api-0.155.2%2B26.2.jar",
+      "filename": "fabric-api-0.155.2+26.2.jar",
+      "key": "fabric_api",
+      "license": {
+        "id": "Apache-2.0",
+        "name": "Apache License 2.0",
+        "url": null
+      },
+      "name": "Fabric API",
+      "profiles": [
+        "server",
+        "family-client",
+        "steward-client",
+        "minejammer"
+      ],
+      "project": "fabric-api",
+      "project_id": "P7dR8mSH",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/P7dR8mSH",
+        "published": "2026-07-17T08:49:22.848130Z",
+        "version_api": "https://api.modrinth.com/v2/version/lVXlbH4w"
+      },
+      "provider": "modrinth",
+      "sha512": "cc56984378a27c5bcd56374d6ffbb27a45c6bf3355add2ac6be9817ccac5854362249bf9d0147eb271a70fda2716129204e240d53c9aa876a2a7861f4c7f880f",
+      "size": 2530080,
+      "status": "release-target",
+      "version": "0.155.2+26.2",
+      "version_id": "lVXlbH4w"
+    },
+    {
+      "api_version_number": "1.02",
+      "creator": "klei_wright and credited collaborators",
+      "download_url": "https://cdn.modrinth.com/data/QI0EmgZ1/versions/RVX0a6It/Matcha_Flavoured.zip",
+      "filename": "Matcha_Flavoured.zip",
+      "key": "matcha",
+      "known_sha512": "12dc5a600d473f06a44a4370c02b404a0260adf696a591a3fbb0f135bca613ffba4f9990f625746375fa9181bbb300eeffd9cc420e6a50f91a48c21314c81505",
+      "license": {
+        "id": "CC-BY-NC-SA-4.0",
+        "name": "Creative Commons Attribution Non Commercial Share Alike 4.0 International",
+        "url": null
+      },
+      "name": "Matcha Flavoured",
+      "profiles": [
+        "world-datapack",
+        "required-resource"
+      ],
+      "project": "matcha-flavoured",
+      "project_id": "QI0EmgZ1",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "datapack"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/QI0EmgZ1",
+        "published": "2026-07-26T12:29:51.422472Z",
+        "version_api": "https://api.modrinth.com/v2/version/RVX0a6It"
+      },
+      "provider": "modrinth",
+      "sha512": "12dc5a600d473f06a44a4370c02b404a0260adf696a591a3fbb0f135bca613ffba4f9990f625746375fa9181bbb300eeffd9cc420e6a50f91a48c21314c81505",
+      "size": 11826524,
+      "status": "release-target",
+      "version": "1.02",
+      "version_id": "RVX0a6It"
+    },
+    {
+      "api_version_number": "2.6.4",
+      "creator": "Stardust Labs / Starmute",
+      "download_url": "https://cdn.modrinth.com/data/8oi3bsk5/versions/CzijfXJQ/Terralith_26.2_v2.6.4.zip",
+      "filename": "Terralith_26.2_v2.6.4.zip",
+      "key": "terralith",
+      "known_sha512": "f5283548323149ecd3f218b8efbe03c1c582df3f40b6bb3b095ba9e4cac0c87108b98adabd6ebd3a8037ec239773a253f75b8bee7db52e6f5663bf9dc63c2ea3",
+      "license": {
+        "id": "LicenseRef-Stardust-Labs-License",
+        "name": "",
+        "url": "https://github.com/Stardust-Labs-MC/license/blob/main/license.txt"
+      },
+      "name": "Terralith",
+      "profiles": [
+        "world-datapack"
+      ],
+      "project": "terralith",
+      "project_id": "8oi3bsk5",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "datapack"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/8oi3bsk5",
+        "published": "2026-07-08T15:20:28.216422Z",
+        "version_api": "https://api.modrinth.com/v2/version/CzijfXJQ"
+      },
+      "provider": "modrinth",
+      "sha512": "f5283548323149ecd3f218b8efbe03c1c582df3f40b6bb3b095ba9e4cac0c87108b98adabd6ebd3a8037ec239773a253f75b8bee7db52e6f5663bf9dc63c2ea3",
+      "size": 3001471,
+      "status": "gated-target",
+      "version": "2.6.4",
+      "version_id": "CzijfXJQ"
+    },
+    {
+      "api_version_number": "1.2.15",
+      "creator": "Stardust Labs / Starmute",
+      "download_url": "https://cdn.modrinth.com/data/wXiGiyGX/versions/xIayvf8F/Amplified_Nether_v1.2.15.zip",
+      "filename": "Amplified_Nether_v1.2.15.zip",
+      "key": "amplified_nether",
+      "known_sha512": "686edbd22e5cfc0956e6d5b2c606400480e6ec19c1b287cddbe59a0840836160ef2291224a411d23687c4e342bc322ecf19ffad763259db99f56ebb83f8200af",
+      "license": {
+        "id": "LicenseRef-Stardust-Labs-License",
+        "name": "",
+        "url": "https://github.com/Stardust-Labs-MC/license/blob/main/license.txt"
+      },
+      "name": "Amplified Nether",
+      "profiles": [
+        "world-datapack"
+      ],
+      "project": "amplified-nether",
+      "project_id": "wXiGiyGX",
+      "provenance": {
+        "game_versions": [
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4",
+          "1.20.5",
+          "1.20.6",
+          "1.21",
+          "1.21.1",
+          "1.21.2",
+          "1.21.3",
+          "1.21.4",
+          "1.21.5",
+          "1.21.6",
+          "1.21.7",
+          "1.21.8",
+          "1.21.9",
+          "1.21.10",
+          "1.21.11",
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "datapack"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/wXiGiyGX",
+        "published": "2026-07-08T22:07:03.516456Z",
+        "version_api": "https://api.modrinth.com/v2/version/xIayvf8F"
+      },
+      "provider": "modrinth",
+      "sha512": "686edbd22e5cfc0956e6d5b2c606400480e6ec19c1b287cddbe59a0840836160ef2291224a411d23687c4e342bc322ecf19ffad763259db99f56ebb83f8200af",
+      "size": 105555,
+      "status": "release-target",
+      "version": "1.2.15",
+      "version_id": "xIayvf8F"
+    },
+    {
+      "api_version_number": "1.2.20",
+      "creator": "Stardust Labs / Starmute",
+      "download_url": "https://cdn.modrinth.com/data/LPjGiSO4/versions/prWWpjSv/Nullscape_26.2_v1.2.20.zip",
+      "filename": "Nullscape_26.2_v1.2.20.zip",
+      "key": "nullscape",
+      "known_sha512": "3ace54c904600e449305547064b2e0087eb05827c06f406490e7fa18dfbe6ef42c357078d5e6ad9cc32129de30bc0de9e89dd1c7ff966f1812b1393581d82294",
+      "license": {
+        "id": "LicenseRef-Stardust-Labs-License",
+        "name": "",
+        "url": "https://github.com/Stardust-Labs-MC/license/blob/main/license.txt"
+      },
+      "name": "Nullscape",
+      "profiles": [
+        "world-datapack"
+      ],
+      "project": "nullscape",
+      "project_id": "LPjGiSO4",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "datapack"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/LPjGiSO4",
+        "published": "2026-07-08T22:03:12.940256Z",
+        "version_api": "https://api.modrinth.com/v2/version/prWWpjSv"
+      },
+      "provider": "modrinth",
+      "sha512": "3ace54c904600e449305547064b2e0087eb05827c06f406490e7fa18dfbe6ef42c357078d5e6ad9cc32129de30bc0de9e89dd1c7ff966f1812b1393581d82294",
+      "size": 343740,
+      "status": "gated-target",
+      "version": "1.2.20",
+      "version_id": "prWWpjSv"
+    },
+    {
+      "api_version_number": "mc26.2-0.25.2-fabric",
+      "creator": "CaffeineMC",
+      "download_url": "https://cdn.modrinth.com/data/gvQqBUqZ/versions/UPNexAfy/lithium-fabric-0.25.2%2Bmc26.2.jar",
+      "filename": "lithium-fabric-0.25.2+mc26.2.jar",
+      "key": "lithium",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "name": "GNU Lesser General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Lithium",
+      "profiles": [
+        "server",
+        "clients"
+      ],
+      "project": "lithium",
+      "project_id": "gvQqBUqZ",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/gvQqBUqZ",
+        "published": "2026-07-10T23:19:27.551039Z",
+        "version_api": "https://api.modrinth.com/v2/version/UPNexAfy"
+      },
+      "provider": "modrinth",
+      "sha512": "db676376c05b7e912cdae5aad9e51f125adc1554ae2b204599ccb598751921aedbac98e97b9cba0333b6b52488c6b75c915a7dbd50436f97800387fe1aad1c50",
+      "size": 911988,
+      "status": "default",
+      "version": "0.25.2",
+      "version_id": "UPNexAfy"
+    },
+    {
+      "api_version_number": "9.0.0-fabric",
+      "creator": "malte0811",
+      "download_url": "https://cdn.modrinth.com/data/uXXizFIs/versions/d5ddUdiB/ferritecore-9.0.0-fabric.jar",
+      "filename": "ferritecore-9.0.0-fabric.jar",
+      "key": "ferrite_core",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": null
+      },
+      "name": "FerriteCore",
+      "profiles": [
+        "server",
+        "clients"
+      ],
+      "project": "ferrite-core",
+      "project_id": "uXXizFIs",
+      "provenance": {
+        "game_versions": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/uXXizFIs",
+        "published": "2026-03-24T18:31:50.491773Z",
+        "version_api": "https://api.modrinth.com/v2/version/d5ddUdiB"
+      },
+      "provider": "modrinth",
+      "sha512": "d81fa97e11784c19d42f89c2f433831d007603dd7193cee45fa177e4a6a9c52b384b198586e04a0f7f63cd996fed713322578bde9a8db57e1188854ae5cbe584",
+      "size": 72677,
+      "status": "default",
+      "version": "9.0.0",
+      "version_id": "d5ddUdiB"
+    },
+    {
+      "api_version_number": "26.2.0-4.9-fabric+forge+neo",
+      "creator": "Serilum",
+      "download_url": "https://cdn.modrinth.com/data/nN96GjON/versions/1e9MjNpZ/worldborder-26.2.0-4.9.jar",
+      "filename": "worldborder-26.2.0-4.9.jar",
+      "key": "world_border",
+      "license": {
+        "id": "LicenseRef-All-Rights-Reserved",
+        "name": "",
+        "url": null
+      },
+      "name": "World Border",
+      "profiles": [
+        "server"
+      ],
+      "project": "world-border",
+      "project_id": "nN96GjON",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "forge",
+          "neoforge",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/nN96GjON",
+        "published": "2026-06-18T09:33:28.590118Z",
+        "version_api": "https://api.modrinth.com/v2/version/1e9MjNpZ"
+      },
+      "provider": "modrinth",
+      "sha512": "fbb2c9154b5b7ad3f6a4f61bcbc1038be3a08638e98af94a84b91fdb56ff6cdc63554c0f90c585bfc579ed92c436a0670a47ce63b711ac1056a76158009fbc44",
+      "size": 43497,
+      "status": "release-target",
+      "version": "26.2.0-4.9",
+      "version_id": "1e9MjNpZ"
+    },
+    {
+      "api_version_number": "26.2.0-8.39-fabric+forge+neo",
+      "creator": "Serilum",
+      "download_url": "https://cdn.modrinth.com/data/e0M1UDsY/versions/M75JwjyS/collective-26.2.0-8.39.jar",
+      "filename": "collective-26.2.0-8.39.jar",
+      "key": "collective",
+      "license": {
+        "id": "LicenseRef-All-Rights-Reserved",
+        "name": "",
+        "url": null
+      },
+      "name": "Collective",
+      "profiles": [
+        "server"
+      ],
+      "project": "collective",
+      "project_id": "e0M1UDsY",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "forge",
+          "neoforge",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/e0M1UDsY",
+        "published": "2026-06-29T16:27:51.706688Z",
+        "version_api": "https://api.modrinth.com/v2/version/M75JwjyS"
+      },
+      "provider": "modrinth",
+      "sha512": "e27620080ae53460b00cabacaff409a960e0d6c6811b7e3519d5461cb62654e0016161eed914352171af56191b70a97c79320b3ef29c0636b74a0471c2398055",
+      "size": 1084412,
+      "status": "release-target",
+      "version": "8.39",
+      "version_id": "M75JwjyS"
+    },
+    {
+      "api_version_number": "5.22-fabric",
+      "creator": "BlueColored / BlueMap project",
+      "download_url": "https://cdn.modrinth.com/data/swbUV1cr/versions/VTvifNPN/bluemap-5.22-fabric.jar",
+      "filename": "bluemap-5.22-fabric.jar",
+      "key": "bluemap",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/BlueMap-Minecraft/BlueMap/blob/master/LICENSE"
+      },
+      "name": "BlueMap",
+      "profiles": [
+        "server"
+      ],
+      "project": "bluemap",
+      "project_id": "swbUV1cr",
+      "provenance": {
+        "game_versions": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/swbUV1cr",
+        "published": "2026-06-17T07:14:35.640358Z",
+        "version_api": "https://api.modrinth.com/v2/version/VTvifNPN"
+      },
+      "provider": "modrinth",
+      "sha512": "ec597df7e974f1f28baa15325373442968c9643a157a6d2627cd5c36f8841c3023f2c08023d203bcfa7e0e51bce69d4623ba712babb84da73bd40f0e0c7f4dbd",
+      "size": 6494225,
+      "status": "release-target",
+      "version": "5.22",
+      "version_id": "VTvifNPN"
+    },
+    {
+      "api_version_number": "1.3.23",
+      "creator": "Potatoboy9999, DrexHD, QuiltServerTools contributors",
+      "download_url": "https://cdn.modrinth.com/data/LVN9ygNV/versions/KpVLPOJk/ledger-1.3.23.jar",
+      "filename": "ledger-1.3.23.jar",
+      "key": "ledger",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "name": "GNU Lesser General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Ledger",
+      "profiles": [
+        "server"
+      ],
+      "project": "ledger",
+      "project_id": "LVN9ygNV",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/LVN9ygNV",
+        "published": "2026-06-17T04:21:21.441097Z",
+        "version_api": "https://api.modrinth.com/v2/version/KpVLPOJk"
+      },
+      "provider": "modrinth",
+      "sha512": "d5df460ccb86f130fac83af9c6fec3ff3a36d071af01c7d2d49c5a9abc915938fc172782e2762d857f1a3e7f5b2c78c68f7e62dc416d6eed907570a176977763",
+      "size": 20049681,
+      "status": "release-target",
+      "version": "1.3.23",
+      "version_id": "KpVLPOJk"
+    },
+    {
+      "api_version_number": "0.7.1-26.2+fabric",
+      "creator": "addavriance",
+      "download_url": "https://cdn.modrinth.com/data/UJMd74i4/versions/Y0zs6l6h/efallingtrees-0.7.1-26.2%2Bfabric.jar",
+      "filename": "efallingtrees-0.7.1-26.2+fabric.jar",
+      "key": "enhanced_falling_trees",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": null
+      },
+      "name": "Enhanced Falling Trees",
+      "profiles": [
+        "server",
+        "clients"
+      ],
+      "project": "enhanced-falling-trees",
+      "project_id": "UJMd74i4",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/UJMd74i4",
+        "published": "2026-07-08T23:45:17.630044Z",
+        "version_api": "https://api.modrinth.com/v2/version/Y0zs6l6h"
+      },
+      "provider": "modrinth",
+      "sha512": "4c64511d38a1c9799135f9712c0dd31afc07a2862ac19b23a8a8db3738bf4f3ca64b701361ff6a94134092c1053b233a3e14cb14c5a2ab4840c76413b28307f7",
+      "size": 1749356,
+      "status": "gated-target",
+      "version": "0.7.1",
+      "version_id": "Y0zs6l6h"
+    },
+    {
+      "api_version_number": "26.2.155+fabric",
+      "creator": "shedaniel",
+      "download_url": "https://cdn.modrinth.com/data/9s6osm5g/versions/Nv3xnWXd/cloth-config-26.2.155.jar",
+      "filename": "cloth-config-26.2.155.jar",
+      "key": "cloth_config",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "name": "GNU Lesser General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Cloth Config",
+      "profiles": [
+        "server",
+        "clients"
+      ],
+      "project": "cloth-config",
+      "project_id": "9s6osm5g",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/9s6osm5g",
+        "published": "2026-06-18T00:27:27.147096Z",
+        "version_api": "https://api.modrinth.com/v2/version/Nv3xnWXd"
+      },
+      "provider": "modrinth",
+      "sha512": "37b1e402f0df5a383656e21a38ee18cdd15cb4ba3fb62fbeba82ef4b959a4479fc32718ac0d9d154a7d9104c5f7315bfa67dbeced0b8ff240b8039d4848d5df1",
+      "size": 1135186,
+      "status": "gated-target",
+      "version": "26.2.155",
+      "version_id": "Nv3xnWXd"
+    },
+    {
+      "api_version_number": "mc26.2-0.9.1-fabric",
+      "creator": "CaffeineMC",
+      "download_url": "https://cdn.modrinth.com/data/AANobbMI/versions/2Yom1N68/sodium-fabric-0.9.1%2Bmc26.2.jar",
+      "filename": "sodium-fabric-0.9.1+mc26.2.jar",
+      "key": "sodium",
+      "license": {
+        "id": "LicenseRef-Polyform-Shield-1.0.0",
+        "name": "",
+        "url": "https://github.com/CaffeineMC/sodium/blob/dev/LICENSE.md"
+      },
+      "name": "Sodium",
+      "profiles": [
+        "clients"
+      ],
+      "project": "sodium",
+      "project_id": "AANobbMI",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/AANobbMI",
+        "published": "2026-07-08T20:58:18.553231Z",
+        "version_api": "https://api.modrinth.com/v2/version/2Yom1N68"
+      },
+      "provider": "modrinth",
+      "sha512": "627fbf9625a4b94693c789c84a0686ffe558c0b1ecbeccf2602a903caafa9e126548b644282aa9c391dc798930d378724a383bea6b4397c5294d59ba5c0a6936",
+      "size": 1834384,
+      "status": "default",
+      "version": "0.9.1",
+      "version_id": "2Yom1N68"
+    },
+    {
+      "api_version_number": "1.16.2+26.2-fabric",
+      "creator": "RaphiMC",
+      "download_url": "https://cdn.modrinth.com/data/5ZwdcRci/versions/uJHxuQxy/ImmediatelyFast-Fabric-1.16.2%2B26.2.jar",
+      "filename": "ImmediatelyFast-Fabric-1.16.2+26.2.jar",
+      "key": "immediately_fast",
+      "license": {
+        "id": "LGPL-3.0-or-later",
+        "name": "GNU Lesser General Public License v3.0 or later",
+        "url": null
+      },
+      "name": "ImmediatelyFast",
+      "profiles": [
+        "clients"
+      ],
+      "project": "immediatelyfast",
+      "project_id": "5ZwdcRci",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/5ZwdcRci",
+        "published": "2026-07-11T22:29:11.646027Z",
+        "version_api": "https://api.modrinth.com/v2/version/uJHxuQxy"
+      },
+      "provider": "modrinth",
+      "sha512": "5f7c9d7993bfe3654b4f384c23afd83c1adcc359b1fa669b20f29ffa41e4e3135a161c1fdf97c66c5fc513ec5fe63e757a46b6e183b7b93148a28412496c5a0b",
+      "size": 91422,
+      "status": "default",
+      "version": "1.16.2",
+      "version_id": "uJHxuQxy"
+    },
+    {
+      "api_version_number": "1.10.5",
+      "creator": "tr7zw",
+      "download_url": "https://cdn.modrinth.com/data/NNAgCjsB/versions/iiF6U3Ne/entityculling-fabric-1.10.5-mc26.2.jar",
+      "filename": "entityculling-fabric-1.10.5-mc26.2.jar",
+      "key": "entity_culling",
+      "license": {
+        "id": "LicenseRef-tr7zw-Protective-License",
+        "name": "",
+        "url": "https://github.com/tr7zw/EntityCulling/blob/1.18/LICENSE-EntityCulling"
+      },
+      "name": "Entity Culling",
+      "profiles": [
+        "clients"
+      ],
+      "project": "entityculling",
+      "project_id": "NNAgCjsB",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/NNAgCjsB",
+        "published": "2026-06-20T14:43:52.362716Z",
+        "version_api": "https://api.modrinth.com/v2/version/iiF6U3Ne"
+      },
+      "provider": "modrinth",
+      "sha512": "338813c344a2d924abbaaf249da2b52f5e162bd92407f3099c6ff1bce1c1efecde9df80efcc7b4de3b3a0044cc5735b96594b04da4594bb26793459fc6c960a6",
+      "size": 1583775,
+      "status": "default",
+      "version": "1.10.5",
+      "version_id": "iiF6U3Ne"
+    },
+    {
+      "api_version_number": "20.0.1",
+      "creator": "Terraformers / Prospector",
+      "download_url": "https://cdn.modrinth.com/data/mOgUt4GM/versions/njXb639R/modmenu-20.0.1.jar",
+      "filename": "modmenu-20.0.1.jar",
+      "key": "mod_menu",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": null
+      },
+      "name": "Mod Menu",
+      "profiles": [
+        "clients"
+      ],
+      "project": "modmenu",
+      "project_id": "mOgUt4GM",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/mOgUt4GM",
+        "published": "2026-07-09T21:54:21.377948Z",
+        "version_api": "https://api.modrinth.com/v2/version/njXb639R"
+      },
+      "provider": "modrinth",
+      "sha512": "1aa297ab5e6fac71ad6af750fe6f8cd25281bd00c0340e5fe1c1e9d153d1198df03be1df55727a4a2116db97dcaad541d41754f3fc0063abfe4345b60f193fb4",
+      "size": 614002,
+      "status": "gated-default",
+      "version": "20.0.1",
+      "version_id": "njXb639R"
+    },
+    {
+      "api_version_number": "3.1.0-beta.1+26.2",
+      "creator": "Patbox",
+      "download_url": "https://cdn.modrinth.com/data/eXts2L7r/versions/NDqH16LT/placeholder-api-3.1.0-beta.1%2B26.2.jar",
+      "filename": "placeholder-api-3.1.0-beta.1+26.2.jar",
+      "key": "placeholder_api",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "name": "GNU Lesser General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Text Placeholder API",
+      "profiles": [
+        "clients"
+      ],
+      "project": "placeholder-api",
+      "project_id": "eXts2L7r",
+      "provenance": {
+        "game_versions": [
+          "26.2-pre-1",
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/eXts2L7r",
+        "published": "2026-05-27T20:57:38.795530Z",
+        "version_api": "https://api.modrinth.com/v2/version/NDqH16LT"
+      },
+      "provider": "modrinth",
+      "sha512": "07b6fc802559d54ec6577f6e2788926ef391d755206c2bfb0528280977885cae4bc0c517d8a53eb6f34092015ebe6c41210627d255aa6504662daefa8fb76397",
+      "size": 254973,
+      "status": "gated-default",
+      "version": "3.1.0-beta.1+26.2",
+      "version_id": "NDqH16LT"
+    },
+    {
+      "api_version_number": "3.1.2+mc26.2",
+      "creator": "isXander",
+      "download_url": "https://cdn.modrinth.com/data/DOUdJVEm/versions/ww7bBOmX/controlify-3.1.2%2Bmc26.2-universal.jar",
+      "filename": "controlify-3.1.2+mc26.2-universal.jar",
+      "key": "controlify",
+      "license": {
+        "id": "LGPL-3.0-or-later",
+        "name": "GNU Lesser General Public License v3.0 or later",
+        "url": null
+      },
+      "name": "Controlify",
+      "profiles": [
+        "controller-client"
+      ],
+      "project": "controlify",
+      "project_id": "DOUdJVEm",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "neoforge"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/DOUdJVEm",
+        "published": "2026-07-26T16:42:29.619259Z",
+        "version_api": "https://api.modrinth.com/v2/version/ww7bBOmX"
+      },
+      "provider": "modrinth",
+      "sha512": "4135af772e9d89f2f126f2a86e38307b5793ecce6a6fbd1aa35b1a5ac8b77e732741c88d31aadd823086901202e522987c76091169026090f226ac8eb7b1a93f",
+      "size": 6222981,
+      "status": "gated-target",
+      "version": "3.1.2",
+      "version_id": "ww7bBOmX"
+    },
+    {
+      "api_version_number": "3.9.6+26.2-fabric",
+      "creator": "isXander",
+      "download_url": "https://cdn.modrinth.com/data/1eAoo2KR/versions/cnfPzuFU/yet_another_config_lib_v3-3.9.6%2B26.2-fabric.jar",
+      "filename": "yet_another_config_lib_v3-3.9.6+26.2-fabric.jar",
+      "key": "yacl",
+      "license": {
+        "id": "LGPL-3.0-or-later",
+        "name": "GNU Lesser General Public License v3.0 or later",
+        "url": null
+      },
+      "name": "YetAnotherConfigLib",
+      "profiles": [
+        "controller-client"
+      ],
+      "project": "yacl",
+      "project_id": "1eAoo2KR",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/1eAoo2KR",
+        "published": "2026-07-19T12:41:24.603956Z",
+        "version_api": "https://api.modrinth.com/v2/version/cnfPzuFU"
+      },
+      "provider": "modrinth",
+      "sha512": "b3a58e4a5ef54647569282b8b2e9630389b3568f0abecb9c168daaa815477cbf961e79de28081cac551b69b810f561f043d669d1034aec80f12153a53dff53ef",
+      "size": 1121529,
+      "status": "gated-target",
+      "version": "3.9.6",
+      "version_id": "cnfPzuFU"
+    },
+    {
+      "api_version_number": "3.0.1+26.2",
+      "creator": "Pepper_Bell / PepperCode1",
+      "download_url": "https://cdn.modrinth.com/data/1IjD5062/versions/mgUN5Xz2/continuity-3.0.1%2B26.2.jar",
+      "filename": "continuity-3.0.1+26.2.jar",
+      "key": "continuity",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "name": "GNU Lesser General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Continuity",
+      "profiles": [
+        "clients"
+      ],
+      "project": "continuity",
+      "project_id": "1IjD5062",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/1IjD5062",
+        "published": "2026-06-16T20:37:54.326739Z",
+        "version_api": "https://api.modrinth.com/v2/version/mgUN5Xz2"
+      },
+      "provider": "modrinth",
+      "sha512": "3436b39fcdddce87f8eda0f35095067477636df2667195df3cb8eae2d002d3ff8ac44de97332668ee50e13ad91be5c532cbc6121878f1e6c904c98c1c9c67c0b",
+      "size": 1040013,
+      "status": "gated-default",
+      "version": "3.0.1",
+      "version_id": "mgUN5Xz2"
+    },
+    {
+      "api_version_number": "2.0.7+26.1",
+      "creator": "Fourmisain",
+      "download_url": "https://cdn.modrinth.com/data/WhbRG4iK/versions/JYRSvzQW/fallingleaves-2.0.7%2B26.1.jar",
+      "filename": "fallingleaves-2.0.7+26.1.jar",
+      "key": "falling_leaves",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": null
+      },
+      "name": "Falling Leaves",
+      "profiles": [
+        "clients"
+      ],
+      "project": "fallingleaves",
+      "project_id": "WhbRG4iK",
+      "provenance": {
+        "game_versions": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/WhbRG4iK",
+        "published": "2026-06-01T12:05:09.005623Z",
+        "version_api": "https://api.modrinth.com/v2/version/JYRSvzQW"
+      },
+      "provider": "modrinth",
+      "sha512": "59be059bb0a1c3b60ec244368bd4c092d8877ffaeb9eaf20af1b97ea4f8519d33aaeae8e5c6baaf19ab92d3b75d838b865ce249ead43e46ac29de9bf6a698b69",
+      "size": 182516,
+      "status": "gated-default",
+      "version": "2.0.7",
+      "version_id": "JYRSvzQW"
+    },
+    {
+      "api_version_number": "1.11.2+26.2-fabric",
+      "creator": "coderbot, IMS, IrisShaders contributors",
+      "download_url": "https://cdn.modrinth.com/data/YL57xq9U/versions/oaD6KQls/iris-fabric-1.11.2%2Bmc26.2.jar",
+      "filename": "iris-fabric-1.11.2+mc26.2.jar",
+      "key": "iris",
+      "license": {
+        "id": "LGPL-3.0-only",
+        "name": "GNU Lesser General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Iris",
+      "profiles": [
+        "capable-client"
+      ],
+      "project": "iris",
+      "project_id": "YL57xq9U",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/YL57xq9U",
+        "published": "2026-07-08T21:11:56.737884Z",
+        "version_api": "https://api.modrinth.com/v2/version/oaD6KQls"
+      },
+      "provider": "modrinth",
+      "sha512": "c1b46bcd1a0068deab3ae364a7229d31e27b7d45aea960e47503b8514354426badf83f354529db35d83e6b55727a53895fb9f13085e51d8148ee6765affac924",
+      "size": 2820763,
+      "status": "optional-off",
+      "version": "1.11.2",
+      "version_id": "oaD6KQls"
+    },
+    {
+      "api_version_number": "r5.8.1",
+      "creator": "EminGT",
+      "download_url": "https://cdn.modrinth.com/data/HVnmMxH1/versions/yCCduG44/ComplementaryReimagined_r5.8.1.zip",
+      "filename": "ComplementaryReimagined_r5.8.1.zip",
+      "key": "complementary_reimagined",
+      "license": {
+        "id": "LicenseRef-Custom",
+        "name": "",
+        "url": "https://github.com/ComplementaryDevelopment/ComplementaryReimagined/blob/main/License.txt"
+      },
+      "name": "Complementary Reimagined",
+      "profiles": [
+        "capable-client"
+      ],
+      "project": "complementary-reimagined",
+      "project_id": "HVnmMxH1",
+      "provenance": {
+        "game_versions": [
+          "1.7.10",
+          "1.8",
+          "1.8.1",
+          "1.8.2",
+          "1.8.3",
+          "1.8.4",
+          "1.8.5",
+          "1.8.6",
+          "1.8.7",
+          "1.8.8",
+          "1.8.9",
+          "1.9",
+          "1.9.1",
+          "1.9.2",
+          "1.9.3",
+          "1.9.4",
+          "1.10",
+          "1.10.1",
+          "1.10.2",
+          "1.11",
+          "1.11.1",
+          "1.11.2",
+          "1.12",
+          "1.12.1",
+          "1.12.2",
+          "1.13",
+          "1.13.1",
+          "1.13.2",
+          "1.14",
+          "1.14.1",
+          "1.14.2",
+          "1.14.3",
+          "1.14.4",
+          "1.15",
+          "1.15.1",
+          "1.15.2",
+          "1.16",
+          "1.16.1",
+          "1.16.2",
+          "1.16.3",
+          "1.16.4",
+          "1.16.5",
+          "1.17",
+          "1.17.1",
+          "1.18",
+          "1.18.1",
+          "1.18.2",
+          "1.19",
+          "1.19.1",
+          "1.19.2",
+          "1.19.3",
+          "1.19.4",
+          "1.20",
+          "1.20.1",
+          "1.20.2",
+          "1.20.3",
+          "1.20.4",
+          "1.20.5",
+          "1.20.6",
+          "1.21",
+          "1.21.1",
+          "1.21.2",
+          "1.21.3",
+          "1.21.4",
+          "1.21.5",
+          "1.21.6",
+          "1.21.7",
+          "1.21.8",
+          "1.21.9",
+          "1.21.10",
+          "1.21.11",
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "iris",
+          "optifine"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/HVnmMxH1",
+        "published": "2026-05-21T14:50:03.992642Z",
+        "version_api": "https://api.modrinth.com/v2/version/yCCduG44"
+      },
+      "provider": "modrinth",
+      "sha512": "6bd95215755d25812556ce790d976221f7d677d63112e3e4d3e70b08a62ed41348fa3792dd31bbe720d1e46fe2d525cadb4f66e6358118e1f4aa8e0d11f25c39",
+      "size": 546925,
+      "status": "optional-off",
+      "version": "r5.8.1",
+      "version_id": "yCCduG44"
+    },
+    {
+      "api_version_number": "1.1.6-fabric-mc26.2",
+      "creator": "SuperMartijn642",
+      "download_url": "https://cdn.modrinth.com/data/smUP7V3r/versions/cvbPblt6/durabilitytooltip-1.1.6-fabric-mc26.2.jar",
+      "filename": "durabilitytooltip-1.1.6-fabric-mc26.2.jar",
+      "key": "durability_tooltip",
+      "license": {
+        "id": "LicenseRef-All-Rights-Reserved",
+        "name": "",
+        "url": null
+      },
+      "name": "Durability Tooltip",
+      "profiles": [
+        "clients"
+      ],
+      "project": "durability-tooltip",
+      "project_id": "smUP7V3r",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/smUP7V3r",
+        "published": "2026-06-23T17:11:22.167643Z",
+        "version_api": "https://api.modrinth.com/v2/version/cvbPblt6"
+      },
+      "provider": "modrinth",
+      "sha512": "108c58d7089b7dfc9f2ef6a2efaf5beea9383e68197506becd18f5ee164fb78a706c6e6564014f39590293c139ba28c892441886809dd4880547b29647d7ad91",
+      "size": 20432,
+      "status": "gated-default",
+      "version": "1.1.6",
+      "version_id": "cvbPblt6"
+    },
+    {
+      "api_version_number": "1.1.8-fabric-mc26.2",
+      "creator": "SuperMartijn642",
+      "download_url": "https://cdn.modrinth.com/data/LN9BxssP/versions/tg619S8t/supermartijn642configlib-1.1.8-fabric-mc26.2.jar",
+      "filename": "supermartijn642configlib-1.1.8-fabric-mc26.2.jar",
+      "key": "supermartijn_config",
+      "license": {
+        "id": "LicenseRef-All-Rights-Reserved",
+        "name": "",
+        "url": null
+      },
+      "name": "SuperMartijn642's Config Lib",
+      "profiles": [
+        "clients"
+      ],
+      "project": "supermartijn642s-config-lib",
+      "project_id": "LN9BxssP",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/LN9BxssP",
+        "published": "2026-06-23T17:01:01.307553Z",
+        "version_api": "https://api.modrinth.com/v2/version/tg619S8t"
+      },
+      "provider": "modrinth",
+      "sha512": "415c6ce953ccc618a98653c08eb36bfa1344227ef9e17c4c7603a07882f71e29266091e67b391dde59f76836b7d7d783342c65e75b6c4cffaaf31d0d929dacef",
+      "size": 206149,
+      "status": "gated-default",
+      "version": "1.1.8",
+      "version_id": "tg619S8t"
+    },
+    {
+      "api_version_number": "5.5.4+fn-26.2",
+      "creator": "TheCSDev",
+      "download_url": "https://cdn.modrinth.com/data/n6PXGAoM/versions/Qn69b7mm/betterstats-5.5.4%2Bfn-26.2.jar",
+      "filename": "betterstats-5.5.4+fn-26.2.jar",
+      "key": "better_stats",
+      "license": {
+        "id": "LicenseRef-Better-Statistics-Screen-License",
+        "name": "",
+        "url": "https://github.com/TheCSDev/betterstats/blob/main/LICENSE.md"
+      },
+      "name": "Better Statistics Screen",
+      "profiles": [
+        "clients"
+      ],
+      "project": "better-stats",
+      "project_id": "n6PXGAoM",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "neoforge"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/n6PXGAoM",
+        "published": "2026-07-24T17:44:52.622258Z",
+        "version_api": "https://api.modrinth.com/v2/version/Qn69b7mm"
+      },
+      "provider": "modrinth",
+      "sha512": "a58252f29b462db6b253ea6513e1a2d427e0912e2163647f85760888964d8f883caf9109e4f0874b6fd424df2ae43a7a6475ab425cfc5321c940b74e7acb5d39",
+      "size": 427346,
+      "status": "gated-default",
+      "version": "5.5.4",
+      "version_id": "Qn69b7mm"
+    },
+    {
+      "api_version_number": "5.5.4+fn-26.2",
+      "creator": "TheCSDev",
+      "download_url": "https://cdn.modrinth.com/data/Eldc1g37/versions/6YYTlCvO/tcdcommons-5.5.4%2Bfn-26.2.jar",
+      "filename": "tcdcommons-5.5.4+fn-26.2.jar",
+      "key": "tcdcommons",
+      "license": {
+        "id": "LicenseRef-TCDCommons-API-License",
+        "name": "",
+        "url": "https://github.com/TheCSDev/tcdcommons/blob/main/LICENSE.md"
+      },
+      "name": "TCDCommons",
+      "profiles": [
+        "clients"
+      ],
+      "project": "tcdcommons",
+      "project_id": "Eldc1g37",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "neoforge"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/Eldc1g37",
+        "published": "2026-07-24T17:44:12.585205Z",
+        "version_api": "https://api.modrinth.com/v2/version/6YYTlCvO"
+      },
+      "provider": "modrinth",
+      "sha512": "d8f0dff9186f8a8f281e70bed6f245be809e3256bca46ef8298333d10df1558e0edeb9d7a45eaf7a62b5c09eb11e272ef0a9a87277ab13f0eeceed64a8036297",
+      "size": 540682,
+      "status": "gated-default",
+      "version": "5.5.4",
+      "version_id": "6YYTlCvO"
+    },
+    {
+      "api_version_number": "0.1.11+26.2",
+      "creator": "DimasKama",
+      "download_url": "https://cdn.modrinth.com/data/OB69KhRA/versions/nURmQGL6/OrthoCamera-0.1.11%2B26.2.jar",
+      "filename": "OrthoCamera-0.1.11+26.2.jar",
+      "key": "orthocamera",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": null
+      },
+      "name": "OrthoCamera",
+      "profiles": [
+        "steward-client"
+      ],
+      "project": "orthocamera",
+      "project_id": "OB69KhRA",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/OB69KhRA",
+        "published": "2026-06-17T08:39:20.459363Z",
+        "version_api": "https://api.modrinth.com/v2/version/nURmQGL6"
+      },
+      "provider": "modrinth",
+      "sha512": "e5ca75d01160c81d7419c8b19512228b4ce983be783c310e8d754e538dab1205969c64862cd1e0a5c6d83a275465dd2bd457af1c078f7d402dd941e5ff09de13",
+      "size": 42789,
+      "status": "gated-parent-only",
+      "version": "0.1.11+26.2",
+      "version_id": "nURmQGL6"
+    },
+    {
+      "api_version_number": "26.2.0",
+      "creator": "Fuzs",
+      "download_url": "https://cdn.modrinth.com/data/ZX66K16c/versions/DWaZDkc8/PickUpNotifier-v26.2.0-mc26.2.x-Fabric.jar",
+      "filename": "PickUpNotifier-v26.2.0-mc26.2.x-Fabric.jar",
+      "key": "pickup_notifier",
+      "license": {
+        "id": "MPL-2.0",
+        "name": "Mozilla Public License 2.0",
+        "url": null
+      },
+      "name": "Pick Up Notifier",
+      "profiles": [
+        "clients"
+      ],
+      "project": "pick-up-notifier",
+      "project_id": "ZX66K16c",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/ZX66K16c",
+        "published": "2026-06-18T12:32:08.913704Z",
+        "version_api": "https://api.modrinth.com/v2/version/DWaZDkc8"
+      },
+      "provider": "modrinth",
+      "sha512": "781b4ab70854d5899bdeaf7e8f2b1b44908f5e36bdb0ec4193b16a5537c1c49e4e9f1f59d05b61d337c423f3bf57894feff262af80c7baa8753e53484fadacf3",
+      "size": 72584,
+      "status": "optional-audition",
+      "version": "26.2.0",
+      "version_id": "DWaZDkc8"
+    },
+    {
+      "api_version_number": "26.2.1",
+      "creator": "Fuzs",
+      "download_url": "https://cdn.modrinth.com/data/QAGBst4M/versions/HfGQTxSR/PuzzlesLib-v26.2.1-mc26.2.x-Fabric.jar",
+      "filename": "PuzzlesLib-v26.2.1-mc26.2.x-Fabric.jar",
+      "key": "puzzles_lib",
+      "license": {
+        "id": "MPL-2.0",
+        "name": "Mozilla Public License 2.0",
+        "url": null
+      },
+      "name": "Puzzles Lib",
+      "profiles": [
+        "clients"
+      ],
+      "project": "puzzles-lib",
+      "project_id": "QAGBst4M",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/QAGBst4M",
+        "published": "2026-07-13T07:41:40.869259Z",
+        "version_api": "https://api.modrinth.com/v2/version/HfGQTxSR"
+      },
+      "provider": "modrinth",
+      "sha512": "6af3543197bbacb064e147af9c96af1d4ff35d3b5195f49874098f06e2d14023d75c0a248e0b9f4babf80a946c3519a1deb528293df38653d39def683d389e13",
+      "size": 1146181,
+      "status": "optional-audition",
+      "version": "26.2.1",
+      "version_id": "HfGQTxSR"
+    },
+    {
+      "api_version_number": "26.2.1",
+      "creator": "Fuzs",
+      "download_url": "https://cdn.modrinth.com/data/ohNO6lps/versions/rSd3GiG8/ForgeConfigAPIPort-v26.2.1-mc26.2.x-Fabric.jar",
+      "filename": "ForgeConfigAPIPort-v26.2.1-mc26.2.x-Fabric.jar",
+      "key": "forge_config_api_port",
+      "license": {
+        "id": "MPL-2.0",
+        "name": "Mozilla Public License 2.0",
+        "url": null
+      },
+      "name": "Forge Config API Port",
+      "profiles": [
+        "clients"
+      ],
+      "project": "forge-config-api-port",
+      "project_id": "ohNO6lps",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/ohNO6lps",
+        "published": "2026-06-21T09:19:05.384665Z",
+        "version_api": "https://api.modrinth.com/v2/version/rSd3GiG8"
+      },
+      "provider": "modrinth",
+      "sha512": "948b8d83de61a11aad2fc0bb0744a8b4848c9b2f0663c9aa015389d9560b3fa78518e609c44ec90278de0e159a92ebd721ccbdebb453aa455c353e5cd19413bf",
+      "size": 609550,
+      "status": "optional-audition",
+      "version": "26.2.1",
+      "version_id": "rSd3GiG8"
+    },
+    {
+      "api_version_number": "fabric-1.5.1+26.2",
+      "creator": "henkelmax",
+      "download_url": "https://cdn.modrinth.com/data/qyVF9oeo/versions/d8iioMMp/sound-physics-remastered-fabric-1.5.1%2B26.2.jar",
+      "filename": "sound-physics-remastered-fabric-1.5.1+26.2.jar",
+      "key": "sound_physics",
+      "license": {
+        "id": "GPL-3.0-only",
+        "name": "GNU General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Sound Physics Remastered",
+      "profiles": [
+        "clients"
+      ],
+      "project": "sound-physics-remastered",
+      "project_id": "qyVF9oeo",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/qyVF9oeo",
+        "published": "2026-06-18T06:31:54.338735Z",
+        "version_api": "https://api.modrinth.com/v2/version/d8iioMMp"
+      },
+      "provider": "modrinth",
+      "sha512": "5c3d11462848c15ddfd4b854c998ed55c13e4bcd033a9f01acbea56d55079f4795c67321af803cc1b1b0e0d81dfd6750532294c932e921288858c0d9ea06f97e",
+      "size": 201669,
+      "status": "optional-off",
+      "version": "1.5.1",
+      "version_id": "d8iioMMp"
+    },
+    {
+      "api_version_number": "4.12.2+26.2",
+      "creator": "LambdAurora",
+      "download_url": "https://cdn.modrinth.com/data/yBW8D80W/versions/jBLH7Qy8/lambdynamiclights-4.12.2%2B26.2.jar",
+      "filename": "lambdynamiclights-4.12.2+26.2.jar",
+      "key": "lamb_dynamic_lights",
+      "license": {
+        "id": "LicenseRef-Lambda-License",
+        "name": "",
+        "url": "https://github.com/LambdAurora/LambDynamicLights/blob/1.21.5/LICENSE"
+      },
+      "name": "LambDynamicLights",
+      "profiles": [
+        "clients"
+      ],
+      "project": "lambdynamiclights",
+      "project_id": "yBW8D80W",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "neoforge",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/yBW8D80W",
+        "published": "2026-06-20T12:24:48.600999Z",
+        "version_api": "https://api.modrinth.com/v2/version/jBLH7Qy8"
+      },
+      "provider": "modrinth",
+      "sha512": "3c2ab4028e47da4155e860c9449231d7b17e10dc6d9d110ab58dc621ab806fcc0b21741c73a671c0d72fb9ae5021792cea18f09b515180ae33e86c4008c3d139",
+      "size": 1348440,
+      "status": "optional-off",
+      "version": "4.12.2",
+      "version_id": "jBLH7Qy8"
+    },
+    {
+      "api_version_number": "26.2-2.31-fabric",
+      "creator": "YaLTeR",
+      "download_url": "https://cdn.modrinth.com/data/aC3cM3Vq/versions/jOiTBIaB/MouseTweaks-fabric-mc26.2-2.31.jar",
+      "filename": "MouseTweaks-fabric-mc26.2-2.31.jar",
+      "key": "mouse_tweaks",
+      "license": {
+        "id": "BSD-3-Clause",
+        "name": "BSD 3-Clause \"New\" or \"Revised\" License",
+        "url": null
+      },
+      "name": "Mouse Tweaks",
+      "profiles": [
+        "steward-client"
+      ],
+      "project": "mouse-tweaks",
+      "project_id": "aC3cM3Vq",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/aC3cM3Vq",
+        "published": "2026-06-16T18:58:14.228408Z",
+        "version_api": "https://api.modrinth.com/v2/version/jOiTBIaB"
+      },
+      "provider": "modrinth",
+      "sha512": "bc77723465dc4aef7a3a8fa2fea3641df1e6ba7cc8a2d86cd2659ef65ca661f6a763d3997fdaed1f8ff6c78a4c6061f8074160ca3162a29021735779a6c55e46",
+      "size": 75872,
+      "status": "optional-parent-only",
+      "version": "2.31",
+      "version_id": "jOiTBIaB"
+    },
+    {
+      "api_version_number": "fabric-2.6.21+26.2",
+      "creator": "henkelmax",
+      "download_url": "https://cdn.modrinth.com/data/9eGKb6K1/versions/3SOh5iiX/voicechat-fabric-2.6.21%2B26.2.jar",
+      "filename": "voicechat-fabric-2.6.21+26.2.jar",
+      "key": "simple_voice_chat",
+      "license": {
+        "id": "LicenseRef-All-Rights-Reserved",
+        "name": "",
+        "url": null
+      },
+      "name": "Simple Voice Chat",
+      "profiles": [
+        "server",
+        "clients"
+      ],
+      "project": "simple-voice-chat",
+      "project_id": "9eGKb6K1",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/9eGKb6K1",
+        "published": "2026-07-19T11:44:17.179507Z",
+        "version_api": "https://api.modrinth.com/v2/version/3SOh5iiX"
+      },
+      "provider": "modrinth",
+      "sha512": "0308b2e18a05913faaf461530a475d2f5debbfb4d0a46107b512ce51166ceb6cfdbea468f7e21444a3e005655e51729c3764266f81c59b6228629b4866d16b28",
+      "size": 5572332,
+      "status": "optional-off",
+      "version": "2.6.21",
+      "version_id": "3SOh5iiX"
+    },
+    {
+      "api_version_number": "7.4.4",
+      "creator": "EngineHub",
+      "download_url": "https://cdn.modrinth.com/data/1u6JkXh5/versions/j2w3GmPv/worldedit-mod-7.4.4.jar",
+      "filename": "worldedit-mod-7.4.4.jar",
+      "key": "worldedit",
+      "license": {
+        "id": "GPL-3.0-only",
+        "name": "GNU General Public License v3.0 only",
+        "url": "https://github.com/EngineHub/WorldEdit/blob/master/LICENSE.txt"
+      },
+      "name": "WorldEdit",
+      "profiles": [
+        "minejammer"
+      ],
+      "project": "worldedit",
+      "project_id": "1u6JkXh5",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "neoforge"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/1u6JkXh5",
+        "published": "2026-07-04T03:00:22.295149Z",
+        "version_api": "https://api.modrinth.com/v2/version/j2w3GmPv"
+      },
+      "provider": "modrinth",
+      "sha512": "48e408fbf3e24521f2a66155e9a85a71f5bf89657a9888aac9525e250c5dd9541d8326afbbc24eae4241dba83506a2438ebff60f0e763e37ecef8e070fa86e57",
+      "size": 5107529,
+      "status": "minejammer-only",
+      "version": "7.4.4",
+      "version_id": "j2w3GmPv"
+    },
+    {
+      "api_version_number": "1.5.3",
+      "creator": "pop4959",
+      "download_url": "https://cdn.modrinth.com/data/fALzjamp/versions/4Eotm6ov/Chunky-Fabric-1.5.3.jar",
+      "filename": "Chunky-Fabric-1.5.3.jar",
+      "key": "chunky",
+      "license": {
+        "id": "GPL-3.0-only",
+        "name": "GNU General Public License v3.0 only",
+        "url": null
+      },
+      "name": "Chunky",
+      "profiles": [
+        "minejammer"
+      ],
+      "project": "chunky",
+      "project_id": "fALzjamp",
+      "provenance": {
+        "game_versions": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/fALzjamp",
+        "published": "2026-05-04T05:47:16.215347Z",
+        "version_api": "https://api.modrinth.com/v2/version/4Eotm6ov"
+      },
+      "provider": "modrinth",
+      "sha512": "b83bfe7b218d0aa6232af977ae741dc1f82b10e50cd12bb759f65cf416b8b62beccb543e587ef0b9670abe03815660f8e091bc6823624d65cf07300571573516",
+      "size": 354095,
+      "status": "minejammer-only",
+      "version": "1.5.3",
+      "version_id": "4Eotm6ov"
+    },
+    {
+      "api_version_number": "fabric-1.1.2+26.2",
+      "creator": "henkelmax",
+      "download_url": "https://cdn.modrinth.com/data/rrwQMaWQ/versions/ftzKCT0z/camerautils-fabric-1.1.2%2B26.2.jar",
+      "filename": "camerautils-fabric-1.1.2+26.2.jar",
+      "key": "camera_utils",
+      "license": {
+        "id": "LicenseRef-All-Rights-Reserved",
+        "name": "",
+        "url": null
+      },
+      "name": "Camera Utils",
+      "profiles": [
+        "minejammer-client"
+      ],
+      "project": "camera-utils",
+      "project_id": "rrwQMaWQ",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/rrwQMaWQ",
+        "published": "2026-06-16T15:31:27.049889Z",
+        "version_api": "https://api.modrinth.com/v2/version/ftzKCT0z"
+      },
+      "provider": "modrinth",
+      "sha512": "f2bbf67651d5ae9d006da9800c2bccc334ef6d6b6f1474b30efa62821cbf0c4b47fffe838fce996bfb5402e8648f4e2a933c6035b5dfa03f555814567e70b092",
+      "size": 358199,
+      "status": "minejammer-only",
+      "version": "1.1.2",
+      "version_id": "ftzKCT0z"
+    },
+    {
+      "api_version_number": "30.14.0.93",
+      "creator": "mezz",
+      "download_url": "https://cdn.modrinth.com/data/u6dRKJwZ/versions/2jnbg93a/jei-26.2-fabric-30.14.0.93.jar",
+      "filename": "jei-26.2-fabric-30.14.0.93.jar",
+      "key": "jei",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": null
+      },
+      "name": "JEI",
+      "profiles": [
+        "minejammer"
+      ],
+      "project": "jei",
+      "project_id": "u6dRKJwZ",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/u6dRKJwZ",
+        "published": "2026-07-26T12:40:05.935698Z",
+        "version_api": "https://api.modrinth.com/v2/version/2jnbg93a"
+      },
+      "provider": "modrinth",
+      "sha512": "7b793e12e3a7a09d497928c712e101414c0943c60c897a77c771524bf8dc3507f311f80fd1610477b298d1314bd02b2fe8228f2dc430cf63957e9052b64ab2b6",
+      "size": 1656517,
+      "status": "minejammer-only",
+      "version": "30.14.0.93",
+      "version_id": "2jnbg93a"
+    },
+    {
+      "api_version_number": "3.0.10+mc26.2",
+      "creator": "squeek502",
+      "download_url": "https://cdn.modrinth.com/data/EsAfCjCV/versions/uo5bAN1Y/appleskin-fabric-mc26.2-3.0.10.jar",
+      "filename": "appleskin-fabric-mc26.2-3.0.10.jar",
+      "key": "appleskin",
+      "license": {
+        "id": "Unlicense",
+        "name": "The Unlicense",
+        "url": null
+      },
+      "name": "AppleSkin",
+      "profiles": [
+        "minejammer-client"
+      ],
+      "project": "appleskin",
+      "project_id": "EsAfCjCV",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/EsAfCjCV",
+        "published": "2026-06-18T10:22:52.828506Z",
+        "version_api": "https://api.modrinth.com/v2/version/uo5bAN1Y"
+      },
+      "provider": "modrinth",
+      "sha512": "ddf31d8fe239f66760632606221a9ea55d31907a9f7f8667331929cad348457ec2199cb90d410ee1a06e36bafc01a3bf152a06fd3c9b9e46f50841240875832b",
+      "size": 181627,
+      "status": "minejammer-only",
+      "version": "3.0.10",
+      "version_id": "uo5bAN1Y"
+    },
+    {
+      "api_version_number": "1.0.39+26.2",
+      "creator": "ZenXArch",
+      "download_url": "https://cdn.modrinth.com/data/OnlVIpq5/versions/GJk7sVtP/zfastnoise-1.0.39%2B26.2.jar",
+      "filename": "zfastnoise-1.0.39+26.2.jar",
+      "key": "fast_noise",
+      "license": {
+        "id": "MPL-2.0",
+        "name": "Mozilla Public License 2.0",
+        "url": "https://codeberg.org/ZenXArch/FastNoise/src/branch/dev/LICENSE"
+      },
+      "name": "Fast Noise",
+      "profiles": [
+        "minejammer-benchmark"
+      ],
+      "project": "zfastnoise",
+      "project_id": "OnlVIpq5",
+      "provenance": {
+        "game_versions": [
+          "26.2"
+        ],
+        "loaders": [
+          "fabric",
+          "quilt"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/OnlVIpq5",
+        "published": "2026-07-08T13:01:32.318439Z",
+        "version_api": "https://api.modrinth.com/v2/version/GJk7sVtP"
+      },
+      "provider": "modrinth",
+      "sha512": "33a6c9a9e78e8973b6b485ea3db34e04d06062daf83f3e9146e2a6111e36b68d6c08cfb3a960c0e3dcef6d7a9198d6ed7bd791886efa9fb2f7fe02c0545617f9",
+      "size": 475361,
+      "status": "minejammer-only",
+      "version": "1.0.39",
+      "version_id": "GJk7sVtP"
+    },
+    {
+      "api_version_number": "v5.5.57-fabric",
+      "creator": "LuckPerms contributors",
+      "download_url": "https://cdn.modrinth.com/data/Vebnzrzj/versions/UHUghDkV/LuckPerms-Fabric-5.5.57.jar",
+      "filename": "LuckPerms-Fabric-5.5.57.jar",
+      "key": "luckperms",
+      "license": {
+        "id": "MIT",
+        "name": "MIT License",
+        "url": "https://github.com/LuckPerms/LuckPerms/blob/master/LICENSE.txt"
+      },
+      "name": "LuckPerms",
+      "profiles": [
+        "catalog"
+      ],
+      "project": "luckperms",
+      "project_id": "Vebnzrzj",
+      "provenance": {
+        "game_versions": [
+          "26.1",
+          "26.1.1",
+          "26.1.2",
+          "26.2"
+        ],
+        "loaders": [
+          "fabric"
+        ],
+        "project_api": "https://api.modrinth.com/v2/project/Vebnzrzj",
+        "published": "2026-06-18T21:16:14.917799Z",
+        "version_api": "https://api.modrinth.com/v2/version/UHUghDkV"
+      },
+      "provider": "modrinth",
+      "sha512": "6fedf31ff4d17710394463b7bfc97f2beba90eaa0327d6e718aab3195ec748bfba2835a9af804593fc1788e256dba79534da7f249411c8daec47b6e1e70e6f42",
+      "size": 1621410,
+      "status": "catalog-only",
+      "version": "5.5.57",
+      "version_id": "UHUghDkV"
+    }
+  ],
+  "fabric_launcher": "1.1.1",
+  "fabric_loader": "0.19.3",
+  "java": "Eclipse Temurin 25.0.3+9",
+  "minecraft": "26.2",
+  "schema": "minescape.artifacts.lock.v1",
+  "toolchain": {
+    "dotnet_sdk": "10.0.302",
+    "gradle": "9.5.1",
+    "python": "3.13.14"
+  }
+}

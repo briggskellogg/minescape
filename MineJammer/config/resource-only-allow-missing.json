@@ -1,0 +1,7 @@
+{
+  "schema": "minescape.resource-delta-policy.v1",
+  "approved_changes": [],
+  "approved_additions": [],
+  "approved_removals": [],
+  "policy": "Empty by default. Every visual delta requires a written reason and the exact applicable frozen/candidate SHA-512 hashes. Output always begins from frozen Matcha 1.02."
+}

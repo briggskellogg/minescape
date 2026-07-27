@@ -1,0 +1,59 @@
+{
+  "schema": "minescape.compatibility-policy.v1",
+  "target": "Matcha 1.02 + Terralith 2.6.4 + Nullscape 1.2.20",
+  "expected_collisions": {
+    "terralith": 38,
+    "nullscape": 5
+  },
+  "ownership": {
+    "base": "Stardust exact complete biome JSON",
+    "matcha": "only individually reviewed JSON-pointer copies below",
+    "unknown": "release blocking"
+  },
+  "allowlist_reviewed": true,
+  "reviewed_input_sha512": {
+    "matcha": "12dc5a600d473f06a44a4370c02b404a0260adf696a591a3fbb0f135bca613ffba4f9990f625746375fa9181bbb300eeffd9cc420e6a50f91a48c21314c81505",
+    "terralith": "f5283548323149ecd3f218b8efbe03c1c582df3f40b6bb3b095ba9e4cac0c87108b98adabd6ebd3a8037ec239773a253f75b8bee7db52e6f5663bf9dc63c2ea3",
+    "nullscape": "3ace54c904600e449305547064b2e0087eb05827c06f406490e7fa18dfbe6ef42c357078d5e6ad9cc32129de30bc0de9e89dd1c7ff966f1812b1393581d82294"
+  },
+  "matcha_delta_allowlist": [],
+  "mechanical_overrides": [
+    {
+      "resource": "data/main/function/setup/scoreboard.mcfunction",
+      "source_sha256": "b32f8b624aac5cc05579011f59bea6ae23d236441cd512f585240b2c1fc30ecd",
+      "action": "remove_matcha_heart_floor",
+      "reason": "Preserve Matcha objective and constant initialization while removing its Hearts<=20 floor reset; FabricHeartLifecycle owns initial and restored heart state."
+    },
+    {
+      "resource": "data/main/function/mechanic/hpdown.mcfunction",
+      "source_sha256": "e77b0ab25ba89a0053edf02f8cdb25307ff1a31b6c6dfbfe8ccbe2794a75f1c1",
+      "action": "reset_death_score_only",
+      "reason": "FabricHeartLifecycle is the sole death-heart authority; retain only cleanup of Matcha's vanilla deathCount objective."
+    },
+    {
+      "resource": "data/main/function/mechanic/process_heart_container.mcfunction",
+      "source_sha256": "5c7b0cb2649f7be0bed7636146fae61b5593842ece5ad9beea15042035cf113e",
+      "action": "replace_with_inert_comment",
+      "reason": "FabricHeartLifecycle is the sole Crystal Heart authority; leaving Matcha active would double-apply repair and growth."
+    },
+    {
+      "resource": "data/main/function/mechanic/clear_heart_container.mcfunction",
+      "source_sha256": "da91f3b1695f36464ce84bcfb2127f144ec45c87464ea76a488a941db14d9c7d",
+      "action": "replace_with_inert_comment",
+      "reason": "FabricHeartLifecycle is the sole Crystal Heart consumption, repair, and growth authority."
+    },
+    {
+      "resource": "data/main/function/mechanic/set_max_hp.mcfunction",
+      "source_sha256": "5e8d8fffbedb8be581b035ed4cf0b96baed81e4b8f23a3c9c9717aa3e3f58081",
+      "action": "replace_with_inert_comment",
+      "reason": "FabricHeartLifecycle is the sole maximum-health authority."
+    }
+  ],
+  "review_evidence": {
+    "collision_counts": {"terralith": 38, "nullscape": 5},
+    "decision": "Stardust owns every collided biome JSON without Matcha pointer copies.",
+    "reason": "The frozen Matcha biome documents reference only minecraft:* biome features/spawns/visuals/audio and contain no main:* or matcha:* progression reference. Terralith/Nullscape preserve the required vanilla End platform/spike behavior; Matcha fishing climates and the audited hot-wet correction are handled by the separate Fishing Adapter.",
+    "remaining_gate": "Exact-stack worldgen, Matcha progression, seed, and controller evidence must still pass before V1."
+  },
+  "review_instruction": "This exact-version empty biome delta and the five exact-source mechanical overrides are deliberate. Any input hash, source hash, or collision-count change invalidates the review and requires a fresh candidate audit. A MineJammer /reload exact-stack check remains mandatory release evidence."
+}

@@ -1,0 +1,591 @@
+{
+  "schema": "minescape.artifacts.source.v1",
+  "minecraft": "26.2",
+  "java": "Eclipse Temurin 25.0.3+9",
+  "toolchain": {
+    "dotnet_sdk": "10.0.302",
+    "python": "3.13.14",
+    "gradle": "9.5.1"
+  },
+  "fabric_loader": "0.19.3",
+  "fabric_launcher": "1.1.1",
+  "policy": {
+    "world_critical_updates": "frozen after gold master",
+    "third_party_binaries_in_git": false,
+    "resource_update": "only a reviewed Matcha assets-only derivative"
+  },
+  "artifacts": [
+    {
+      "key": "fabric_api",
+      "name": "Fabric API",
+      "provider": "modrinth",
+      "project": "fabric-api",
+      "version": "0.155.2+26.2",
+      "version_id": "lVXlbH4w",
+      "creator": "FabricMC",
+      "status": "release-target",
+      "profiles": [
+        "server",
+        "family-client",
+        "steward-client",
+        "minejammer"
+      ]
+    },
+    {
+      "key": "matcha",
+      "name": "Matcha Flavoured",
+      "provider": "modrinth",
+      "project": "matcha-flavoured",
+      "version": "1.02",
+      "version_id": "RVX0a6It",
+      "creator": "klei_wright and credited collaborators",
+      "status": "release-target",
+      "profiles": [
+        "world-datapack",
+        "required-resource"
+      ],
+      "known_sha512": "12dc5a600d473f06a44a4370c02b404a0260adf696a591a3fbb0f135bca613ffba4f9990f625746375fa9181bbb300eeffd9cc420e6a50f91a48c21314c81505"
+    },
+    {
+      "key": "terralith",
+      "name": "Terralith",
+      "provider": "modrinth",
+      "project": "terralith",
+      "version": "2.6.4",
+      "version_id": "CzijfXJQ",
+      "creator": "Stardust Labs / Starmute",
+      "status": "gated-target",
+      "profiles": [
+        "world-datapack"
+      ],
+      "known_sha512": "f5283548323149ecd3f218b8efbe03c1c582df3f40b6bb3b095ba9e4cac0c87108b98adabd6ebd3a8037ec239773a253f75b8bee7db52e6f5663bf9dc63c2ea3"
+    },
+    {
+      "key": "amplified_nether",
+      "name": "Amplified Nether",
+      "provider": "modrinth",
+      "project": "amplified-nether",
+      "version": "1.2.15",
+      "version_id": "xIayvf8F",
+      "creator": "Stardust Labs / Starmute",
+      "status": "release-target",
+      "profiles": [
+        "world-datapack"
+      ],
+      "known_sha512": "686edbd22e5cfc0956e6d5b2c606400480e6ec19c1b287cddbe59a0840836160ef2291224a411d23687c4e342bc322ecf19ffad763259db99f56ebb83f8200af"
+    },
+    {
+      "key": "nullscape",
+      "name": "Nullscape",
+      "provider": "modrinth",
+      "project": "nullscape",
+      "version": "1.2.20",
+      "version_id": "prWWpjSv",
+      "creator": "Stardust Labs / Starmute",
+      "status": "gated-target",
+      "profiles": [
+        "world-datapack"
+      ],
+      "known_sha512": "3ace54c904600e449305547064b2e0087eb05827c06f406490e7fa18dfbe6ef42c357078d5e6ad9cc32129de30bc0de9e89dd1c7ff966f1812b1393581d82294"
+    },
+    {
+      "key": "lithium",
+      "name": "Lithium",
+      "provider": "modrinth",
+      "project": "lithium",
+      "version": "0.25.2",
+      "version_id": "UPNexAfy",
+      "creator": "CaffeineMC",
+      "status": "default",
+      "profiles": [
+        "server",
+        "clients"
+      ]
+    },
+    {
+      "key": "ferrite_core",
+      "name": "FerriteCore",
+      "provider": "modrinth",
+      "project": "ferrite-core",
+      "version": "9.0.0",
+      "version_id": "d5ddUdiB",
+      "creator": "malte0811",
+      "status": "default",
+      "profiles": [
+        "server",
+        "clients"
+      ]
+    },
+    {
+      "key": "world_border",
+      "name": "World Border",
+      "provider": "modrinth",
+      "project": "world-border",
+      "version": "26.2.0-4.9",
+      "version_id": "1e9MjNpZ",
+      "creator": "Serilum",
+      "status": "release-target",
+      "profiles": [
+        "server"
+      ]
+    },
+    {
+      "key": "collective",
+      "name": "Collective",
+      "provider": "modrinth",
+      "project": "collective",
+      "version": "8.39",
+      "version_id": "M75JwjyS",
+      "creator": "Serilum",
+      "status": "release-target",
+      "profiles": [
+        "server"
+      ]
+    },
+    {
+      "key": "bluemap",
+      "name": "BlueMap",
+      "provider": "modrinth",
+      "project": "bluemap",
+      "version": "5.22",
+      "version_id": "VTvifNPN",
+      "creator": "BlueColored / BlueMap project",
+      "status": "release-target",
+      "profiles": [
+        "server"
+      ]
+    },
+    {
+      "key": "ledger",
+      "name": "Ledger",
+      "provider": "modrinth",
+      "project": "ledger",
+      "version": "1.3.23",
+      "version_id": "KpVLPOJk",
+      "creator": "Potatoboy9999, DrexHD, QuiltServerTools contributors",
+      "status": "release-target",
+      "profiles": [
+        "server"
+      ]
+    },
+    {
+      "key": "enhanced_falling_trees",
+      "name": "Enhanced Falling Trees",
+      "provider": "modrinth",
+      "project": "enhanced-falling-trees",
+      "version": "0.7.1",
+      "version_id": "Y0zs6l6h",
+      "creator": "addavriance",
+      "status": "gated-target",
+      "profiles": [
+        "server",
+        "clients"
+      ]
+    },
+    {
+      "key": "cloth_config",
+      "name": "Cloth Config",
+      "provider": "modrinth",
+      "project": "cloth-config",
+      "version": "26.2.155",
+      "version_id": "Nv3xnWXd",
+      "creator": "shedaniel",
+      "status": "gated-target",
+      "profiles": [
+        "server",
+        "clients"
+      ]
+    },
+    {
+      "key": "sodium",
+      "name": "Sodium",
+      "provider": "modrinth",
+      "project": "sodium",
+      "version": "0.9.1",
+      "version_id": "2Yom1N68",
+      "creator": "CaffeineMC",
+      "status": "default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "immediately_fast",
+      "name": "ImmediatelyFast",
+      "provider": "modrinth",
+      "project": "immediatelyfast",
+      "version": "1.16.2",
+      "version_id": "uJHxuQxy",
+      "creator": "RaphiMC",
+      "status": "default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "entity_culling",
+      "name": "Entity Culling",
+      "provider": "modrinth",
+      "project": "entityculling",
+      "version": "1.10.5",
+      "version_id": "iiF6U3Ne",
+      "creator": "tr7zw",
+      "status": "default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "mod_menu",
+      "name": "Mod Menu",
+      "provider": "modrinth",
+      "project": "modmenu",
+      "version": "20.0.1",
+      "version_id": "njXb639R",
+      "creator": "Terraformers / Prospector",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "placeholder_api",
+      "name": "Text Placeholder API",
+      "provider": "modrinth",
+      "project": "placeholder-api",
+      "version": "3.1.0-beta.1+26.2",
+      "version_id": "NDqH16LT",
+      "creator": "Patbox",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "controlify",
+      "name": "Controlify",
+      "provider": "modrinth",
+      "project": "controlify",
+      "version": "3.1.2",
+      "version_id": "ww7bBOmX",
+      "creator": "isXander",
+      "status": "gated-target",
+      "profiles": [
+        "controller-client"
+      ]
+    },
+    {
+      "key": "yacl",
+      "name": "YetAnotherConfigLib",
+      "provider": "modrinth",
+      "project": "yacl",
+      "version": "3.9.6",
+      "version_id": "cnfPzuFU",
+      "creator": "isXander",
+      "status": "gated-target",
+      "profiles": [
+        "controller-client"
+      ]
+    },
+    {
+      "key": "continuity",
+      "name": "Continuity",
+      "provider": "modrinth",
+      "project": "continuity",
+      "version": "3.0.1",
+      "version_id": "mgUN5Xz2",
+      "creator": "Pepper_Bell / PepperCode1",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "falling_leaves",
+      "name": "Falling Leaves",
+      "provider": "modrinth",
+      "project": "fallingleaves",
+      "version": "2.0.7",
+      "version_id": "JYRSvzQW",
+      "creator": "Fourmisain",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "iris",
+      "name": "Iris",
+      "provider": "modrinth",
+      "project": "iris",
+      "version": "1.11.2",
+      "version_id": "oaD6KQls",
+      "creator": "coderbot, IMS, IrisShaders contributors",
+      "status": "optional-off",
+      "profiles": [
+        "capable-client"
+      ]
+    },
+    {
+      "key": "complementary_reimagined",
+      "name": "Complementary Reimagined",
+      "provider": "modrinth",
+      "project": "complementary-reimagined",
+      "version": "r5.8.1",
+      "version_id": "yCCduG44",
+      "creator": "EminGT",
+      "status": "optional-off",
+      "profiles": [
+        "capable-client"
+      ]
+    },
+    {
+      "key": "durability_tooltip",
+      "name": "Durability Tooltip",
+      "provider": "modrinth",
+      "project": "durability-tooltip",
+      "version": "1.1.6",
+      "version_id": "cvbPblt6",
+      "creator": "SuperMartijn642",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "supermartijn_config",
+      "name": "SuperMartijn642's Config Lib",
+      "provider": "modrinth",
+      "project": "supermartijn642s-config-lib",
+      "version": "1.1.8",
+      "version_id": "tg619S8t",
+      "creator": "SuperMartijn642",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "better_stats",
+      "name": "Better Statistics Screen",
+      "provider": "modrinth",
+      "project": "better-stats",
+      "version": "5.5.4",
+      "version_id": "Qn69b7mm",
+      "creator": "TheCSDev",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "tcdcommons",
+      "name": "TCDCommons",
+      "provider": "modrinth",
+      "project": "tcdcommons",
+      "version": "5.5.4",
+      "version_id": "6YYTlCvO",
+      "creator": "TheCSDev",
+      "status": "gated-default",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "orthocamera",
+      "name": "OrthoCamera",
+      "provider": "modrinth",
+      "project": "orthocamera",
+      "version": "0.1.11+26.2",
+      "version_id": "nURmQGL6",
+      "creator": "DimasKama",
+      "status": "gated-parent-only",
+      "profiles": [
+        "steward-client"
+      ]
+    },
+    {
+      "key": "pickup_notifier",
+      "name": "Pick Up Notifier",
+      "provider": "modrinth",
+      "project": "pick-up-notifier",
+      "version": "26.2.0",
+      "version_id": "DWaZDkc8",
+      "creator": "Fuzs",
+      "status": "optional-audition",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "puzzles_lib",
+      "name": "Puzzles Lib",
+      "provider": "modrinth",
+      "project": "puzzles-lib",
+      "version": "26.2.1",
+      "version_id": "HfGQTxSR",
+      "creator": "Fuzs",
+      "status": "optional-audition",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "forge_config_api_port",
+      "name": "Forge Config API Port",
+      "provider": "modrinth",
+      "project": "forge-config-api-port",
+      "version": "26.2.1",
+      "version_id": "rSd3GiG8",
+      "creator": "Fuzs",
+      "status": "optional-audition",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "sound_physics",
+      "name": "Sound Physics Remastered",
+      "provider": "modrinth",
+      "project": "sound-physics-remastered",
+      "version": "1.5.1",
+      "version_id": "d8iioMMp",
+      "creator": "henkelmax",
+      "status": "optional-off",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "lamb_dynamic_lights",
+      "name": "LambDynamicLights",
+      "provider": "modrinth",
+      "project": "lambdynamiclights",
+      "version": "4.12.2",
+      "version_id": "jBLH7Qy8",
+      "creator": "LambdAurora",
+      "status": "optional-off",
+      "profiles": [
+        "clients"
+      ]
+    },
+    {
+      "key": "mouse_tweaks",
+      "name": "Mouse Tweaks",
+      "provider": "modrinth",
+      "project": "mouse-tweaks",
+      "version": "2.31",
+      "version_id": "jOiTBIaB",
+      "creator": "YaLTeR",
+      "status": "optional-parent-only",
+      "profiles": [
+        "steward-client"
+      ]
+    },
+    {
+      "key": "simple_voice_chat",
+      "name": "Simple Voice Chat",
+      "provider": "modrinth",
+      "project": "simple-voice-chat",
+      "version": "2.6.21",
+      "version_id": "3SOh5iiX",
+      "creator": "henkelmax",
+      "status": "optional-off",
+      "profiles": [
+        "server",
+        "clients"
+      ]
+    },
+    {
+      "key": "worldedit",
+      "name": "WorldEdit",
+      "provider": "modrinth",
+      "project": "worldedit",
+      "version": "7.4.4",
+      "version_id": "j2w3GmPv",
+      "creator": "EngineHub",
+      "status": "minejammer-only",
+      "profiles": [
+        "minejammer"
+      ]
+    },
+    {
+      "key": "chunky",
+      "name": "Chunky",
+      "provider": "modrinth",
+      "project": "chunky",
+      "version": "1.5.3",
+      "version_id": "4Eotm6ov",
+      "creator": "pop4959",
+      "status": "minejammer-only",
+      "profiles": [
+        "minejammer"
+      ]
+    },
+    {
+      "key": "camera_utils",
+      "name": "Camera Utils",
+      "provider": "modrinth",
+      "project": "camera-utils",
+      "version": "1.1.2",
+      "version_id": "ftzKCT0z",
+      "creator": "henkelmax",
+      "status": "minejammer-only",
+      "profiles": [
+        "minejammer-client"
+      ]
+    },
+    {
+      "key": "jei",
+      "name": "JEI",
+      "provider": "modrinth",
+      "project": "jei",
+      "version": "30.14.0.93",
+      "version_id": "2jnbg93a",
+      "creator": "mezz",
+      "status": "minejammer-only",
+      "profiles": [
+        "minejammer"
+      ]
+    },
+    {
+      "key": "appleskin",
+      "name": "AppleSkin",
+      "provider": "modrinth",
+      "project": "appleskin",
+      "version": "3.0.10",
+      "version_id": "uo5bAN1Y",
+      "creator": "squeek502",
+      "status": "minejammer-only",
+      "profiles": [
+        "minejammer-client"
+      ]
+    },
+    {
+      "key": "fast_noise",
+      "name": "Fast Noise",
+      "provider": "modrinth",
+      "project": "zfastnoise",
+      "version": "1.0.39",
+      "version_id": "GJk7sVtP",
+      "creator": "ZenXArch",
+      "status": "minejammer-only",
+      "profiles": [
+        "minejammer-benchmark"
+      ]
+    },
+    {
+      "key": "luckperms",
+      "name": "LuckPerms",
+      "provider": "modrinth",
+      "project": "luckperms",
+      "version": "5.5.57",
+      "version_id": "UHUghDkV",
+      "creator": "LuckPerms contributors",
+      "status": "catalog-only",
+      "profiles": [
+        "catalog"
+      ]
+    }
+  ]
+}

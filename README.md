@@ -1,141 +1,49 @@
-# MINESCAPE — the forever server
+# MineScape
 
-A hand-built story RPG inside a free-roam Minecraft Bedrock survival world, self-hosted for
-family and invited friends — allowlist-only, Xbox-authenticated, native Bedrock end to end
-(everything renders faithfully on Switch, no translation layers). Every piece of it —
-the world-event engine, the parent-oversight telemetry, the pixel-art **Command Deck**
-control room — is custom-built and lives in this repo.
+MineScape is a preservation-first Minecraft: Java Edition family server built around three deliberately separate systems:
 
-![Minescape Command Deck](docs/deck-screenshot.png)
+- **MineScape** — the canonical world and its first-party Fabric Bridge/Client code.
+- **MineJammer** — the disposable compatibility, seed-audit, testing, and staged-change laboratory.
+- **MineDeck** — the Windows tray supervisor and parent dashboard.
 
-## Documentation
+The children's first playable world is V1.0. V0.x worlds exist only inside MineJammer and may be discarded. The preferred seed is `6246468738900744`; it becomes canonical only after the exact locked stack passes the seed and finite-resource audit.
 
-| File | What it covers |
-|---|---|
-| [`CLAUDE.md`](CLAUDE.md) | Architecture map: engine, Command Deck, ops scripts, conventions |
-| [`DESIGN.md`](DESIGN.md) | The Moogul Design System — palette, type, components, motion |
-| [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md) | The forward build plan, phase by phase |
+## World promise
 
-## First night — three double-clicks
+Minecraft remains the game. Matcha Flavoured 1.02 is the frozen gameplay/economy author. Stardust Labs supplies the complete Terralith, Amplified Nether, and Nullscape geography. MineScape restores living vanilla villages, suppresses Matcha's beta-village geometry, preserves the complete Terralith structure suite, adds a small deterministic Matcha enrichment to eligible Terralith discoveries, and adds family safety/preservation systems—not quests, classes, custom NPCs, Pokémon, or a parallel RPG.
 
-1. **`1-SETUP.bat`** — downloads the official Bedrock Dedicated Server (1.26.33.2),
-   installs the config, allowlist, and Moogul Core packs. One-time (safe to re-run).
-2. **`2-START-SERVER.bat`** — launches the world through the **Command Deck**
-   (http://localhost:8420 opens automatically). Windows Firewall will ask once — Allow.
-   *Deck needs Node.js (LTS, from nodejs.org). Without it, this starts a plain console instead.*
-3. Before the kids join: edit `server/allowlist.json` and replace `YOUR_GAMERTAG_HERE`
-   with your own gamertag (or use the deck's INVITE box).
+New players arrive at one public natural village spawn with an ordinary empty inventory. MineScape creates no custom home, property claim, starter kit, personal ward, warp, or questline. Every designated building in a friendly generated settlement receives an immutable functional civic Warding Stone, but houses remain ordinary editable Minecraft buildings.
 
-## Making yourself operator (one-time)
+Mortal Hearts are visible: deaths black out one unlocked heart; a genuine Crystal Heart clears every black heart and adds one capacity up to 30; all slots black retires that character without deleting the person or world.
 
-Join the world once, then look in the deck's World Feed for your join line — it shows your
-`xuid`. Put it in `server/permissions.json`:
+## Repository map
 
-```json
-[ { "permission": "operator", "xuid": "PASTE_XUID_HERE" } ]
-```
-
-Restart. You now have full command power in-game; the deck has it regardless.
-
-## How the kids connect (Switch)
-
-Same Wi-Fi as this PC: Play → Servers/Friends tab — the server should appear as a LAN game.
-If it doesn't, the fallback is BedrockConnect (change the Switch DNS to a BedrockConnect
-server, pick any Featured Server, enter this PC's local IP, port 19132). For friends joining
-from *their* houses you'll need port forwarding (UDP 19132) — do this deliberately, later.
-
-## The Command Deck (http://localhost:8420)
-
-Your control room — a tabbed, pixel-art console built on the [Moogul Design System](DESIGN.md):
-
-- **Events** — one-click world events: storm, calm, nightfall, celebration, gift drops,
-  narration, and titled announcements.
-- **Ambience** — force weather/time, lock day or night, and the music library pipeline
-  (drop `.ogg` files in `music/`, rebuild, play globally).
-- **Players** — every player telemetry has seen: per-player timelines, chat history,
-  block break/place + death counts, last known location, and a **forensics query**
-  ("who broke blocks near X within N minutes") to settle disputes with receipts.
-- **World Feed** (always visible) — translates both telemetry and the raw server log into
-  plain English ("kid1 fell from a high place near the lake village," not a stack trace),
-  filterable by Chat / Builds / Combat / Events / System, with the raw console tucked
-  behind a collapsed "Engine room" toggle.
-- **Dungeons / Quests / Library** — placeholders for upcoming phases (see
-  [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md)).
-- **Ops** — server start/stop, a raw command console (anything you'd type in a server
-  console works here), and gatekeeping (invite a gamertag, list the allowlist, who's on).
-
-**In-game storyteller commands** (type in chat, as op):
-
-| Command | Effect |
-|---|---|
-| `/scriptevent moogul:genesis` | Carve the great crater beneath you + plant the sword in the stone |
-| `/scriptevent moogul:rally` | Teleport everyone to you |
-| `/scriptevent moogul:narrate <text>` | Italic story whisper to all players |
-| `/scriptevent moogul:announce Title\|Subtitle` | Dramatic titled announcement |
-
-The sword in the stone cannot be pulled, pushed, or broken. It whispers when they try.
-
-## Privacy
-
-Telemetry (chat logs, locations, per-player activity) is written to `deck/data/` —
-gitignored, local-only, never leaves the PC. Same for `config/allowlist.json` and
-`config/permissions.json` (gamertags and XUIDs) and the live world itself. This repo is
-the *source*; anything that's actually about the people playing stays off GitHub.
-
-## The world
-
-- **Seed `6246468738900744`** — a cherry-grove lake valley with two villages: a relaxed,
-  beautiful canvas for late-night building. Alternates if you ever regenerate:
-  `302304127329527063` (four villages at spawn), `6942710633571786` (frozen-peak valley).
-- Survival, easy difficulty, allowlist ON, Xbox-authenticated only, max 8 players.
-- Cheats enabled (needed for events/ops) — fine on a private server.
-
-## Folder map
-
-```
+```text
 minescape/
-├── 1-SETUP.bat / 2-START-SERVER.bat / 3-BACKUP.bat
-├── config/            ← source of truth for server settings
-├── packs/
-│   ├── moogul_core_bp/   ← the ENGINE: event router, telemetry, genesis, sword, scripts
-│   └── moogul_core_rp/   ← the LOOK: models, textures; music & voices go here later
-├── deck/              ← Command Deck (Node): deck.js + tabbed pixel UI (see DESIGN.md)
-│   ├── assets/           ← self-hosted font + hand-authored pixel icon set
-│   └── data/             ← telemetry (gitignored — private, local-only)
-├── dungeons/           ← how to build one (procedural or hand-built) — see its README
-├── docs/               ← README assets
-├── scripts/           ← setup.ps1, backup.ps1
-├── world_templates/   ← pack wiring copied into new worlds
-├── server/            ← created by setup: BDS + the live world (worlds/Minescape)
-└── backups/           ← created by 3-BACKUP.bat (keeps newest 30)
+├─ MineScape/                 Fabric Bridge/Core, client HUD, datapacks/config
+├─ MineJammer/                artifact, compatibility, seed and promotion tools
+├─ MineDeck/                  Windows supervisor, tray and dashboard
+├─ docs/                      canonical plan, operations and preservation guides
+├─ ops/                       build/install/shortcut/preflight scripts
+├─ artifacts/                 lock metadata only; downloaded binaries are ignored
+├─ var/                       local MineScape/MineJammer worlds and state (ignored)
+└─ legacy/bedrock-v0/         tagged, inactive Bedrock prototype
 ```
 
-**Back up `server/worlds/` like family photos.** `3-BACKUP.bat` does it with one click
-(best while the server is stopped).
+## Construction status
 
-## On "mods" — how content works here
+This repository is the reconstructible source and control plane. It intentionally does not commit Minecraft worlds, player identities, exploration history, credentials, backups, third-party jars, or licensed archives.
 
-Bedrock's equivalent of mods is **add-ons** (behavior + resource packs). The rock-solid ones
-for a private server are the ones we build — they can't break your world or your trust.
-When you want community content, the trustworthy sources are CurseForge (Bedrock section)
-and MCPEDL — download the `.mcaddon`/`.mcpack`, and we'll vet and install it together into
-`server/behavior_packs` / `resource_packs` + the world JSONs. Marketplace packs can't be
-installed on a dedicated server — that content stays on the client.
+The audited construction checkout has resolved and hash-verified all 43 pinned third-party files, acquired the official Minecraft server bundle, reviewed the exact-input Matcha compatibility policy and its five source-hash-bound heart overrides, and generated the Villages, Fishing, and Compatibility packs. The current source suites pass 19/19 Java tests and 12/12 MineDeck executable tests. Those caches and generated archives are deliberately ignored, so a fresh clone must reconstruct them by following the host-install sequence.
 
-## Status
+Construction and automated tests do not require family accounts. A gold-master world still cannot be released: production remains `eula=false`; the real game adapters must be completed and explicitly enabled through the code-owned 11-component promotion interlock; exact-stack `/reload`, crash/restart, respawn-grace, seed, and controller runs need evidence; the Family and Parent Steward client profiles must be built; and an independent backup destination must pass a restore drill. Children join only afterward through the UUID pending-player flow.
 
-- ✅ **Foundation** — engine, Command Deck, ops scripts.
-- ✅ **Moogul Design System** — the deck's pixel-art visual language ([`DESIGN.md`](DESIGN.md)).
-- ✅ **World Feed v2 + telemetry** — human-readable feed, Players tab, forensics query.
-- ✅ **Marks + first dungeon** — the Alligator Knight's Lair (boss fight, ghost-block
-  trap, locked door) — see [`dungeons/README.md`](dungeons/README.md) for how to build
-  the next one, procedurally or hand-built.
-- ✅ **Karma + judge** — flavor-only automatic karma, plus a judge-only layer (jail,
-  fines, grants) for settling disputes with forensics receipts.
-- ⚠️ Everything above the telemetry line is **unverified against a live server** — built
-  from an environment with no access to one. Watch the World Feed on first restart.
-- ⏳ Epic events, characters/stats/quests, creator tools, dual-mode play, invite cards —
-  see [`DIRECTIONS-FOR-CLAUDE-CODE.md`](DIRECTIONS-FOR-CLAUDE-CODE.md) for the full plan.
+Start with [the canonical master plan](docs/MINESCAPE_V1_MASTER_PLAN.md), then follow [host installation](docs/INSTALL_HOST.md) and [client installation](docs/INSTALL_CLIENT.md). The authoritative build state is in [BUILD_STATUS.md](docs/BUILD_STATUS.md).
 
-When the world outgrows this PC: move the whole folder to an always-on mini-PC. The world
-is just files; the forever plan is a $150 N100 box in a closet.
+## Preservation rule
+
+The world-critical stack freezes after gold master. Matcha 1.02 gameplay and all Stardust worldgen stay pinned. A later official Matcha release may contribute only individually audited assets to a reversible resource-only derivative built against the frozen 1.02 data. Operational software changes are staged in MineJammer and may always be rejected.
+
+The previous Bedrock prototype remains recoverable as the baseline folder/tag
+`legacy/bedrock-v0` and as the final Bedrock-only Git tag `legacy-bedrock-v0-final`; neither is
+part of the Java build.

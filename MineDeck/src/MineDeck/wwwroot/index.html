@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <title>MineDeck</title>
+  <link rel="stylesheet" href="/css/minedeck.css">
+</head>
+<body>
+  <div class="login-layer" id="loginLayer">
+    <form class="login-card" id="loginForm">
+      <div class="brand-mark">M</div>
+      <p class="eyebrow">MINESCAPE CONTROL PLANE</p>
+      <h1>Welcome to MineDeck</h1>
+      <p class="muted">Administrative access is separate from your Minecraft character.</p>
+      <label>Administrator password<input id="password" type="password" autocomplete="current-password" required autofocus></label>
+      <button class="primary" type="submit">Unlock MineDeck</button>
+      <p class="form-message" id="loginMessage"></p>
+    </form>
+  </div>
+
+  <div class="app-shell" id="appShell" hidden>
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark small">M</div><div><strong>MineDeck</strong><span>Family world steward</span></div></div>
+      <nav id="nav">
+        <button class="active" data-page="home">Home</button>
+        <button data-page="players">Players</button>
+        <button data-page="characters">Characters</button>
+        <button data-page="stewardship">Stewardship</button>
+        <button data-page="rewards">Rewards</button>
+        <button data-page="progress">Progress</button>
+        <button data-page="world">World</button>
+        <button data-page="minejammer">MineJammer</button>
+        <button data-page="settlements">Settlements</button>
+        <button data-page="remote">Remote access</button>
+        <button data-page="backups">Backups</button>
+        <button data-page="updates">Updates</button>
+        <button data-page="activity">Activity</button>
+        <button data-page="steward">Steward</button>
+      </nav>
+      <div class="sidebar-foot"><span class="lock-dot"></span> No raw console<br><span class="lock-dot"></span> UUID-backed access</div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow" id="pageEyebrow">FAMILY WORLD</p><h1 id="pageTitle">Home</h1></div>
+        <div class="top-actions"><span class="status-pill offline" id="statusPill"><i></i>Checking</span><button class="ghost" id="refreshButton">Refresh</button><button class="ghost" id="logoutButton">Lock</button></div>
+      </header>
+      <div id="globalNotice" class="notice" hidden></div>
+
+      <section class="page active" id="page-home">
+        <div class="hero">
+          <div><p class="eyebrow">MINEscape · FAMILY PRODUCTION</p><h2 id="heroState">Waiting for a real Minecraft ping</h2><p id="heroMessage">A Java process alone never counts as online.</p></div>
+          <div class="hero-actions"><button class="primary" data-action="server-start">Start MineScape</button><button class="danger-outline" data-action="server-stop">Stop cleanly</button></div>
+        </div>
+        <div class="metric-grid" id="homeMetrics"></div>
+        <div class="two-column">
+          <article class="panel"><div class="panel-head"><h3>Plain-language health</h3><span class="tag">live</span></div><div id="healthList" class="health-list"></div></article>
+          <article class="panel"><div class="panel-head"><h3>World promises</h3><span class="tag quiet">locked</span></div><ul class="promise-list"><li>Natural Matcha economy at 1×</li><li>No homes, claims, kits, warps, or quest engine</li><li>First arrival is the shared village bell</li><li>Worldgen and gameplay stay frozen after V1.0</li></ul></article>
+        </div>
+        <article class="panel gated"><h3>Family Assist</h3><p class="muted">Typed, reviewable requests only. The current Bridge may record a release-gated ticket instead of claiming the game action ran.</p><form id="assistForm" class="inline-form"><input name="playerId" placeholder="Player UUID" required><select name="action"><option>SET_EASY</option><option>SET_NORMAL</option><option>START_AT_DAWN</option><option>RESCUE_TO_PUBLIC_SPAWN</option><option>MATCHA_HINT</option></select><input name="reason" placeholder="Reason" maxlength="500" required><button class="primary">Request assist</button></form></article>
+      </section>
+
+      <section class="page" id="page-players"><div class="section-intro"><h2>Pending and enrolled players</h2><p>Approval is by immutable UUID. A Java name is optional and construction needs no advance names.</p></div><article class="panel gated"><h3>Add by UUID</h3><form id="whitelistForm" class="inline-form"><input name="uuid" placeholder="00000000-0000-0000-0000-000000000000" required><button class="primary">Record whitelist intention</button></form><p class="muted">Current Bridge V1 records this durable intention. Native Minecraft whitelist synchronization and access-role assignment remain explicit release gates.</p></article><article class="panel"><h3>Known but not whitelisted</h3><div id="pendingPlayers"></div></article><article class="panel"><h3>Whitelist intentions</h3><div id="enrolledPlayers"></div></article><div class="doctrine">Every first join receives an ordinary empty inventory at the same public village-bell spawn. MineDeck assigns no house, ward, claim, kit, or private spawn.</div></section>
+
+      <section class="page" id="page-characters"><div class="section-intro"><h2>Mortal Hearts</h2><p>Capacity is permanent potential; blocked slots are visible black scars. A genuine Crystal Heart clears every blocked slot and adds one capacity.</p></div><div id="charactersGrid" class="card-grid"></div><div class="doctrine warning">When every unlocked slot is black, the character enters Retirement Pending. Nothing is silently deleted; parent review and a full snapshot come first.</div></section>
+
+      <section class="page" id="page-stewardship"><div class="section-intro"><h2>Stewardship journal</h2><p>Factual, private, append-only events—not karma, scores, moral labels, rewards, or punishments.</p></div><article class="panel"><div id="stewardshipEvents"></div></article></section>
+
+      <section class="page" id="page-rewards"><div class="section-intro"><h2>Matcha rewards</h2><p>Natural Matcha economy: <strong>1× (locked)</strong>. No per-player multiplier and no dragon optimization role.</p></div><article class="panel"><h3>Rare-event provenance</h3><div id="rewardEvents"></div></article><article class="panel gated"><h3>Reward correction</h3><p>For verified technical loss or a deliberate accessibility correction. V1 permits one Divine Fragment only and never auto-retries an ambiguous delivery.</p><form id="rewardForm" class="inline-form"><input name="playerUuid" placeholder="Player UUID" required><input name="generation" type="number" min="1" placeholder="Generation" required><select name="reason"><option>technical-loss</option><option>administrative-correction</option><option>accessibility-assistance</option></select><input name="evidence" placeholder="Evidence or note" required><input name="password" type="password" autocomplete="current-password" placeholder="Reauthenticate" required><button class="danger-outline">Review correction</button></form></article></section>
+
+      <section class="page" id="page-progress"><div class="section-intro"><h2>Matcha progression</h2><p>Read-only parent aid. MineDeck cannot grant, skip, complete, or redefine an advancement.</p></div><div class="root-strip"><span>From Earth</span><span>Through Hell</span><span>To Dreams</span><strong>64 displayed nodes</strong></div><div id="progressGrid" class="card-grid"></div><div class="doctrine">The child-facing chart remains Minecraft’s standard Advancement screen. Controlify’s virtual mouse is the controller fallback and must pass the full controller-only release test.</div></section>
+
+      <section class="page" id="page-world"><div class="section-intro"><h2>Family fog of war</h2><p>BlueMap renders; Bridge decides what the family has actually seen.</p></div><div id="fogGrid" class="card-grid"></div><article class="panel map-placeholder"><div class="fog-legend"><span class="seen-now">Currently visible</span><span class="remembered">Previously explored</span><span class="unknown">Never explored</span></div><h3>Masked family map</h3><p id="mapMessage">Waiting for the Bridge/BlueMap privacy adapter. Raw BlueMap is never linked here.</p></article><article class="panel"><h3>Loot provenance</h3><p class="muted">Terralith’s original roll remains intact; at most one eligible container receives one deterministic frozen-Matcha bonus roll.</p><div id="lootEvents"></div></article></section>
+
+      <section class="page" id="page-minejammer"><div class="section-intro"><h2>MineJammer staging</h2><p>A separate writable world. It never shares region files with production.</p></div><div class="hero blue"><div><p class="eyebrow">STAGING SERVER</p><h2 id="jammerState">Offline</h2><p>Blue/J remains visible in the tray whenever staging answers a real ping.</p></div><div class="hero-actions"><button class="primary blue-button" data-action="jammer-start">Start MineJammer</button><button class="danger-outline" data-action="jammer-stop">Stop cleanly</button></div></div><article class="panel gated"><h3>Compare a reserved parcel</h3><form id="promotionForm" class="stack-form"><div class="form-row"><label>Reservation ID<input name="reservationId" required></label><label>Candidate ID<input name="candidateId" required></label></div><label>Expected production hash<input name="expectedProductionHash" required></label><label>Reason<textarea name="reason" required></textarea></label><label>Administrator password (commit only)<input name="password" type="password" autocomplete="current-password"></label><div class="button-row"><button type="button" class="ghost" id="comparePromotion">Compare only</button><button type="submit" class="danger-outline">Commit after gates</button></div></form><p class="muted">Commit remains a typed Bridge operation. Bridge must enforce unseen bounds, a fresh rollback backup, stopped staging, unchanged production hashes, and transactional region/entity/POI promotion.</p></article></section>
+
+      <section class="page" id="page-settlements"><div class="section-intro"><h2>Friendly settlements</h2><p>Civic wards protect their own anchors—not houses, storage, roads, farms, or property.</p></div><div id="settlementsGrid" class="card-grid"></div><article class="panel gated"><h3>Register a player-built settlement</h3><form id="settlementForm" class="inline-form"><input name="name" placeholder="Settlement name" required><select name="dimension"><option>minecraft:overworld</option><option>minecraft:the_nether</option><option>minecraft:the_end</option></select><input name="minX" type="number" placeholder="Min X" required><input name="minZ" type="number" placeholder="Min Z" required><input name="maxX" type="number" placeholder="Max X" required><input name="maxZ" type="number" placeholder="Max Z" required><button class="primary">Scan and propose</button></form></article></section>
+
+      <section class="page" id="page-remote"><div class="section-intro"><h2>Remote access</h2><p>Private tailnet access for the parent’s Mac. Never a public router port.</p></div><div class="metric-grid" id="remoteMetrics"></div><div class="doctrine">Tailscale Serve must proxy the loopback dashboard with Funnel disabled. MineDeck still requires this separate administrator login.</div></section>
+
+      <section class="page" id="page-backups"><div class="section-intro"><h2>Verified recovery points</h2><p>Bridge must quiesce and flush the world before MineDeck will copy it.</p></div><article class="panel"><form id="backupForm" class="action-form"><input name="reason" placeholder="Backup reason or milestone" required><button class="primary">Create verified backup</button></form><div id="backupsList"></div></article><div class="doctrine warning">MineDeck does not claim VSS fallback or restore safety until those adapters pass integration tests. It refuses an uncoordinated live-world copy.</div></section>
+
+      <section class="page" id="page-updates"><div class="section-intro"><h2>Updates</h2><p>This forever world values stable law over novelty.</p></div><div id="updatesGrid" class="card-grid"></div><div class="doctrine">A later official Matcha archive can only contribute individually reviewed visual-resource deltas. It can never replace frozen Matcha 1.02 data, Stardust terrain, or any worldgen archive.</div></section>
+
+      <section class="page" id="page-activity"><div class="section-intro"><h2>Administrative activity</h2><p>Append-only MineDeck actions plus typed Bridge events and Ledger links.</p></div><article class="panel"><div id="activityEvents"></div></article></section>
+
+      <section class="page" id="page-steward"><div class="section-intro"><h2>Steward session</h2><p>Administration never makes the parent’s ordinary Minecraft character an operator.</p></div><article class="panel gated"><h3>Request a temporary lease</h3><form id="stewardForm" class="stack-form"><label>Parent player UUID<input name="playerUuid" required></label><label>Minutes<input name="minutes" type="number" min="1" max="30" value="15" required></label><label>Reason<textarea name="reason" required></textarea></label><label class="check"><input name="creative" type="checkbox"> Creative lease (otherwise Steward Survival)</label><label>Administrator password<input name="password" type="password" autocomplete="current-password" required></label><div class="button-row"><button class="danger-outline">Arm Steward session</button><button type="button" class="ghost" id="endSteward">End and restore</button></div></form><p class="muted">Bridge—not the client profile—must snapshot state, prevent leakage and damage, show the in-game STEWARD CREATIVE warning, and restore Survival on every exit path.</p></article></section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" hidden></div>
+  <dialog id="sensitiveDialog">
+    <form id="sensitiveForm" class="stack-form">
+      <h3 id="sensitiveTitle">Confirm administrative action</h3>
+      <label id="sensitiveNoteLabel">Evidence or note<textarea id="sensitiveNote"></textarea></label>
+      <label>Administrator password<input id="sensitivePassword" type="password" autocomplete="current-password" required></label>
+      <div class="button-row"><button type="button" class="ghost" id="sensitiveCancel">Cancel</button><button class="danger-outline">Continue</button></div>
+    </form>
+  </dialog>
+  <script src="/js/minedeck.js"></script>
+</body>
+</html>

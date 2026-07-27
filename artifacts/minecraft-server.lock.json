@@ -1,0 +1,15 @@
+{
+    "schema":  "minescape.minecraft-server-lock.v1",
+    "version":  "26.2",
+    "type":  "release",
+    "version_manifest":  "https://piston-meta.mojang.com/mc/game/version_manifest_v2.json",
+    "version_metadata":  "https://piston-meta.mojang.com/v1/packages/d98675ecc24364e90b18dbea80390b1345c3f71f/26.2.json",
+    "download_url":  "https://piston-data.mojang.com/v1/objects/823e2250d24b3ddac457a60c92a6a941943fcd6a/server.jar",
+    "size":  60894273,
+    "sha1":  "823e2250d24b3ddac457a60c92a6a941943fcd6a",
+    "sha512":  "a7d6df49426295102c6ae8fc1453af64d463e4dd8523c870466dd0410d12a998aec464fdb7bbf99889c80fc72aaac26a55bc675d2e32f49ede0e1839ecaf4592",
+    "cache_relative":  "artifacts/cache/minecraft_server/server-26.2.jar",
+    "bundled_server_relative":  "artifacts/cache/minecraft_server/server-26.2-inner.jar",
+    "bundled_server_sha256":  "183c0499c5f855570ee487dd38e141a53f0121f83a0b07a3bac2d8b6698823e8",
+    "bundled_server_sha512":  "2b71afc277b5f1b774c7c5aeb84b0ccc57abfc686353052fbc953d0dc425e440d588e89070828896788ca8776d90469f22a3f7dcf93bc3668516d01224bfd178"
+}

@@ -1,0 +1,28 @@
+{
+  "schema": "minescape.seed-policy.v1",
+  "seed": "6246468738900744",
+  "boundaries": {
+    "overworld": 16384,
+    "nether": 2048,
+    "end": 8192,
+    "looping": false
+  },
+  "required_structures": [
+    "minecraft:village_plains",
+    "minecraft:village_desert",
+    "minecraft:village_savanna",
+    "minecraft:village_snowy",
+    "minecraft:village_taiga",
+    "terralith:rare_village",
+    "terralith:mage",
+    "terralith:regular",
+    "terralith:underground",
+    "terralith:underground_dungeon",
+    "terralith:rare_dungeon",
+    "terralith:rubble",
+    "minecraft:fortress",
+    "minecraft:bastion_remnant",
+    "minecraft:stronghold",
+    "minecraft:end_city"
+  ]
+}

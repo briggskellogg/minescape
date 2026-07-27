@@ -1,0 +1,158 @@
+{
+  "schema": "minescape.loot-adapter-policy.v1",
+  "version": "1.0.0",
+  "world_seed": "6246468738900744",
+  "constraints": {
+    "max_enriched_containers_per_start": 1,
+    "reference_rolls_per_selected_container": 1,
+    "upstream_roll_first": true,
+    "per_player_multiplier": false,
+    "reroll": false
+  },
+  "forbidden_items": [
+    "Matcha Divine Favour",
+    "Matcha Divine Fragment"
+  ],
+  "structures": {
+    "terralith:desert_outpost": {
+      "matcha_bonus_table": "minecraft:chests/village/village_desert_house",
+      "danger_tier": "surface",
+      "reason": "Hot-dry outpost provisions."
+    },
+    "terralith:fortified_desert_village": {
+      "matcha_bonus_table": "minecraft:chests/village/village_desert_house",
+      "danger_tier": "settlement",
+      "reason": "Climate-appropriate living-village economy."
+    },
+    "terralith:fortified_village": {
+      "matcha_bonus_table": "minecraft:chests/village/village_plains_house",
+      "danger_tier": "settlement",
+      "reason": "Climate-appropriate living-village economy."
+    },
+    "terralith:glacial_hut": {
+      "matcha_bonus_table": "minecraft:chests/village/village_snowy_house",
+      "danger_tier": "surface",
+      "reason": "Cold surface provisions."
+    },
+    "terralith:igloo": {
+      "matcha_bonus_table": "minecraft:chests/village/village_snowy_house",
+      "danger_tier": "surface",
+      "reason": "Cold surface provisions."
+    },
+    "terralith:mage_complex": {
+      "matcha_bonus_table": "minecraft:chests/village/village_temple",
+      "danger_tier": "surface",
+      "reason": "Religious/mage-site found provisions."
+    },
+    "terralith:mage_tower": {
+      "matcha_bonus_table": "minecraft:chests/village/village_temple",
+      "danger_tier": "surface",
+      "reason": "Religious/mage-site found provisions."
+    },
+    "terralith:mage_tower_autumn": {
+      "matcha_bonus_table": "minecraft:chests/village/village_temple",
+      "danger_tier": "surface",
+      "reason": "Religious/mage-site found provisions."
+    },
+    "terralith:mage_tower_spring": {
+      "matcha_bonus_table": "minecraft:chests/village/village_temple",
+      "danger_tier": "surface",
+      "reason": "Religious/mage-site found provisions."
+    },
+    "terralith:mage_tower_summer": {
+      "matcha_bonus_table": "minecraft:chests/village/village_temple",
+      "danger_tier": "surface",
+      "reason": "Religious/mage-site found provisions."
+    },
+    "terralith:mage_tower_winter": {
+      "matcha_bonus_table": "minecraft:chests/village/village_temple",
+      "danger_tier": "surface",
+      "reason": "Religious/mage-site found provisions."
+    },
+    "terralith:rubble_desert": {
+      "matcha_bonus_table": null,
+      "danger_tier": "none",
+      "reason": "No second bonus: upstream brushables already compose with Matcha archaeology."
+    },
+    "terralith:rubble_forest": {
+      "matcha_bonus_table": null,
+      "danger_tier": "none",
+      "reason": "No second bonus: upstream brushables already compose with Matcha archaeology."
+    },
+    "terralith:rubble_jungle": {
+      "matcha_bonus_table": null,
+      "danger_tier": "none",
+      "reason": "No second bonus: upstream brushables already compose with Matcha archaeology."
+    },
+    "terralith:rubble_mesa": {
+      "matcha_bonus_table": null,
+      "danger_tier": "none",
+      "reason": "No second bonus: upstream brushables already compose with Matcha archaeology."
+    },
+    "terralith:rubble_mountain": {
+      "matcha_bonus_table": null,
+      "danger_tier": "none",
+      "reason": "No second bonus: upstream brushables already compose with Matcha archaeology."
+    },
+    "terralith:rubble_taiga": {
+      "matcha_bonus_table": null,
+      "danger_tier": "none",
+      "reason": "No second bonus: upstream brushables already compose with Matcha archaeology."
+    },
+    "terralith:spire": {
+      "matcha_bonus_table": "minecraft:chests/simple_dungeon",
+      "danger_tier": "danger",
+      "reason": "Danger-tier site; native Matcha chance is preserved."
+    },
+    "terralith:underground_cabin": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:underground/frosted_dungeon": {
+      "matcha_bonus_table": "minecraft:chests/simple_dungeon",
+      "danger_tier": "danger",
+      "reason": "Danger-tier site; native Matcha chance is preserved."
+    },
+    "terralith:underground/giant_bee_hive": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:underground/mining_outpost": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:underground/oak_cabin": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:underground/old_refinery": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:underground/sunken_tower": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:underground/witch_hut": {
+      "matcha_bonus_table": "minecraft:chests/abandoned_mineshaft",
+      "danger_tier": "underground",
+      "reason": "Underground work-site source."
+    },
+    "terralith:valley_lodge": {
+      "matcha_bonus_table": "minecraft:chests/village/village_taiga_house",
+      "danger_tier": "surface",
+      "reason": "Woodland lodge provisions."
+    },
+    "terralith:witch_hut": {
+      "matcha_bonus_table": "minecraft:chests/village/village_plains_house",
+      "danger_tier": "surface",
+      "reason": "Small surface hut provisions."
+    }
+  }
+}

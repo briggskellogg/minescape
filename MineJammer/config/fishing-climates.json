@@ -1,0 +1,34 @@
+{
+  "schema": "minescape.fishing-climates.v1",
+  "climates": [
+    "freshwater_cold",
+    "freshwater_cool",
+    "freshwater_temperate",
+    "freshwater_hot_wet",
+    "freshwater_hot_dry",
+    "saltwater_cold",
+    "saltwater_cool",
+    "saltwater_temperate",
+    "saltwater_warm",
+    "saltwater_hot",
+    "swamps"
+  ],
+  "freshwater_thresholds": {
+    "cold_max": 0.2,
+    "cool_max": 0.5,
+    "temperate_max": 0.9,
+    "hot_wet_min_downfall": 0.5
+  },
+  "name_overrides": {
+    "saltwater_warm": ["^deep_warm_ocean$"],
+    "swamps": ["swamp", "marsh"]
+  },
+  "no_fish_patterns": ["/worldgen/biome/cave/"],
+  "hot_wet_correction": {
+    "table": "data/minecraft/loot_table/gameplay/fishing.json",
+    "branch": "minecraft:gameplay/fishing/freshwater_hot_wet",
+    "incorrect_tag": "#minecraft:freshwater_hot_dry",
+    "correct_tag": "#minecraft:freshwater_hot_wet",
+    "required_replacements": 1
+  }
+}
